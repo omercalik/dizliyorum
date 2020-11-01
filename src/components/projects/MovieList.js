@@ -2,14 +2,15 @@ import React from 'react';
 import ProjectSummary from './ProjectSummary';
 import { Link } from 'react-router-dom';
 
-const ProjectList = ({ projects }) => {
+const MovieList = ({ lists }) => {
+  console.log(lists);
   return (
     <div className="project-list section">
-      {projects &&
-        projects.map((project) => {
+      {lists &&
+        lists.map((list) => {
           return (
-            <Link to={'/project/' + project.id} key={project.id}>
-              <ProjectSummary project={project} />;
+            <Link to={'/list/' + list.id} key={list.id}>
+              {list.title}
             </Link>
           );
         })}
@@ -17,4 +18,4 @@ const ProjectList = ({ projects }) => {
   );
 };
 
-export default ProjectList;
+export default MovieList;
