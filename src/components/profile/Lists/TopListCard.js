@@ -17,11 +17,14 @@ export const TopListCard = ({ movie }) => {
 
       <div className="info">
         <div className="header">
-          <h3 className="title">{movie.title}</h3>
-          <h2 className="title">{movie.vote_average}</h2>
+          <h3 className="title">{movie.title} ({movie.vote_average})</h3>
+        
+          <br/>
+          <h2 className="title">{movie.overview}</h2>
           <h4 className="release-date">
             {movie.release_date ? movie.release_date.substring(0, 4) : '-'}
           </h4>
+          <br/>
         </div>
 
         <div className="controls">

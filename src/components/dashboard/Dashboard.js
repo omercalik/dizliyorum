@@ -6,17 +6,18 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { Redirect } from 'react-router-dom';
 import { TopList } from '../profile/Lists/TopList';
+import Profile from '../profile/Profile';
 
 class Dashboard extends Component {
   render() {
     const { lists, auth } = this.props;
-
+    
     if (auth.uid) {
       return (
-        <TopList/>
+        <Profile/>
       );
     } else {
-      return <TopList/>;
+      return;
     }
   }
 }
@@ -38,3 +39,5 @@ export default compose(
   ]),
   connect(mapStateToProps)
 )(Dashboard);
+
+
