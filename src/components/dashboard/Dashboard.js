@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { Redirect } from 'react-router-dom';
+import { TopList } from '../profile/Lists/TopList';
 
 class Dashboard extends Component {
   render() {
@@ -12,15 +13,10 @@ class Dashboard extends Component {
 
     if (auth.uid) {
       return (
-        <div className="dashboard container">
-          <div className="row">
-            <div className="col s12 m6">CONTENT GELECEK</div>
-            <div className="col s12 m5 offset-m1">CONTENT GELECEK</div>
-          </div>
-        </div>
+        <TopList/>
       );
     } else {
-      return <h1>Your are not logged in!</h1>;
+      return <TopList/>;
     }
   }
 }

@@ -20,6 +20,7 @@ const Navbar = (props) => {
         <Link to="/" className="brand-logo">
           Dizliyorum
         </Link>
+      
         {links}
       </div>
     </nav>
