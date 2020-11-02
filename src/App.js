@@ -9,6 +9,9 @@ import CreateList from './components/projects/CreateList';
 import Profile from './components/profile/Profile';
 import { Add } from './components/profile/Lists/Add';
 import MyLists from './components/profile/Lists/MyLists';
+import { TopList } from './components/profile/Lists/TopList';
+import { NowPlaying } from './components/profile/Lists/NowPlaying';
+
 //import "./App.css";
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -27,6 +30,8 @@ class App extends React.Component {
             <Route path="/profile" component={Profile} />
             <Route path="/add" component={Add} />
             <Route path="/lists" component={MyLists} />
+            <Route path="/toplists" component={TopList} />
+            <Route path="/nowplaying" component={NowPlaying} />
           </Switch>
         </div>
       </BrowserRouter>
