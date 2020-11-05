@@ -5,7 +5,9 @@ export const createList = (list) => {
     const profile = getState().firebase.profile;
     const authorId = getState().firebase.auth.uid;
     firestore
-      .collection('projects')
+      .collection('users')
+      .doc(authorId)
+      .collection('lists')
       .add({
         ...list,
         authorFirstName: profile.firstName,

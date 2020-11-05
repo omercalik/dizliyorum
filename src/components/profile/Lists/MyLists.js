@@ -3,15 +3,38 @@ import { Link } from 'react-router-dom';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import firebase from '../../../config/fbConfig';
+import { Redirect } from 'react-router-dom';
 
-const MyLists = ({ lists }) => {
-  console.log(lists);
+let db = firebase.firestore();
+
+const MyLists = ({ state }) => {
+  const [myLists, setMyLists] = React.useState();
+
+  React.useEffect(() => {
+    const fetchData = () => {
+      db.collection('users/' + state.firebase.auth.uid + '/lists')
+        .get()
+        .then((snapshot) => {
+          let movieLists = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+
+          setMyLists(movieLists);
+        });
+    };
+
+    fetchData();
+  }, []);
+
+  if (!state.firebase.auth.uid) return <Redirect to="/signin" />;
   return (
     <div className="project-list section">
-      {lists &&
-        lists.map((list) => {
+      {myLists &&
+        myLists.map((list) => {
           return (
-            <Link to={'/list/' + list.id} key={list.id}>
+            <Link to={'/list/' + list.title} key={list.id}>
               {list.title}
             </Link>
           );
@@ -21,9 +44,8 @@ const MyLists = ({ lists }) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
-    lists: state.firestore.ordered.lists,
+    state: state,
     auth: state.firebase.auth,
   };
 };
@@ -31,7 +53,7 @@ const mapStateToProps = (state) => {
 export default compose(
   firestoreConnect(() => [
     {
-      collection: 'lists',
+      collection: 'users',
       //orderBy: ['createdAt', 'desc'],
     },
   ]),

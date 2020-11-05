@@ -8,6 +8,7 @@ import { Redirect } from 'react-router-dom';
 import { TopList } from '../profile/Lists/TopList';
 import Profile from '../profile/Profile';
 import Navbar from '../layout/Navbar';
+import SignIn from '../auth/SignIn';
 
 class Dashboard extends Component {
   render() {
@@ -16,13 +17,12 @@ class Dashboard extends Component {
     if (auth.uid) {
       return <Profile />;
     } else {
-      return <Profile />;
+      return <SignIn />;
     }
   }
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     lists: state.firestore.ordered.lists,
     auth: state.firebase.auth,

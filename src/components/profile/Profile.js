@@ -43,7 +43,6 @@ class Profile extends React.Component {
   }
 }
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     lists: state.firestore.ordered.lists,
     auth: state.firebase.auth,
