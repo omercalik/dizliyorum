@@ -7,17 +7,16 @@ import { compose } from 'redux';
 import { Redirect } from 'react-router-dom';
 import { TopList } from '../profile/Lists/TopList';
 import Profile from '../profile/Profile';
+import Navbar from '../layout/Navbar';
 
 class Dashboard extends Component {
   render() {
     const { lists, auth } = this.props;
-    
+
     if (auth.uid) {
-      return (
-        <Profile/>
-      );
+      return <Profile />;
     } else {
-      return;
+      return <Profile />;
     }
   }
 }
@@ -39,5 +38,3 @@ export default compose(
   ]),
   connect(mapStateToProps)
 )(Dashboard);
-
-
