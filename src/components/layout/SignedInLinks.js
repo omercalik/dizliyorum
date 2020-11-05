@@ -16,6 +16,9 @@ const SignedInLinks = (props) => {
         <NavLink to="/nowplaying">Vizyondakiler</NavLink>
       </li>
       <li>
+        <NavLink to="/details">Detay</NavLink>
+      </li>
+      <li>
         <a onClick={props.signOut}>Log Out </a>
       </li>
       <li>

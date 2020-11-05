@@ -12,6 +12,7 @@ import MyLists from './components/profile/Lists/MyLists';
 import { TopList } from './components/profile/Lists/TopList';
 import { NowPlaying } from './components/profile/Lists/NowPlaying';
 
+
 //import "./App.css";
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -32,6 +33,7 @@ class App extends React.Component {
             <Route path="/lists" component={MyLists} />
             <Route path="/toplists" component={TopList} />
             <Route path="/nowplaying" component={NowPlaying} />
+
           </Switch>
         </div>
       </BrowserRouter>

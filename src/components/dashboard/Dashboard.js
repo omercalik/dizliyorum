@@ -7,6 +7,7 @@ import { compose } from 'redux';
 import { Redirect } from 'react-router-dom';
 import { TopList } from '../profile/Lists/TopList';
 import Profile from '../profile/Profile';
+import SignIn from '../auth/SignIn';
 
 class Dashboard extends Component {
   render() {
@@ -17,7 +18,7 @@ class Dashboard extends Component {
         <Profile/>
       );
     } else {
-      return;
+      return <SignIn/>
     }
   }
 }
