@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { TopListCard } from './TopListCard';
+import MovieList from '../../projects/MovieList';
+import Vizyondakiler from './Vizyondakiler';
 
 export const NowPlaying = () => {
   const [results, setResults] = useState([]);
@@ -29,23 +30,12 @@ export const NowPlaying = () => {
       .catch(handleErrors);
   }, []);
 
-  const listItems = results.map((movie) => (
-    <li key={movie.id}>
-      <TopListCard movie={movie} />
-    </li>
-  ));
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col s12 m6">
-          <div className="add-content">
-            
-            {console.log(results)}
-            <ul className="results">{listItems}</ul>
-          </div>
-        </div>
-      </div>
+    <div className = "movie-container">
+    {results.length > 0 &&
+      results.map((movie) => <Vizyondakiler key = {movie.id} {...movie} />)
+    }
     </div>
   );
 };
