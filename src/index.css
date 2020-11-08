@@ -1,24 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-
-*{
+* {
   box-sizing: border-box;
 }
-
 
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background-color: rgb(232, 238, 221);
-  font-family: "Poppins", sans-serif;
+
+  font-family: 'Poppins', sans-serif;
   margin: 0;
 }
 
 form {
   padding: 20px;
   margin-top: 60px;
- 
 }
 
 form button,
@@ -37,7 +34,6 @@ textarea.materialize-textarea:focus:not([readonly]) {
 .movie-container {
   display: flex;
   flex-wrap: wrap;
-
 }
 .movie {
   margin: 1rem;
@@ -50,7 +46,6 @@ textarea.materialize-textarea:focus:not([readonly]) {
 }
 .movie img {
   max-width: 100%;
-
 }
 .movie-info {
   display: flex;
@@ -58,14 +53,13 @@ textarea.materialize-textarea:focus:not([readonly]) {
   justify-content: space-between;
   padding: 1rem;
   font-size: 20px;
-  
 }
-.movie-info h3{
+.movie-info h3 {
   margin: 0;
   font-size: 20px;
 }
 
-.movie-over{
+.movie-over {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -80,8 +74,6 @@ textarea.materialize-textarea:focus:not([readonly]) {
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
   box-shadow: 0 -3px 5px rgba(0, 0, 0, 0.1);
-
-
 }
 
 .movie:hover .movie-over {
@@ -90,7 +82,7 @@ textarea.materialize-textarea:focus:not([readonly]) {
 
 /* 
 Top100 CSS
-*/ 
+*/
 
 .movieTopList {
   margin-top: 2%;
@@ -101,11 +93,9 @@ Top100 CSS
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   position: relative;
-  
 }
 .movieTopList img {
   max-width: 100%;
-
 }
 .movieTopList-info {
   display: flex;
@@ -113,14 +103,13 @@ Top100 CSS
   justify-content: space-between;
   padding: 1rem;
   font-size: 20px;
-  
 }
-.movieTopList-info h3{
+.movieTopList-info h3 {
   margin: 0;
   font-size: 20px;
 }
 
-.movieTopList-over{
+.movieTopList-over {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -135,17 +124,8 @@ Top100 CSS
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
   box-shadow: 0 -3px 5px rgba(0, 0, 0, 0.1);
-
-
 }
 
 .movieTopList:hover .movieTopList-over {
   transform: translateX(0);
 }
-
-
-
-
-
-
-
