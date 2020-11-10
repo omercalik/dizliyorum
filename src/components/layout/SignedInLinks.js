@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from '@reach/router';
 import { connect } from 'react-redux';
 import { signOut } from '../../store/actions/authActions';
 
@@ -7,24 +7,24 @@ const SignedInLinks = (props) => {
   return (
     <ul className="right">
       <li>
-        <NavLink to="/create">New List</NavLink>
+        <Link to="/create">New List</Link>
       </li>
       <li>
-        <NavLink to="/toplists">Top 100</NavLink>
+        <Link to="/toplists">Top 100</Link>
       </li>
       <li>
-        <NavLink to="/nowplaying">Vizyondakiler</NavLink>
+        <Link to="/nowplaying">Vizyondakiler</Link>
       </li>
       <li>
-        <NavLink to="/details">Detay</NavLink>
+        <Link to="/details">Detay</Link>
       </li>
       <li>
         <a onClick={props.signOut}>Log Out </a>
       </li>
       <li>
-        <NavLink to="/profile" className="btn btn-floating pink lighten-1">
+        <Link to="/profile" className="btn btn-floating pink lighten-1">
           {props.profile.initials}
-        </NavLink>
+        </Link>
       </li>
     </ul>
   );

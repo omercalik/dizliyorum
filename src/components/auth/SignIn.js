@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { signIn } from '../../store/actions/authActions';
-import { Redirect } from 'react-router-dom';
+import { navigate } from '@reach/router';
 import authReducer from '../../store/reducers/authReducer';
 
 class SignIn extends React.Component {
@@ -18,7 +18,7 @@ class SignIn extends React.Component {
   };
   render() {
     const { authError, auth } = this.props;
-    if (auth.uid) return <Redirect to="/" />;
+    if (auth.uid) navigate('/');
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit} className="white">

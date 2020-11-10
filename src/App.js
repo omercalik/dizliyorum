@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+//import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Router } from '@reach/router';
 import Navbar from './components/layout/Navbar';
 import Home from './components/dashboard/Home';
 import ProjectDetails from './components/projects/ProjectDetails';
@@ -12,6 +13,7 @@ import MyLists from './components/profile/Lists/MyLists';
 import { TopList } from './components/profile/Lists/TopList';
 import { NowPlaying } from './components/profile/Lists/NowPlaying';
 import { List } from './components/profile/Lists/List';
+import Movie from './components/movie/Movie';
 
 //import "./App.css";
 
@@ -19,24 +21,22 @@ import { List } from './components/profile/Lists/List';
 class App extends React.Component {
   render() {
     return (
-      <BrowserRouter>
-        <div className="App">
-          <Navbar />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/project/:id" component={ProjectDetails} />
-            <Route path="/signin" component={SignIn} />
-            <Route path="/signup" component={SignUp} />
-            <Route path="/create" component={CreateList} />
-            <Route path="/profile" component={Profile} />
-            <Route path="/add" component={Add} />
-            <Route path="/lists" component={MyLists} />
-            <Route path="/list/:title" component={List} />
-            <Route path="/toplists" component={TopList} />
-            <Route path="/nowplaying" component={NowPlaying} />
-          </Switch>
-        </div>
-      </BrowserRouter>
+      <div className="App">
+        <Navbar />
+        <Router>
+          <Home exact path="/" />
+          <SignIn path="/signin" />
+          <SignUp path="/signup" />
+          <CreateList path="/create" />
+          <Profile path="/profile" />
+          <Add path="/add" />
+          <MyLists path="/lists" />
+          <List path="list/:title" />
+          <TopList path="/toplists" />
+          <NowPlaying path="/nowplaying" />
+          <Movie path="/:movieId" />
+        </Router>
+      </div>
     );
   }
 }

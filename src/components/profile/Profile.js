@@ -1,9 +1,9 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect } from '@reach/router';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
-import { Link } from 'react-router-dom';
+import { Link } from '@reach/router';
 
 class Profile extends React.Component {
   state = {
@@ -15,7 +15,7 @@ class Profile extends React.Component {
 
   render() {
     const { auth, authError } = this.props;
-    if (!auth.uid) return <Redirect to="/" />;
+    if (!auth.uid) return <Redirect from="/profile" to="/" />;
     return (
       <div className="container">
         <div className="row">

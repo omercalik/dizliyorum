@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '@reach/router';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import firebase from '../../../config/fbConfig';
-import { Redirect } from 'react-router-dom';
+import { Redirect } from '@reach/router';
 
 let db = firebase.firestore();
 
@@ -28,7 +28,7 @@ const MyLists = ({ state }) => {
     fetchData();
   }, []);
 
-  if (!state.firebase.auth.uid) return <Redirect to="/signin" />;
+  if (!state.firebase.auth.uid) return <Redirect from="/lists" to="/signin" />;
   return (
     <div className="project-list section">
       {myLists &&

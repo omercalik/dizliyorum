@@ -1,63 +1,89 @@
 import React, { Component, useState } from 'react';
-
-import MovieList from '../projects/MovieList';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
-import { Redirect } from 'react-router-dom';
-import { TopList } from '../profile/Lists/TopList';
-import Profile from '../profile/Profile';
-import Navbar from '../layout/Navbar';
-import SignIn from '../auth/SignIn';
 
 import Grid from './Grid';
 import MovieThumb from './MovieThumb';
+import HeroImage from './HeroImage';
+import NoImage from '../images/no_image.jpg';
+import LoadMoreBtn from './LoadMoreBtn';
+import Spinner from './Spinner';
+import SearchBar from './SearchBar';
 
 import {
-  API_URL,
-  API_KEY,
-  API_BASE_URL,
+  POPULAR_BASE_URL,
+  SEARCH_BASE_URL,
   POSTER_SIZE,
   BACKDROP_SIZE,
   IMAGE_BASE_URL,
 } from '../../config/apiConfig';
 
-import HeroImage from './HeroImage';
-
 import { useHomeFetch } from '../hooks/useHomeFetch';
 
-import NoImage from '../images/no_image.jpg';
-
 const Home = () => {
-  const [{ state, loading, error }, fetchMovies] = useHomeFetch();
   const [searchTerm, setSearchTerm] = useState('');
-  console.log(state);
+  const [
+    {
+      state: { movies, currentPage, totalPages, heroImage },
+      loading,
+      error,
+    },
+    fetchMovies,
+  ] = useHomeFetch(searchTerm);
+
+  const searchMovies = (search) => {
+    const endpoint = search ? SEARCH_BASE_URL + search : POPULAR_BASE_URL;
+
+    setSearchTerm(search);
+    fetchMovies(endpoint);
+  };
+
+  const loadMoreMovies = () => {
+    const searchEndpoint = `${SEARCH_BASE_URL}${searchTerm}&page=${
+      currentPage + 1
+    }`;
+    const popularEndpoint = `${POPULAR_BASE_URL}&page=${currentPage + 1}`;
+
+    const endpoint = searchTerm ? searchEndpoint : popularEndpoint;
+
+    fetchMovies(endpoint);
+  };
 
   if (error) return <div>Something went wrong..</div>;
-  if (!state.movies[0]) return <div>Error</div>;
+  if (!movies[0]) return <Spinner />;
   return (
     <>
-      <HeroImage
-        image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.heroImage.backdrop_path}`}
-        title={state.heroImage.title}
-        text={state.heroImage.overview}
-      />
+      {!searchTerm && (
+        <HeroImage
+          image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${heroImage.backdrop_path}`}
+          title={heroImage.title}
+          text={heroImage.overview}
+        />
+      )}
 
-      <Grid header={searchTerm ? 'Search Result ' : 'Popular Movies'}>
-        {state.movies.map((movie) => (
+      <SearchBar callback={searchMovies} />
+
+      <Grid header={searchTerm ? 'Search Result' : 'Popular Movies'}>
+        {movies.map((movie) => (
           <MovieThumb
             key={movie.id}
             clickable
             image={
               movie.poster_path
-                ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
+                ? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
                 : NoImage
             }
             movieId={movie.id}
-            movieName={movie.title}
+            movieName={movie.original_title}
           />
         ))}
       </Grid>
+
+      {loading && <Spinner />}
+      {currentPage < totalPages && !loading && (
+        <LoadMoreBtn text="Load More" callback={loadMoreMovies} />
+      )}
     </>
   );
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '@reach/router';
 import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
 import { connect } from 'react-redux';
@@ -20,7 +20,7 @@ const Navbar = (props) => {
         <Link to="/" className="brand-logo">
           Dizliyorum
         </Link>
-      
+
         {links}
       </div>
     </nav>
