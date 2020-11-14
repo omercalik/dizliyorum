@@ -16,10 +16,10 @@ export const createList = (list) => {
         createdAt: new Date(),
       })
       .then(() => {
-        dispatch({ type: 'CREATE_PROJECT', project: list });
+        dispatch({ type: 'CREATE_LIST', list: list });
       })
       .catch((err) => {
-        dispatch({ type: 'CREATE_PROJECT_ERROR', err });
+        dispatch({ type: 'CREATE_LIST_ERROR', err });
       });
   };
 };

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Navigation } from './Navigation';
 import { MovieInfo } from './MovieInfo';
-import { MovieInfoBar } from './MovieInfoBar';
+import MovieInfoBar from './MovieInfoBar';
 import { Actor } from './Actor';
 import Grid from '../dashboard/Grid';
 import Spinner from '../dashboard/Spinner';
@@ -25,6 +25,7 @@ const Movie = ({ movieId }) => {
         time={movie.runtime}
         budget={movie.budget}
         revenue={movie.revenue}
+        movie={movie}
       />
       <Grid header="Actors">
         {movie.actors.map((actor) => (

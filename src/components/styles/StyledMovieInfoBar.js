@@ -21,7 +21,7 @@ export const StyledMovieInfoBar = styled.div`
 
   .movieinfobar-content-col {
     float: left;
-    width: 33.33%;
+    width: 25%;
     box-sizing: border-box;
     padding: 10px 20px 0 0;
   }
