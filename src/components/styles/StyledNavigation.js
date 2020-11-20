@@ -9,7 +9,7 @@ export const StyledNavigation = styled.div`
   background: #1c1c1c;
 `;
 
-export const Logo = styled.a`
+export const Logo = styled.div`
 
   padding: 1rem 0;
   
@@ -37,7 +37,7 @@ export const Hamburger = styled.div`
   }
 `;
 
-export const MenuLink = styled.a`
+export const MenuLink = styled.div`
   a {
     padding: 1rem 2rem;
     cursor: pointer;

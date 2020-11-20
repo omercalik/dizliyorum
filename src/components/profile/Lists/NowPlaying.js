@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import MovieList from '../../projects/MovieList';
 import Vizyondakiler from './Vizyondakiler';
+import Grid from '../../dashboard/Grid';
+import MovieThumb from '../../dashboard/MovieThumb';
+import NoImage from '../../images/no_image.jpg';
+
+import {
+  POPULAR_BASE_URL,
+  SEARCH_BASE_URL,
+  POSTER_SIZE,
+  BACKDROP_SIZE,
+  IMAGE_BASE_URL,
+} from '../../../config/apiConfig';
 
 export const NowPlaying = () => {
   const [results, setResults] = useState([]);
@@ -31,10 +41,22 @@ export const NowPlaying = () => {
   }, []);
 
   return (
-    <div className="movie-container">
-      {console.log(results)}
-      {results.length > 0 &&
-        results.map((movie) => <Vizyondakiler key={movie.id} {...movie} />)}
+    <div>
+      <Grid header="Vizyondaki Filmler">
+        {results.map((movie) => (
+          <MovieThumb
+            key={movie.id}
+            clickable
+            image={
+              movie.poster_path
+                ? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
+                : NoImage
+            }
+            movieId={movie.id}
+            movieName={movie.original_title}
+          />
+        ))}
+      </Grid>
     </div>
   );
 };

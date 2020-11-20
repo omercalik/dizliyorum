@@ -4,6 +4,14 @@ import { firestoreReducer } from 'redux-firestore';
 import listReducer from './listReducer';
 import { combineReducers } from 'redux';
 import watchlistReducer from './watchlistReducer';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['list', 'watchlist'],
+};
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -13,4 +21,4 @@ const rootReducer = combineReducers({
   watchlist: watchlistReducer,
 });
 
-export default rootReducer;
+export default persistReducer(persistConfig, rootReducer);

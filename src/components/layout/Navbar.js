@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from '@reach/router';
 import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
 import { connect } from 'react-redux';
-import { isLoaded } from 'react-redux-firebase';
-import { StyledNavigation, Logo, Hamburger } from '../styles/StyledNavigation';
+
+import { StyledNavigation, Logo } from '../styles/StyledNavigation';
 
 const Navbar = (props) => {
   const { auth, profile } = props;

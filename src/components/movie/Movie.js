@@ -1,11 +1,11 @@
 import React from 'react';
-
 import { Navigation } from './Navigation';
 import { MovieInfo } from './MovieInfo';
 import MovieInfoBar from './MovieInfoBar';
 import { Actor } from './Actor';
 import Grid from '../dashboard/Grid';
 import Spinner from '../dashboard/Spinner';
+import { ActorCarousel } from './ActorCarousel';
 
 import { useMovieFetch } from '../hooks/useMovieFetch';
 
@@ -27,11 +27,16 @@ const Movie = ({ movieId }) => {
         revenue={movie.revenue}
         movie={movie}
       />
-      <Grid header="Actors">
-        {movie.actors.map((actor) => (
-          <Actor key={actor.credit_id} actor={actor} />
-        ))}
-      </Grid>
+      {movie.actors.length > 0 ? (
+        <>
+          <h1>Actors</h1>
+          <ActorCarousel header="Actors">
+            {movie.actors.map((actor) => (
+              <Actor key={actor.credit_id} actor={actor} />
+            ))}
+          </ActorCarousel>
+        </>
+      ) : null}
     </>
   );
 };

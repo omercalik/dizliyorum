@@ -4,10 +4,12 @@ import './index.css';
 import App from './App';
 
 import { createStore, applyMiddleware, compose } from 'redux';
+import { persistStore } from 'redux-persist';
 import rootReducer from './store/reducers/rootReducer';
 import { Provider, useSelector } from 'react-redux';
 import thunk from 'redux-thunk';
 import firebase from './config/fbConfig';
+import { PersistGate } from 'redux-persist/integration/react';
 
 import {
   createFirestoreInstance,
@@ -17,11 +19,8 @@ import {
 import {
   ReactReduxFirebaseProvider,
   getFirebase,
-  reactReduxFirebase,
   isLoaded,
 } from 'react-redux-firebase';
-
-//import 'firebase/firestore';
 
 const rrfConfig = {
   userProfile: 'users',
@@ -35,6 +34,8 @@ const store = createStore(
     reduxFirestore(firebase)
   )
 );
+
+export const persistor = persistStore(store);
 
 const rffProps = {
   firebase,
@@ -56,7 +57,9 @@ ReactDOM.render(
   <Provider store={store}>
     <ReactReduxFirebaseProvider {...rffProps}>
       <AuthIsLoaded>
-        <App />
+        <PersistGate persistor={persistor}>
+          <App />
+        </PersistGate>
       </AuthIsLoaded>
     </ReactReduxFirebaseProvider>
   </Provider>,

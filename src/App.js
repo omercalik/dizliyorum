@@ -3,7 +3,6 @@ import React from 'react';
 import { Router } from '@reach/router';
 import Navbar from './components/layout/Navbar';
 import Home from './components/dashboard/Home';
-import ProjectDetails from './components/projects/ProjectDetails';
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
 import CreateList from './components/projects/CreateList';
@@ -12,7 +11,7 @@ import { Add } from './components/profile/Lists/Add';
 import MyLists from './components/profile/Lists/MyLists';
 import { TopList } from './components/profile/Lists/TopList';
 import { NowPlaying } from './components/profile/Lists/NowPlaying';
-import { List } from './components/profile/Lists/List';
+import ListPage from './components/profile/Lists/ListPage';
 import Movie from './components/movie/Movie';
 
 //import "./App.css";
@@ -31,7 +30,7 @@ class App extends React.Component {
           <Profile path="/profile" />
           <Add path="/add" />
           <MyLists path="/lists" />
-          <List path="list/:title" />
+          <ListPage path="lists/:title" />
           <TopList path="/toplists" />
           <NowPlaying path="/nowplaying" />
           <Movie path="/:movieId" />
