@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Vizyondakiler from './Vizyondakiler';
 import Grid from '../../dashboard/Grid';
 import MovieThumb from '../../dashboard/MovieThumb';
 import NoImage from '../../images/no_image.jpg';
