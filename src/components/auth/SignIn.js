@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { signIn } from '../../store/actions/authActions';
 import { navigate } from '@reach/router';
-import authReducer from '../../store/reducers/authReducer';
 
 class SignIn extends React.Component {
   state = {

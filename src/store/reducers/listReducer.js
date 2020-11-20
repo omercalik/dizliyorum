@@ -14,6 +14,12 @@ const listReducer = (state = initState, action) => {
     case 'CREATE_LIST_ERROR':
       console.log('create list error', action.err);
       return state;
+    case 'ADDED_TO_LIST':
+      console.log('added to list', action.movie, action.list);
+      return state;
+    case 'ADDED_TO_LIST_ERROR':
+      console.log('error addin to list', action.err);
+      return state;
     default:
       return state;
   }

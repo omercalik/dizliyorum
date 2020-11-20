@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { Link } from '@reach/router';
 import { connect } from 'react-redux';
 import { signOut } from '../../store/actions/authActions';

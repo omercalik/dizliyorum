@@ -23,3 +23,25 @@ export const createList = (list) => {
       });
   };
 };
+
+export const addToList = (movie, list) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firebase = getFirebase();
+    const firestore = getFirestore();
+    const profile = getState().firebase.profile;
+    const userId = getState().firebase.auth.uid;
+    let userRef = firestore.collection('users').doc(userId);
+    userRef
+      .collection('lists')
+      .doc(list.id)
+      .update({
+        list: firebase.firestore.FieldValue.arrayUnion(movie),
+      })
+      .then(() => {
+        dispatch({ type: 'ADDED_TO_LIST', movie: movie, list: list });
+      })
+      .catch((err) => {
+        dispatch({ type: 'ADDED_TO_LIST_ERROR', err });
+      });
+  };
+};
