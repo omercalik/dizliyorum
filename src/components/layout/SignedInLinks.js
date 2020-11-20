@@ -27,6 +27,9 @@ const SignedInLinks = (props) => {
           <Link to="/lists">Watchlist</Link>
         </MenuLink>
         <MenuLink>
+        <Link to="/tvserials">TV Serials</Link>
+      </MenuLink>
+        <MenuLink>
           <a onClick={props.signOut}>Log Out </a>
         </MenuLink>
         <MenuLink>
