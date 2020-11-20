@@ -14,7 +14,7 @@ import {
 export const NowPlaying = () => {
   const [results, setResults] = useState([]);
   //console.log(results);
-  let dataUrlNoPage = `https://api.themoviedb.org/3/movie/now_playing?api_key=592dc9c56e6fc3de77c6c7e76a1c729d&language=en-US&region=TR&page=`;
+  let dataUrlNoPage = `https://api.themoviedb.org/3/movie/now_playing?api_key=592dc9c56e6fc3de77c6c7e76a1c729d&language=tr&region=TR&page=`;
 
   const handleErrors = (err) => {
     console.log(err);
