@@ -4,7 +4,7 @@ import  TopListCard  from './TopListCard';
 export const TopList = () => {
   const [results, setResults] = useState([]);
 
-  let dataUrlNoPage = `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=`;
+  let dataUrlNoPage = `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_TMDB_KEY}&language=tr&page=`;
 
   const handleErrors = (err) => {
     console.log(err);

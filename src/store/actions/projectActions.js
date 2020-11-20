@@ -18,6 +18,9 @@ export const createList = (list) => {
       .then(() => {
         dispatch({ type: 'CREATE_PROJECT', project: list });
       })
+      .then(() => {
+        
+      })
       .catch((err) => {
         dispatch({ type: 'CREATE_PROJECT_ERROR', err });
       });

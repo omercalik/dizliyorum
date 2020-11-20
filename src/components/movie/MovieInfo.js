@@ -30,9 +30,19 @@ export const MovieInfo = ({ movie }) => {
               <h3>IMDB RATING</h3>
               <div className="score">{movie.vote_average}</div>
             </div>
+            <div>
+            <h3>ehe</h3>
+            <div className="score">{movie.vote_average}</div>
+          </div>
             <div className="director">
               <h3>DIRECTOR{movie.directors.length > 1 ? 'S' : ''}</h3>
               {movie.directors.map((element) => (
+                <p key={element.credit_id}>{element.name}</p>
+              ))}
+            </div>
+            <div className="director">
+              <h3>TÜR{movie.genres.length > 1 ? '' : ''}</h3>
+              {movie.genres.map((element) => (
                 <p key={element.credit_id}>{element.name}</p>
               ))}
             </div>
