@@ -11,7 +11,7 @@ const ListContent = ({ state, list }) => {
   if (!state.firebase.auth.uid) return <Redirect from="/lists" to="/signin" />;
   return (
     <List>
-      {list.length > 0 ? (
+      {list && list.length > 0 ? (
         list.map((item, index) => {
           return (
             <ListItem key={item.id}>
