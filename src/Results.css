@@ -13,6 +13,10 @@
   margin-bottom: 20px;
 }
 
+.result-card:hover {
+  cursor: pointer;
+}
+
 .result-card .poster-wrapper img,
 .filler-poster {
   width: 75px;

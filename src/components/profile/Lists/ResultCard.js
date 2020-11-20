@@ -1,9 +1,18 @@
 import React from 'react';
 import '../../../Results.css';
+import { navigate } from '@reach/router';
 
-export const ResultCard = ({ movie, index }) => {
+export const ResultCard = ({ movie, index, id }) => {
+  const handleClick = (id) => {
+    navigate(`/${id}`, { state: { id } });
+  };
   return (
-    <div className="result-card">
+    <div
+      onClick={() => {
+        handleClick(id);
+      }}
+      className="result-card"
+    >
       <div className="poster-wrapper">
         {movie.poster_path ? (
           <img

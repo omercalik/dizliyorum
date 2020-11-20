@@ -9,7 +9,7 @@ import { ActorCarousel } from './ActorCarousel';
 
 import { useMovieFetch } from '../hooks/useMovieFetch';
 
-const Movie = ({ movieId }) => {
+const Movie = ({ movieId, content }) => {
   const [movie, loading, error] = useMovieFetch(movieId);
   console.log(movie);
   if (error) {
@@ -19,6 +19,7 @@ const Movie = ({ movieId }) => {
   if (loading) return <Spinner />;
   return (
     <>
+      {console.log(content)}
       <Navigation movie={movie.title} />
       <MovieInfo movie={movie} />
       <MovieInfoBar

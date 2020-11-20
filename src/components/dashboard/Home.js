@@ -76,6 +76,7 @@ const Home = () => {
             }
             movieId={movie.id}
             movieName={movie.original_title}
+            content={movie}
           />
         ))}
       </Grid>
