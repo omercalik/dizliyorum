@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../../Results.css';
 
-export const ResultCard = ({ movie }) => {
+export const ResultCard = ({ movie, index }) => {
   return (
     <div className="result-card">
       <div className="poster-wrapper">
@@ -17,14 +17,12 @@ export const ResultCard = ({ movie }) => {
 
       <div className="info">
         <div className="header">
-          <h3 className="title">{movie.title}</h3>
+          <h3 className="title">
+            {index + 1}.{movie.title}
+          </h3>
           <h4 className="release-date">
             {movie.release_date ? movie.release_date.substring(0, 4) : '-'}
           </h4>
-        </div>
-
-        <div className="controls">
-          <button className="btn">Add to watchlist</button>
         </div>
       </div>
     </div>

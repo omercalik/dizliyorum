@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from '@reach/router';
 
-import { StyledNavigation } from '../styles/StyledNavigation';
+import { StyledMovieNavigation } from '../styles/StyledMovieNavigation';
 
 export const Navigation = ({ movie }) => {
   return (
-    <StyledNavigation>
+    <StyledMovieNavigation>
       <div className="navigation-content">
         <Link to="/">
           <p>Home</p>
@@ -13,6 +13,6 @@ export const Navigation = ({ movie }) => {
         <p>|</p>
         <p>{movie}</p>
       </div>
-    </StyledNavigation>
+    </StyledMovieNavigation>
   );
 };

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import  TopListCard  from './TopListCard';
+import { ResultCard } from './ResultCard';
 
 export const TopList = () => {
   const [results, setResults] = useState([]);
 
-  let dataUrlNoPage = `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_TMDB_KEY}&language=tr&page=`;
+  let dataUrlNoPage = `https://api.themoviedb.org/3/discover/movie?sort_by=vote_average.desc&vote_count.gte=2500&api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=`;
 
   const handleErrors = (err) => {
     console.log(err);
@@ -15,7 +15,6 @@ export const TopList = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.errors) {
-          console.log(data.errors);
           throw new Error(data.errors);
         }
         return data.results;
@@ -29,13 +28,13 @@ export const TopList = () => {
       .catch(handleErrors);
   }, []);
 
-
-
   return (
-    <div className = "movieTopList-container">
-    {results.length > 0 &&
-      results.map((movie) => <TopListCard key = {movie.id} {...movie} />)
-    }
+    <div>
+      {console.log(results)};
+      {results.length > 0 &&
+        results.map((movie, index) => (
+          <ResultCard key={movie.id} movie={movie} index={index} />
+        ))}
     </div>
   );
 };

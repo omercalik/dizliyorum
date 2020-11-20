@@ -3,11 +3,12 @@ import { Link } from '@reach/router';
 import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
 import { connect } from 'react-redux';
-import { isLoaded } from 'react-redux-firebase';
+
+import { StyledNavigation, Logo } from '../styles/StyledNavigation';
 
 const Navbar = (props) => {
   const { auth, profile } = props;
-  //console.log(auth);
+
   const links = auth.uid ? (
     <SignedInLinks profile={profile} />
   ) : (
@@ -15,15 +16,15 @@ const Navbar = (props) => {
   );
 
   return (
-    <nav className="nav-wrapper grey darken-3">
-      <div className="container">
-        <Link to="/" className="brand-logo">
+    <StyledNavigation>
+      <Logo>
+        <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
           Dizliyorum
         </Link>
+      </Logo>
 
-        {links}
-      </div>
-    </nav>
+      {links}
+    </StyledNavigation>
   );
 };
 

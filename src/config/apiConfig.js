@@ -12,6 +12,7 @@ const POPULAR_BASE_URL = `${API_URL}movie/popular?api_key=${API_KEY}`;
 const BACKDROP_SIZE = 'w1280';
 // w92, w154, w185, w342, w500, w780, original
 const POSTER_SIZE = 'w500';
+const CAROUSEL_POSTER_SIZE = 'w185';
 
 export {
   SEARCH_BASE_URL,
@@ -21,4 +22,5 @@ export {
   IMAGE_BASE_URL,
   BACKDROP_SIZE,
   POSTER_SIZE,
+  CAROUSEL_POSTER_SIZE,
 };

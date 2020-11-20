@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createList } from '../../store/actions/projectActions';
+import { createList } from '../../store/actions/listActions';
 import { Redirect } from 'react-router-dom';
+import { navigate } from '@reach/router';
 
 class CreateList extends React.Component {
   state = {
@@ -13,8 +14,9 @@ class CreateList extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     //console.log(this.state);
+
     this.props.createList(this.state);
-    this.props.history.push('/');
+    navigate('/');
   };
   render() {
     const { auth } = this.props;

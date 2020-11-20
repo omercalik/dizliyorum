@@ -1,51 +1,36 @@
 import React from 'react';
-import { Link } from '@reach/router';
+
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import firebase from '../../../config/fbConfig';
+
 import { Redirect } from '@reach/router';
+import Grid from '@material-ui/core/Grid';
 
-let db = firebase.firestore();
+import ListContent from './ListContent';
+import Lists from './Lists';
 
-const MyLists = ({ state }) => {
-  const [myLists, setMyLists] = React.useState();
-
-  React.useEffect(() => {
-    const fetchData = () => {
-      db.collection('users/' + state.firebase.auth.uid + '/lists')
-        .get()
-        .then((snapshot) => {
-          let movieLists = snapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-          }));
-
-          setMyLists(movieLists);
-        });
-    };
-
-    fetchData();
-  }, []);
-
+const MyLists = ({ state, watchlist }) => {
   if (!state.firebase.auth.uid) return <Redirect from="/lists" to="/signin" />;
   return (
-    <div className="project-list section">
-      {myLists &&
-        myLists.map((list) => {
-          return (
-            <Link to={'/list/' + list.title} key={list.id}>
-              {list.title}
-            </Link>
-          );
-        })}
-    </div>
+    <>
+      <Grid container spacing={3}>
+        <Grid item xs={8}>
+          <ListContent list={watchlist} />
+        </Grid>
+        <Grid item xs={3}>
+          <h3>Listelerim</h3>
+          <Lists />
+        </Grid>
+      </Grid>
+    </>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
     state: state,
+    watchlist: state.firebase.profile.watchlist,
     auth: state.firebase.auth,
   };
 };
