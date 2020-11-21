@@ -17,6 +17,7 @@ import {
   POSTER_SIZE,
   BACKDROP_SIZE,
   IMAGE_BASE_URL,
+  POPULAR_BASE_URL_TV,
 } from '../../config/apiConfig';
 
 import { useHomeFetch } from '../hooks/useHomeFetch';
@@ -28,14 +29,19 @@ const Home = () => {
       state: { movies, currentPage, totalPages, heroImage },
       loading,
       error,
+      testState,
     },
     fetchMovies,
+    dummyFunction,
   ] = useHomeFetch(searchTerm);
 
   const searchMovies = (search) => {
     const endpoint = search ? SEARCH_BASE_URL + search : POPULAR_BASE_URL;
+    const endpoint1 = search ? SEARCH_BASE_URL + search : POPULAR_BASE_URL;
+    const endpoint2 = search ? SEARCH_BASE_URL + search : POPULAR_BASE_URL_TV;
 
     setSearchTerm(search);
+    dummyFunction(endpoint1, endpoint2);
     fetchMovies(endpoint);
   };
 
@@ -44,14 +50,21 @@ const Home = () => {
       currentPage + 1
     }`;
     const popularEndpoint = `${POPULAR_BASE_URL}&page=${currentPage + 1}`;
+    const popularEndpoint1 = `${POPULAR_BASE_URL}&page=${currentPage + 1}`;
+    const popularEndpoint2 = `${POPULAR_BASE_URL_TV}&page=${currentPage + 1}`;
 
     const endpoint = searchTerm ? searchEndpoint : popularEndpoint;
+    const endpoint1 = searchTerm ? searchEndpoint : popularEndpoint1;
+    const endpoint2 = searchTerm ? searchEndpoint : popularEndpoint2;
+
+    dummyFunction(endpoint1, endpoint2);
 
     fetchMovies(endpoint);
   };
 
   if (error) return <div>Something went wrong..</div>;
   if (!movies[0]) return <Spinner />;
+  console.log(testState);
   return (
     <>
       {!searchTerm && (

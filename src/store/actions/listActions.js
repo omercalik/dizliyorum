@@ -28,7 +28,6 @@ export const addToList = (movie, list) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firebase = getFirebase();
     const firestore = getFirestore();
-    const profile = getState().firebase.profile;
     const userId = getState().firebase.auth.uid;
     let userRef = firestore.collection('users').doc(userId);
     userRef

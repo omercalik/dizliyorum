@@ -2,10 +2,10 @@ import React from 'react';
 import { StyledMovieThumb } from '../styles/StyledMovieThumb';
 import { Link } from '@reach/router';
 
-const MovieThumb = ({ image, movieId, clickable }) => (
+const TVThumb = ({ image, TVId, clickable }) => (
   <StyledMovieThumb>
     {clickable ? (
-      <Link to={`/${movieId}`}>
+      <Link to={`/tvserials/${TVId}`}>
         <img
           className="clickable"
           src={image}
@@ -19,4 +19,4 @@ const MovieThumb = ({ image, movieId, clickable }) => (
   </StyledMovieThumb>
 );
 
-export default MovieThumb;
+export default TVThumb;

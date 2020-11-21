@@ -4,7 +4,7 @@ import { Redirect } from '@reach/router';
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-
+import firebase from '../../../config/fbConfig';
 import ListContent from './ListContent';
 import Lists from './Lists';
 import ListSearchBar from './ListSearchBar';
@@ -14,16 +14,30 @@ import { addToList } from '../../../store/actions/listActions';
 import { useHomeFetch } from '../../hooks/useHomeFetch';
 
 import { POPULAR_BASE_URL, SEARCH_BASE_URL } from '../../../config/apiConfig';
+let db = firebase.firestore();
 
 const ListPage = ({ state, location, addToList }) => {
   const [searchTerm, setSearchTerm] = React.useState('');
+  const [listTemp, setlistTemp] = React.useState({});
+
+  React.useEffect(() => {
+    const listRef = () => {
+      db.collection('users/' + state.firebase.auth.uid + '/lists')
+        .doc(location.state.list.id)
+        .get()
+        .then((snapshot) => {
+          setlistTemp(snapshot.data().list);
+        });
+    };
+    listRef();
+  }, []);
+
   const [
     {
       state: { movies },
     },
     fetchMovies,
   ] = useHomeFetch(searchTerm);
-  console.log(location);
 
   const searchMovies = (search) => {
     const endpoint = search ? SEARCH_BASE_URL + search : POPULAR_BASE_URL;
@@ -32,10 +46,11 @@ const ListPage = ({ state, location, addToList }) => {
     fetchMovies(endpoint);
   };
 
-  //console.log(movies);
+  console.log(location);
 
   const handleClick = (movie) => {
     addToList(movie, location.state.list);
+    setlistTemp((oldList) => [...oldList, movie]);
   };
 
   if (!state.firebase.auth.uid) return <Redirect from="/lists" to="/signin" />;
@@ -62,7 +77,7 @@ const ListPage = ({ state, location, addToList }) => {
             </List>
           </StyledListSearchBarResultContainer>
 
-          <ListContent list={location.state.list.list} />
+          <ListContent list={listTemp} />
         </Grid>
         <Grid item xs={3}>
           <h3>Listelerim</h3>

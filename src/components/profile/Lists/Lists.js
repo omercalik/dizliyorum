@@ -10,6 +10,7 @@ import { makeStyles } from '@material-ui/core';
 import ListItem from '@material-ui/core/ListItem';
 
 let db = firebase.firestore();
+
 const useStyles = makeStyles((theme) => ({
   listItem: {
     '&:hover': {
@@ -47,6 +48,7 @@ const MyLists = ({ state }) => {
   if (!state.firebase.auth.uid) return <Redirect from="/lists" to="/signin" />;
   return (
     <List>
+      {console.log(myLists)}
       {myLists &&
         myLists.map((list) => {
           return (

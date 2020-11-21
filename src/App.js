@@ -13,6 +13,9 @@ import { TopList } from './components/profile/Lists/TopList';
 import { NowPlaying } from './components/profile/Lists/NowPlaying';
 import ListPage from './components/profile/Lists/ListPage';
 import Movie from './components/movie/Movie';
+import TV from './components/tv_serial/TV';
+import TVDetail from './components/tv_serial/TVDetailPage';
+import TVThumb from './components/tv_serial/TVThumb';
 
 //import "./App.css";
 
@@ -34,6 +37,8 @@ class App extends React.Component {
           <TopList path="/toplists" />
           <NowPlaying path="/nowplaying" />
           <Movie path="/:movieId" />
+          <TV path="/tvserials" />
+          <TVDetail path="/tvserials/:TVId" />
         </Router>
       </div>
     );

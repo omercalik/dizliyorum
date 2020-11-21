@@ -3,7 +3,6 @@ import { Navigation } from './Navigation';
 import { MovieInfo } from './MovieInfo';
 import MovieInfoBar from './MovieInfoBar';
 import { Actor } from './Actor';
-import Grid from '../dashboard/Grid';
 import Spinner from '../dashboard/Spinner';
 import { ActorCarousel } from './ActorCarousel';
 
