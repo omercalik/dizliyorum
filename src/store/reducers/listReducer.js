@@ -20,6 +20,12 @@ const listReducer = (state = initState, action) => {
     case 'ADDED_TO_LIST_ERROR':
       console.log('error addin to list', action.err);
       return state;
+    case 'DELETED_FROM_LIST':
+      console.log('Deleted from list', action.movie, action.list);
+      return state;
+    case 'DELETE_FROM_LIST_ERROR':
+      console.log('Delete from list error', action.err);
+      return state;
     default:
       return state;
   }

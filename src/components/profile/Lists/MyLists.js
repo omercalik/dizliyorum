@@ -12,6 +12,7 @@ import Lists from './Lists';
 
 const MyLists = ({ state, watchlist }) => {
   if (!state.firebase.auth.uid) return <Redirect from="/lists" to="/signin" />;
+
   return (
     <>
       <Grid container spacing={3}>

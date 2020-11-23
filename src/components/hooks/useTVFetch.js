@@ -17,8 +17,9 @@ export const useTVFetch = (TVId) => {
 
       const creditsEndPoint = `${API_URL}tv/${TVId}/credits?api_key=${API_KEY}&language=tr`;
       const creditsResult = await (await fetch(creditsEndPoint)).json();
+      console.log(creditsResult);
       const directors = creditsResult.crew.filter(
-        (member) => member.job === 'Director'
+        (member) => member.known_for_department === 'Directing'
       );
 
       setState({

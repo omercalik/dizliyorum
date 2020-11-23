@@ -46,7 +46,29 @@ const ListPage = ({ state, location, addToList }) => {
     fetchMovies(endpoint);
   };
 
-  console.log(location);
+  const deleteFromList = (movie, list) => {
+    const authorId = state.firebase.auth.uid;
+    let userRef = db.collection('users').doc(authorId);
+
+    userRef
+      .collection('lists')
+      .doc(list.id)
+      .update({
+        list: firebase.firestore.FieldValue.arrayRemove(movie),
+      })
+      .then(() => {
+        var tmpArr = [...listTemp];
+        var index = tmpArr.indexOf(movie);
+        if (index !== -1) {
+          tmpArr.splice(index, 1);
+          setlistTemp(tmpArr);
+        }
+      })
+
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const handleClick = (movie) => {
     addToList(movie, location.state.list);
@@ -69,6 +91,7 @@ const ListPage = ({ state, location, addToList }) => {
                         handleClick(movie);
                       }}
                       key={movie.id}
+                      listId={location.state.list.id}
                     >
                       {movie.title}
                     </ListItem>
@@ -77,7 +100,11 @@ const ListPage = ({ state, location, addToList }) => {
             </List>
           </StyledListSearchBarResultContainer>
 
-          <ListContent list={listTemp} />
+          <ListContent
+            func={deleteFromList}
+            listRef={location.state.list}
+            list={listTemp}
+          />
         </Grid>
         <Grid item xs={3}>
           <h3>Listelerim</h3>

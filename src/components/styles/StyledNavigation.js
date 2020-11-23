@@ -6,13 +6,13 @@ export const StyledNavigation = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  background: #1c1c1c;
+  background: #222831;
 `;
 
 export const Logo = styled.div`
 
   padding: 1rem 0;
-  
+  color: #6a097d
   font-weight: 800;
   font-size 1.7rem;
 
@@ -42,7 +42,7 @@ export const MenuLink = styled.div`
     padding: 1rem 2rem;
     cursor: pointer;
     text-align: center;
-    color: white;
+    color: #eeeeee;
     text-decoration: none;
   }
 `;

@@ -8,6 +8,12 @@ const watchlistReducer = (state = initState, action) => {
     case 'ADD_TO_WATCHLIST_ERROR':
       console.log('add to watchlist error', action.err);
       return state;
+    case 'DELETED_FROM_WATCHLIST':
+      console.log('deleted from watchlist', action.movie);
+      return state;
+    case 'DELETE_FROM_WATCHLIST_ERROR':
+      console.log('delete from watchlist error', action.err);
+      return state;
     default:
       return state;
   }

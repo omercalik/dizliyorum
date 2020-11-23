@@ -12,30 +12,31 @@ import Spinner from '../dashboard/Spinner';
 import SearchBar from '../dashboard/SearchBar';
 
 import {
-  POPULAR_BASE_URL_TV,
   SEARCH_BASE_URL_TV,
   POSTER_SIZE,
   BACKDROP_SIZE,
   IMAGE_BASE_URL,
+  POPULAR_BASE_URL_TV,
 } from '../../config/apiConfig';
 
-import { useMainTVFetch } from '../hooks/useMainTVFetch';
+import { useTVMainFetch } from '../hooks/useTVMainFetch';
 
 const TV = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [
     {
-      state: { TVs, currentPage, totalPages, heroImage },
+      state: { tvs, currentPage, totalPages, heroImage },
       loading,
       error,
     },
     fetchTVs,
-  ] = useMainTVFetch(searchTerm);
+  ] = useTVMainFetch(searchTerm);
 
-  const searchMovies = (search) => {
+  const searchTVs = (search) => {
     const endpoint = search ? SEARCH_BASE_URL_TV + search : POPULAR_BASE_URL_TV;
 
     setSearchTerm(search);
+
     fetchTVs(endpoint);
   };
 
@@ -43,47 +44,51 @@ const TV = () => {
     const searchEndpoint = `${SEARCH_BASE_URL_TV}${searchTerm}&page=${
       currentPage + 1
     }`;
-    const popularEndpoint = `${POPULAR_BASE_URL_TV}&page=${currentPage + 1}`;
 
+    const popularEndpoint = `${POPULAR_BASE_URL_TV}&page=${currentPage + 1}`;
     const endpoint = searchTerm ? searchEndpoint : popularEndpoint;
 
     fetchTVs(endpoint);
   };
 
   if (error) return <div>Something went wrong..</div>;
-  if (!TVs[0]) return <Spinner />;
-  console.log(heroImage);
+  if (!tvs[0]) return <Spinner />;
+
   return (
     <>
-      {!searchTerm && (
-        <HeroImage
-          image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${heroImage.backdrop_path}`}
-          title={heroImage.title}
-          text={heroImage.overview}
-        />
-      )}
-
-      <SearchBar callback={searchMovies} />
-
-      <Grid header={searchTerm ? 'Search Result' : 'Popular Movies'}>
-        {TVs.map((TV) => (
-          <TVThumb
-            key={TV.id}
-            clickable
-            image={
-              TV.poster_path
-                ? IMAGE_BASE_URL + POSTER_SIZE + TV.poster_path
-                : NoImage
-            }
-            TVId={TV.id}
-            TVName={TV.name}
-          />
-        ))}
-      </Grid>
-
-      {loading && <Spinner />}
-      {currentPage < totalPages && !loading && (
-        <LoadMoreBtn text="Load More" callback={loadMoreMovies} />
+      {heroImage !== undefined ? (
+        <>
+          {!searchTerm && (
+            <HeroImage
+              image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${heroImage.backdrop_path}`}
+              title={heroImage.name}
+              text={heroImage.overview}
+            />
+          )}
+          <SearchBar callback={searchTVs} />
+          <Grid header={searchTerm ? 'Search Result' : 'Popular TV Series'}>
+            {tvs.map((TV) => (
+              <TVThumb
+                key={TV.id}
+                clickable
+                image={
+                  TV.poster_path
+                    ? IMAGE_BASE_URL + POSTER_SIZE + TV.poster_path
+                    : NoImage
+                }
+                TVId={TV.id}
+                TVName={TV.name}
+                content={TV}
+              />
+            ))}
+          </Grid>
+          {loading && <Spinner />}
+          {currentPage < totalPages && !loading && (
+            <LoadMoreBtn text="Load More" callback={loadMoreMovies} />
+          )}
+        </>
+      ) : (
+        <Spinner />
       )}
     </>
   );

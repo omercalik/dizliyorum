@@ -5,8 +5,8 @@ export const StyledMovieNavigation = styled.div`
   align-items: center;
   width: 100%;
   height: 70px;
-  background: #353535;
-  color: #fff;
+  background: #393e46;
+  color: #eeeeee;
 
   .navigation-content {
     max-width: 1280px;

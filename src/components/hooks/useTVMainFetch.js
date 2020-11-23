@@ -8,8 +8,9 @@ import {
   POPULAR_BASE_URL_TV,
 } from '../../config/apiConfig';
 
-export const useHomeFetch = () => {
-  const [state, setState] = useState({ movies: [] });
+export const useTVMainFetch = () => {
+  const [state, setState] = useState({ tvs: [] });
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -58,7 +59,7 @@ export const useHomeFetch = () => {
   //     });
   // };
 
-  const fetchMovies = async (endpoint) => {
+  const fetchTVs = async (endpoint) => {
     setError(false);
     setLoading(true);
 
@@ -70,8 +71,8 @@ export const useHomeFetch = () => {
       if (result.results.length === 0) {
         setState((prev) => ({
           ...prev,
-          movies: [{}],
-          heroImage: prev.heroImage || result.results[0],
+          tvs: [{}],
+          heroImage: prev.heroImage || result.result[0],
           currentPage: result.page,
           totalPages: result.total_pages,
           notFound: true,
@@ -79,15 +80,14 @@ export const useHomeFetch = () => {
       } else {
         setState((prev) => ({
           ...prev,
-          movies:
+          tvs:
             isLoadMore !== -1
-              ? [...prev.movies, ...result.results]
+              ? [...prev.tvs, ...result.results]
               : [...result.results],
 
           heroImage: prev.heroImage || result.results[0],
           currentPage: result.page,
           totalPages: result.total_pages,
-          notFound: false,
         }));
       }
     } catch (error) {
@@ -99,8 +99,8 @@ export const useHomeFetch = () => {
   };
 
   useEffect(() => {
-    fetchMovies(POPULAR_BASE_URL);
+    fetchTVs(POPULAR_BASE_URL_TV);
   }, []);
 
-  return [{ state, loading, error }, fetchMovies];
+  return [{ state, loading, error }, fetchTVs];
 };

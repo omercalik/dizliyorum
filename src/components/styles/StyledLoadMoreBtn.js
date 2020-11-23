@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 export const StyledLoadMoreBtn = styled.button`
-  background: #000;
+  background: #222831;
   width: 25%;
   min-width: 200px;
   height: 70px;
-  color: #fff;
+  color: #eeeeee;
   cursor: pointer;
   transition: all 0.3s;
   border-radius: 40px;

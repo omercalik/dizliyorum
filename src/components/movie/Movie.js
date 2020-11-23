@@ -10,7 +10,7 @@ import { useMovieFetch } from '../hooks/useMovieFetch';
 
 const Movie = ({ movieId, content }) => {
   const [movie, loading, error] = useMovieFetch(movieId);
-  console.log(movie);
+
   if (error) {
     console.log(error);
     return <div>Something went wrong ...</div>;
@@ -18,8 +18,7 @@ const Movie = ({ movieId, content }) => {
   if (loading) return <Spinner />;
   return (
     <>
-      {console.log(content)}
-      <Navigation movie={movie.title} />
+      <Navigation content={movie.original_title} />
       <MovieInfo movie={movie} />
       <MovieInfoBar
         time={movie.runtime}

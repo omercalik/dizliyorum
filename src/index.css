@@ -8,7 +8,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-
+  background-color: #eeeeee;
   font-family: 'Poppins', sans-serif;
   margin: 0;
 }
@@ -78,54 +78,4 @@ textarea.materialize-textarea:focus:not([readonly]) {
 
 .movie:hover .movie-over {
   transform: translateY(0);
-}
-
-/* 
-Top100 CSS
-*/
-
-.movieTopList {
-  margin-top: 2%;
-  margin-left: 40%;
-  width: 350px;
-  background-color: rgb(226, 221, 221);
-  border-radius: 3px;
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  position: relative;
-}
-.movieTopList img {
-  max-width: 100%;
-}
-.movieTopList-info {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem;
-  font-size: 20px;
-}
-.movieTopList-info h3 {
-  margin: 0;
-  font-size: 20px;
-}
-
-.movieTopList-over {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgb(192, 180, 192);
-  color: black;
-  padding: 1rem;
-  transition: transform 0.3s ease-in-out;
-  transform: translateX(-102%);
-  overflow-x: visible;
-  max-height: 100%;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  box-shadow: 0 -3px 5px rgba(0, 0, 0, 0.1);
-}
-
-.movieTopList:hover .movieTopList-over {
-  transform: translateX(0);
 }

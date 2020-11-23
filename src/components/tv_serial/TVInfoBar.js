@@ -1,37 +1,47 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import { calcTime, convertMoney } from '../../helpers';
 import { StyledMovieInfoBar } from '../styles/StyledMovieInfoBar';
 import { connect } from 'react-redux';
 import { addToWatchList } from '../../store/actions/watchListActions';
 
 export const TVInfoBar = (props) => {
   const handleClick = () => {
-    props.addToWatchList(props.movie);
+    props.addToWatchList(props.TV);
+    console.log(props.watchlist);
   };
+
   return (
     <StyledMovieInfoBar>
       <div className="movieinfobar-content">
         <div className="movieinfobar-content-col">
           <FontAwesome className="fa-time" name="clock-o" size="2x" />
           <span className="movieinfobar-info">
-            Süre: {props.time ? calcTime(props.time) : 'Bilgi bulunamadı.'}
+            Bölüm Süresi:{' '}
+            {props.time
+              ? props.time[1]
+                ? props.time[0] + '-' + props.time[1] + 'dk'
+                : props.time[0] + 'dk'
+              : 'Bilgi bulunamadı.'}
           </span>
         </div>
 
         <div className="movieinfobar-content-col">
           <FontAwesome className="fa-budget" name="money" size="2x" />
           <span className="movieinfobar-info">
-            Bütçe:{' '}
-            {props.budget ? convertMoney(props.budget) : 'Bilgi bulunamadı.'}
+            Sezon Sayısı:{' '}
+            {props.season_count ? props.season_count : 'Bilgi bulunamadı.'}
           </span>
         </div>
 
         <div className="movieinfobar-content-col">
           <FontAwesome className="fa-revenue" name="ticket" size="2x" />
           <span className="movieinfobar-info">
-            Hasılat:{' '}
-            {props.revenue ? convertMoney(props.revenue) : 'Bilgi bulunamadı.'}
+            Durum:{' '}
+            {props.status
+              ? props.status === 'Returning Series'
+                ? 'Devam Ediyor'
+                : 'Sona Erdi'
+              : 'Bilgi bulunamadı'}
           </span>
         </div>
 
@@ -54,7 +64,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addToWatchList: (movie) => dispatch(addToWatchList(movie)),
+    addToWatchList: (tv) => dispatch(addToWatchList(tv)),
   };
 };
 

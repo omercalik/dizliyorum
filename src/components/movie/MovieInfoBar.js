@@ -8,6 +8,7 @@ import { addToWatchList } from '../../store/actions/watchListActions';
 export const MovieInfoBar = (props) => {
   const handleClick = () => {
     props.addToWatchList(props.movie);
+    console.log(props.watchlist);
   };
   return (
     <StyledMovieInfoBar>

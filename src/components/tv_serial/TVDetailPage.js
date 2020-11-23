@@ -5,12 +5,14 @@ import MovieInfoBar from '../movie/MovieInfoBar';
 import { Actor } from '../movie/Actor';
 import Spinner from '../dashboard/Spinner';
 import { ActorCarousel } from '../movie/ActorCarousel';
+import { TVInfo } from '../tv_serial/TVInfo';
+import TVInfoBar from '../tv_serial/TVInfoBar';
 
 import { useTVFetch } from '../hooks/useTVFetch';
 
 const TVDetail = ({ TVId }) => {
   const [TV, loading, error] = useTVFetch(TVId);
-  console.log(TV);
+
   if (error) {
     console.log(error);
     return <div>Something went wrong ...</div>;
@@ -18,12 +20,12 @@ const TVDetail = ({ TVId }) => {
   if (loading) return <Spinner />;
   return (
     <>
-      <Navigation TV={TV.name} />
-      <MovieInfo TV={TV} />
-      <MovieInfoBar
-        time={TV.first_air_date}
-        budget={TV.budget}
-        revenue={TV.revenue}
+      <Navigation content={TV.name} />
+      <TVInfo TV={TV} />
+      <TVInfoBar
+        time={TV.episode_run_time}
+        season_count={TV.number_of_seasons}
+        status={TV.status}
         TV={TV}
       />
       {TV.actors.length > 0 ? (

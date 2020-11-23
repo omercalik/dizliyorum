@@ -44,3 +44,27 @@ export const addToList = (movie, list) => {
       });
   };
 };
+
+export const deleteFromList = (movie, list) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    console.log('asd');
+    // make async call to database
+    const firebase = getFirebase();
+    const firestore = getFirestore();
+    const authorId = getState().firebase.auth.uid;
+    let userRef = firestore.collection('users').doc(authorId);
+
+    userRef
+      .collection('lists')
+      .doc(list.id)
+      .update({
+        list: firebase.firestore.FieldValue.arrayRemove(movie),
+      })
+      .then(() => {
+        dispatch({ type: 'DELETED_FROM_LIST', movie: movie, list: list });
+      })
+      .catch((err) => {
+        dispatch({ type: 'DELETE_FROM_LIST_ERROR', err });
+      });
+  };
+};
