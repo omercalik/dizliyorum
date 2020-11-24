@@ -6,7 +6,7 @@ export const StyledNavigation = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  background: #222831;
+  background: #2b2e4a;
 `;
 
 export const Logo = styled.div`

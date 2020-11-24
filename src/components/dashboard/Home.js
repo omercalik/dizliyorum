@@ -53,7 +53,6 @@ const Home = () => {
   if (error) return <div>Something went wrong..</div>;
 
   if (!movies[0]) return <Spinner />;
-  console.log(movies);
 
   return (
     <>
@@ -77,7 +76,7 @@ const Home = () => {
                     ? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
                     : NoImage
                 }
-                movieId={movie.id}
+                movie={movie}
                 movieName={movie.original_title}
                 content={movie}
               />

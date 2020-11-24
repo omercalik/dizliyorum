@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Grid from '../../dashboard/Grid';
 import MovieThumb from '../../dashboard/MovieThumb';
 import NoImage from '../../images/no_image.jpg';
+import Spinner from '../../dashboard/Spinner';
 
 import {
   POPULAR_BASE_URL,
@@ -39,6 +40,7 @@ export const NowPlaying = () => {
       .catch(handleErrors);
   }, []);
 
+  if (!results[0]) return <Spinner />;
   return (
     <div>
       <Grid header="Vizyondaki Filmler">
@@ -51,7 +53,7 @@ export const NowPlaying = () => {
                 ? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
                 : NoImage
             }
-            movieId={movie.id}
+            movie={movie}
             movieName={movie.original_title}
           />
         ))}

@@ -18,7 +18,7 @@ const Movie = ({ movieId, content }) => {
   if (loading) return <Spinner />;
   return (
     <>
-      <Navigation content={movie.original_title} />
+      {/* <Navigation content={movie.original_title} /> */}
       <MovieInfo movie={movie} />
       <MovieInfoBar
         time={movie.runtime}

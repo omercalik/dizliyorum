@@ -76,6 +76,7 @@ export const useHomeFetch = () => {
           totalPages: result.total_pages,
           notFound: true,
         }));
+        setLoading(false);
       } else {
         setState((prev) => ({
           ...prev,
@@ -89,13 +90,13 @@ export const useHomeFetch = () => {
           totalPages: result.total_pages,
           notFound: false,
         }));
+        setLoading(false);
       }
     } catch (error) {
       setError(true);
+      setLoading(false);
       console.log(error);
     }
-
-    setLoading(false);
   };
 
   useEffect(() => {

@@ -15,6 +15,7 @@ import ListPage from './components/profile/Lists/ListPage';
 import Movie from './components/movie/Movie';
 import TV from './components/tv_serial/TV';
 import TVDetailPage from './components/tv_serial/TVDetailPage';
+import { Footer } from './components/layout/Footer';
 
 //import "./App.css";
 
@@ -39,6 +40,7 @@ class App extends React.Component {
           <TV path="/tvserials" />
           <TVDetailPage path="/tvserials/:TVId" />
         </Router>
+        <Footer />
       </div>
     );
   }

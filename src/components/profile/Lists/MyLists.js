@@ -14,7 +14,7 @@ const MyLists = ({ state, watchlist }) => {
   if (!state.firebase.auth.uid) return <Redirect from="/lists" to="/signin" />;
 
   return (
-    <>
+    <div style={{ minHeight: '80vh' }}>
       <Grid container spacing={3}>
         <Grid item xs={8}>
           <ListContent list={watchlist} />
@@ -24,7 +24,7 @@ const MyLists = ({ state, watchlist }) => {
           <Lists />
         </Grid>
       </Grid>
-    </>
+    </div>
   );
 };
 

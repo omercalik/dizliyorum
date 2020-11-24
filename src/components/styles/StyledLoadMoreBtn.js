@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export const StyledLoadMoreBtn = styled.button`
-  background: #222831;
-  width: 25%;
-  min-width: 200px;
+  background: #2b2e4a;
+  width: 10%;
+  min-width: 100px;
   height: 70px;
   color: #eeeeee;
   cursor: pointer;

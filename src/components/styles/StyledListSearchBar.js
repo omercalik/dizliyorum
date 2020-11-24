@@ -7,6 +7,50 @@ export const StyledListSearchBar = styled.div`
   padding: 20px 30px 0px 20px;
   box-sizing: border-box;
   color: #fff;
+
+  @media screen and (max-width: 720px) {
+    width: 100%;
+    font-size: 15px;
+
+    ::-webkit-input-placeholder {
+      /* WebKit browsers */
+      color: transparent;
+    }
+    :-moz-placeholder {
+      /* Mozilla Firefox 4 to 18 */
+      color: transparent;
+    }
+    ::-moz-placeholder {
+      /* Mozilla Firefox 19+ */
+      color: transparent;
+    }
+    :-ms-input-placeholder {
+      /* Internet Explorer 10+ */
+      color: transparent;
+    }
+    input::placeholder {
+      color: transparent;
+    }
+    textarea::-webkit-input-placeholder {
+      /* WebKit browsers */
+      color: transparent;
+    }
+    textarea:-moz-placeholder {
+      /* Mozilla Firefox 4 to 18 */
+      color: transparent;
+    }
+    textarea::-moz-placeholder {
+      /* Mozilla Firefox 19+ */
+      color: transparent;
+    }
+    textarea:-ms-input-placeholder {
+      /* Internet Explorer 10+ */
+      color: transparent;
+    }
+    textarea::placeholder {
+      color: transparent;
+    }
+  }
 `;
 
 export const StyledListSearchBarResultContainer = styled.div`
@@ -37,10 +81,11 @@ export const StyledListSearchBarContent = styled.div`
     font-family: 'Abel', sans-serif;
     font-size: 20px;
     position: absolute;
-    left: 0px;
+
+    left: 50px;
     margin: 8px 0;
     padding: 0 0 10px 60px;
-    border: 0;
+    border: none !important;
     width: 95%;
     background: transparent;
     height: 40px;

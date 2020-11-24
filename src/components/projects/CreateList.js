@@ -22,7 +22,7 @@ class CreateList extends React.Component {
     const { auth } = this.props;
     if (!auth.uid) return <Redirect to="/signin" />;
     return (
-      <div className="container">
+      <div style={{ minHeight: '80vh' }} className="container">
         <form onSubmit={this.handleSubmit} className="white">
           <h5 className="grey-text text-darken-3">Create List</h5>
           <div className="input-field">
