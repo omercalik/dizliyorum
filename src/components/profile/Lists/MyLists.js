@@ -4,7 +4,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 
-import { Redirect } from '@reach/router';
+import { navigate, Redirect } from '@reach/router';
 import Grid from '@material-ui/core/Grid';
 
 import ListContent from './ListContent';

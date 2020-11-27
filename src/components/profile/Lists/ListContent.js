@@ -2,7 +2,7 @@ import React from 'react';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { Redirect } from '@reach/router';
+import { navigate, Redirect } from '@reach/router';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import { ResultCard } from './ResultCard';
@@ -19,13 +19,12 @@ const ListContent = ({
   func,
 }) => {
   if (!state.firebase.auth.uid) return <Redirect from="/lists" to="/signin" />;
-  if (!list) return <Spinner />;
+
   const handleClickDelete = (list, item, index) => {
     if (list === watchlist) {
       const indexStr = index.toString();
       deleteFromWatchList(item, indexStr);
     } else {
-      console.log(list.id);
       func(item, listRef);
     }
   };

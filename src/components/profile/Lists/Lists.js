@@ -41,14 +41,15 @@ const MyLists = ({ state }) => {
   }, []);
 
   const handleClick = (list) => {
-    console.log(list);
-    navigate(`/lists/${list.title}`, { state: { list, id: list.id } });
+    return navigate(`/lists/${list.title}`, {
+      replace: true,
+      state: { list, id: list.id },
+    });
   };
 
   if (!state.firebase.auth.uid) return <Redirect from="/lists" to="/signin" />;
   return (
     <List>
-      {console.log(myLists)}
       {myLists &&
         myLists.map((list) => {
           return (

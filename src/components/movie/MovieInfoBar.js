@@ -4,11 +4,11 @@ import { calcTime, convertMoney } from '../../helpers';
 import { StyledMovieInfoBar } from '../styles/StyledMovieInfoBar';
 import { connect } from 'react-redux';
 import { addToWatchList } from '../../store/actions/watchListActions';
+import './movieinfo.css';
 
 export const MovieInfoBar = (props) => {
   const handleClick = () => {
     props.addToWatchList(props.movie);
-    console.log(props.watchlist);
   };
   return (
     <StyledMovieInfoBar>
@@ -36,8 +36,11 @@ export const MovieInfoBar = (props) => {
           </span>
         </div>
 
-        <div onClick={handleClick} className="movieinfobar-content-col">
-          <FontAwesome className="fa-budget" name="money" size="2x" />
+        <div
+          onClick={handleClick}
+          className=" add-to-watchlist movieinfobar-content-col"
+        >
+          <FontAwesome className="fa-revenue" name="plus" size="2x" />
           <span className="movieinfobar-info">Watchliste ekle</span>
         </div>
       </div>

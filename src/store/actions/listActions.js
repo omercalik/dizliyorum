@@ -47,7 +47,6 @@ export const addToList = (movie, list) => {
 
 export const deleteFromList = (movie, list) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
-    console.log('asd');
     // make async call to database
     const firebase = getFirebase();
     const firestore = getFirestore();

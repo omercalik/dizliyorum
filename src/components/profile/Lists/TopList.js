@@ -30,7 +30,6 @@ export const TopList = () => {
 
   return (
     <div>
-      {console.log(results)};
       {results.length > 0 &&
         results.map((movie, index) => (
           <ResultCard key={movie.id} movie={movie} index={index} />

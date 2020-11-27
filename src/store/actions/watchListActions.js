@@ -7,6 +7,7 @@ export const addToWatchList = (movie) => {
     const firestore = getFirestore();
     const authorId = getState().firebase.auth.uid;
     let userRef = firestore.collection('users').doc(authorId);
+
     userRef
       .update({
         watchlist: firebase.firestore.FieldValue.arrayUnion(movie),
@@ -22,7 +23,6 @@ export const addToWatchList = (movie) => {
 
 export const deleteFromWatchList = (movie, index) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
-    console.log('asd');
     // make async call to database
     const firebase = getFirebase();
     const firestore = getFirestore();

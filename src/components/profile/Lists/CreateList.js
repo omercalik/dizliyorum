@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createList } from '../../store/actions/listActions';
+import { createList } from '../../../store/actions/listActions';
 import { Redirect } from 'react-router-dom';
 import { navigate } from '@reach/router';
 
@@ -16,11 +16,11 @@ class CreateList extends React.Component {
     //console.log(this.state);
 
     this.props.createList(this.state);
-    navigate('/lists');
+    navigate('/');
   };
   render() {
     const { auth } = this.props;
-    if (!auth.uid) return <Redirect to="/lists" />;
+    if (!auth.uid) navigate('/');
     return (
       <div style={{ minHeight: '80vh' }} className="container">
         <form onSubmit={this.handleSubmit} className="white">

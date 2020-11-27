@@ -42,7 +42,7 @@ export const NowPlaying = () => {
 
   if (!results[0]) return <Spinner />;
   return (
-    <div>
+    <div style={{ marginBottom: '100px' }}>
       <Grid header="Vizyondaki Filmler">
         {results.map((movie) => (
           <MovieThumb

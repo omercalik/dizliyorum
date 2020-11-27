@@ -67,7 +67,7 @@ export const useTVMainFetch = () => {
 
     try {
       const result = await (await fetch(endpoint)).json();
-      console.log(result);
+
       if (result.results.length === 0) {
         setState((prev) => ({
           ...prev,
@@ -76,8 +76,12 @@ export const useTVMainFetch = () => {
           currentPage: result.page,
           totalPages: result.total_pages,
           notFound: true,
+          isTV: true,
         }));
       } else {
+        result.results.forEach((tv) => {
+          tv.isTV = true;
+        });
         setState((prev) => ({
           ...prev,
           tvs:
@@ -88,6 +92,7 @@ export const useTVMainFetch = () => {
           heroImage: prev.heroImage || result.results[0],
           currentPage: result.page,
           totalPages: result.total_pages,
+          isTV: true,
         }));
       }
     } catch (error) {

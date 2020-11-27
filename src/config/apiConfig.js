@@ -9,9 +9,10 @@ const SEARCH_BASE_URL = `${API_URL}search/movie?api_key=${API_KEY}&query=`;
 const SEARCH_BASE_URL_TV = `${API_URL}search/tv?api_key=${API_KEY}&query=`;
 const POPULAR_BASE_URL = `${API_URL}movie/popular?api_key=${API_KEY}`;
 const POPULAR_BASE_URL_TV = `${API_URL}tv/popular?api_key=${API_KEY}`;
+const SEARCH_BASE_URL_MIX = `${API_URL}search/multi?api_key=${API_KEY}&query=`;
 
 // Sizes: w300, w780, w1280, original
-const BACKDROP_SIZE = 'w1280';
+const BACKDROP_SIZE = 'original';
 // w92, w154, w185, w342, w500, w780, original
 const POSTER_SIZE = 'w500';
 const CAROUSEL_POSTER_SIZE = 'w185';
@@ -27,4 +28,5 @@ export {
   CAROUSEL_POSTER_SIZE,
   POPULAR_BASE_URL_TV,
   SEARCH_BASE_URL_TV,
+  SEARCH_BASE_URL_MIX,
 };

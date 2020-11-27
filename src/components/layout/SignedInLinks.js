@@ -15,7 +15,7 @@ const SignedInLinks = (props) => {
       </Hamburger>
       <Menu isOpen={isOpen}>
         <MenuLink>
-          <Link to="/create">New List</Link>
+          <Link to="/create">Yeni Liste</Link>
         </MenuLink>
         <MenuLink>
           <Link to="/toplists">Top 100</Link>
@@ -24,16 +24,16 @@ const SignedInLinks = (props) => {
           <Link to="/nowplaying">Vizyondakiler</Link>
         </MenuLink>
         <MenuLink>
-          <Link to="/lists">Watchlist</Link>
+          <Link to="/lists">İzleme Listesi</Link>
         </MenuLink>
         <MenuLink>
-        <Link to="/tvserials">TV Serials</Link>
-      </MenuLink>
-        <MenuLink>
-          <a onClick={props.signOut}>Log Out </a>
+          <Link to="/tvserials">Diziler</Link>
         </MenuLink>
         <MenuLink>
-          <Link to="/profile">{props.profile.initials}</Link>
+          <a onClick={props.signOut}>Çıkış Yap </a>
+        </MenuLink>
+        <MenuLink>
+          <Link to="/profile">Profil</Link>
         </MenuLink>
       </Menu>
     </>

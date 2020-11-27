@@ -66,7 +66,7 @@ export const useHomeFetch = () => {
 
     try {
       const result = await (await fetch(endpoint)).json();
-      console.log(result);
+
       if (result.results.length === 0) {
         setState((prev) => ({
           ...prev,
@@ -78,6 +78,9 @@ export const useHomeFetch = () => {
         }));
         setLoading(false);
       } else {
+        result.results.forEach((movie) => {
+          movie.isMovie = true;
+        });
         setState((prev) => ({
           ...prev,
           movies:
@@ -89,6 +92,7 @@ export const useHomeFetch = () => {
           currentPage: result.page,
           totalPages: result.total_pages,
           notFound: false,
+          isMovie: true,
         }));
         setLoading(false);
       }

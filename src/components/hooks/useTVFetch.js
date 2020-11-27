@@ -13,19 +13,19 @@ export const useTVFetch = (TVId) => {
     try {
       const endpoint = `${API_URL}tv/${TVId}?api_key=${API_KEY}&language=tr`;
       const result = await (await fetch(endpoint)).json();
-      console.log(result);
 
       const creditsEndPoint = `${API_URL}tv/${TVId}/credits?api_key=${API_KEY}&language=tr`;
       const creditsResult = await (await fetch(creditsEndPoint)).json();
-      console.log(creditsResult);
+
       const directors = creditsResult.crew.filter(
         (member) => member.known_for_department === 'Directing'
       );
-
+      result.isTV = true;
       setState({
         ...result,
         actors: creditsResult.cast,
         directors,
+        isTV: true,
       });
     } catch (error) {
       setError(true);

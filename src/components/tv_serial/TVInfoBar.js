@@ -3,11 +3,11 @@ import FontAwesome from 'react-fontawesome';
 import { StyledMovieInfoBar } from '../styles/StyledMovieInfoBar';
 import { connect } from 'react-redux';
 import { addToWatchList } from '../../store/actions/watchListActions';
+import './tvinfo.css';
 
 export const TVInfoBar = (props) => {
   const handleClick = () => {
     props.addToWatchList(props.TV);
-    console.log(props.watchlist);
   };
 
   return (
@@ -45,8 +45,11 @@ export const TVInfoBar = (props) => {
           </span>
         </div>
 
-        <div onClick={handleClick} className="movieinfobar-content-col">
-          <FontAwesome className="fa-budget" name="money" size="2x" />
+        <div
+          onClick={handleClick}
+          className="movieinfobar-content-col add-to-watchlist"
+        >
+          <FontAwesome className="fa-budget" name="plus" size="2x" />
           <span className="movieinfobar-info">Watchliste ekle</span>
         </div>
       </div>

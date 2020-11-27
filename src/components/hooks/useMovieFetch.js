@@ -13,18 +13,18 @@ export const useMovieFetch = (movieId) => {
     try {
       const endpoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}&language=tr`;
       const result = await (await fetch(endpoint)).json();
-      console.log(result);
 
       const creditsEndPoint = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}&language=tr`;
       const creditsResult = await (await fetch(creditsEndPoint)).json();
       const directors = creditsResult.crew.filter(
         (member) => member.job === 'Director'
       );
-
+      result.isMovie = true;
       setState({
         ...result,
         actors: creditsResult.cast,
         directors,
+        isMovie: true,
       });
     } catch (error) {
       setError(true);

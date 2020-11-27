@@ -19,7 +19,7 @@ class SignIn extends React.Component {
     const { authError, auth } = this.props;
     if (auth.uid) navigate('/');
     return (
-      <div className="container">
+      <div style={{ minHeight: '80vh' }} className="container">
         <form onSubmit={this.handleSubmit} className="white">
           <h5 className="grey-text text-darken-3">Sign In</h5>
           <div className="input-field">

@@ -17,7 +17,7 @@ class Profile extends React.Component {
     const { auth, authError } = this.props;
     if (!auth.uid) return <Redirect from="/profile" to="/" />;
     return (
-      <div className="container">
+      <div style={{ minHeight: '80vh' }} className="container">
         <div className="row">
           <div className="col s8">
             <div className="inner-content">
@@ -26,11 +26,7 @@ class Profile extends React.Component {
                   <Link to="/">Watch List</Link>
                 </li>
 
-                <li>
-                  <Link to="/add" className="btn">
-                    Add
-                  </Link>
-                </li>
+                <li></li>
               </ul>
             </div>
           </div>

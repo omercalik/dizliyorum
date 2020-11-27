@@ -14,10 +14,10 @@ const SignedOutLinks = () => {
 
       <Menu isOpen={isOpen}>
         <MenuLink>
-          <Link to="/signup">Signup</Link>
+          <Link to="/signup">Üye Ol</Link>
         </MenuLink>
         <MenuLink>
-          <Link to="/signin">Login</Link>
+          <Link to="/signin">Giriş Yap</Link>
         </MenuLink>
       </Menu>
     </>

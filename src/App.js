@@ -7,7 +7,7 @@ import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
 import CreateList from './components/projects/CreateList';
 import Profile from './components/profile/Profile';
-import { Add } from './components/profile/Lists/Add';
+
 import MyLists from './components/profile/Lists/MyLists';
 import { TopList } from './components/profile/Lists/TopList';
 import { NowPlaying } from './components/profile/Lists/NowPlaying';
@@ -31,7 +31,6 @@ class App extends React.Component {
           <SignUp path="/signup" />
           <CreateList path="/create" />
           <Profile path="/profile" />
-          <Add path="/add" />
           <MyLists path="/lists" />
           <ListPage path="lists/:title" />
           <TopList path="/toplists" />

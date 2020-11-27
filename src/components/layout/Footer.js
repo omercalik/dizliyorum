@@ -4,35 +4,35 @@ import { StyledFooter } from '../styles/StyledFooter';
 export const Footer = () => {
   return (
     <StyledFooter>
-      <footer class="page-footer">
-        <div class="container">
-          <div class="row">
-            <div class="col l6 s12">
-              <h5 class="white-text">Dizliyorum</h5>
-              <p class="grey-text text-lighten-4">
+      <footer className="page-footer">
+        <div className="container">
+          <div className="row">
+            <div className="col l6 s12">
+              <h5 className="white-text">Dizliyorum</h5>
+              <p className="grey-text text-lighten-4">
                 Türkiyenin eğlence platformu
               </p>
             </div>
-            <div class="col l4 offset-l2 s12">
-              <h5 class="white-text">Links</h5>
+            <div className="col l4 offset-l2 s12">
+              <h5 className="white-text">Links</h5>
               <ul>
                 <li>
-                  <a class="grey-text text-lighten-3" href="#!">
+                  <a className="grey-text text-lighten-3" href="#!">
                     Link 1
                   </a>
                 </li>
                 <li>
-                  <a class="grey-text text-lighten-3" href="#!">
+                  <a className="grey-text text-lighten-3" href="#!">
                     Link 2
                   </a>
                 </li>
                 <li>
-                  <a class="grey-text text-lighten-3" href="#!">
+                  <a className="grey-text text-lighten-3" href="#!">
                     Link 3
                   </a>
                 </li>
                 <li>
-                  <a class="grey-text text-lighten-3" href="#!">
+                  <a className="grey-text text-lighten-3" href="#!">
                     Link 4
                   </a>
                 </li>
@@ -40,10 +40,8 @@ export const Footer = () => {
             </div>
           </div>
         </div>
-        <div class="footer-copyright">
-          <div class="container ftr">
-            © 2020 - Dizliyorum tüm hakları saklıdır.
-          </div>
+        <div className="footer-copyright">
+          <div className="container ftr">© 2020 - Dizliyorum</div>
         </div>
       </footer>
     </StyledFooter>
