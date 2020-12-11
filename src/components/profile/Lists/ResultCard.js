@@ -39,7 +39,7 @@ export const ResultCard = ({ movie, index, id, children }) => {
               <h3 className="title">
                 {index + 1}.{movie.title ? movie.title : movie.name}
               </h3>
-              {console.log(movie)}
+
               {movie.release_date ? (
                 <h4 className="release-date">
                   {movie.release_date.substring(0, 4)}

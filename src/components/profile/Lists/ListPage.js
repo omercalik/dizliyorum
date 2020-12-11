@@ -32,7 +32,9 @@ const useStyles = makeStyles((theme) => ({
 const ListPage = ({ state, location, addToList }) => {
   const classes = useStyles();
   const [searchTerm, setSearchTerm] = React.useState('');
-  const [listTemp, setlistTemp] = React.useState([{}]);
+  const [listTemp, setlistTemp] = React.useState([]);
+
+  console.log(location);
 
   React.useEffect(() => {
     const listRef = () => {
@@ -44,7 +46,7 @@ const ListPage = ({ state, location, addToList }) => {
         });
     };
     listRef();
-  }, []);
+  }, [location]);
 
   const [
     {
@@ -86,13 +88,12 @@ const ListPage = ({ state, location, addToList }) => {
 
   const handleClick = (movie) => {
     addToList(movie, location.state.list);
-    setlistTemp((prev) => [...prev, movie]);
+    setlistTemp((prev) => [...(prev || []), movie]);
   };
 
   if (!state.firebase.auth.uid) return <Redirect from="/lists" to="/signin" />;
   return (
     <div style={{ minHeight: '80vh' }}>
-      {console.log(movies)}
       <Grid container spacing={3}>
         <Grid item xs={8}>
           <ListSearchBar callback={searchMovies} />
