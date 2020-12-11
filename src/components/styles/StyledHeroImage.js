@@ -9,8 +9,8 @@ export const StyledHeroImage = styled.div`
       100%
     ),
     url('${props.image}'), #1c1c1c`};
-  background-size: 100%, cover !important;
-  background-position: center, center !important;
+  background-size: 100% !important;
+  background-position: 76% 24% !important;
   width: 100%;
   height: 600px;
   position: relative;

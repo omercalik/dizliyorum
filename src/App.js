@@ -16,6 +16,7 @@ import Movie from './components/movie/Movie';
 import TV from './components/tv_serial/TV';
 import TVDetailPage from './components/tv_serial/TVDetailPage';
 import { Footer } from './components/layout/Footer';
+import { HomePage } from './components/home/HomePage';
 
 //import "./App.css";
 
@@ -26,7 +27,7 @@ class App extends React.Component {
       <div className="App">
         <Navbar />
         <Router>
-          <Home exact path="/" />
+          <HomePage exact path="/" />
           <SignIn path="/signin" />
           <SignUp path="/signup" />
           <CreateList path="/create" />
@@ -35,6 +36,7 @@ class App extends React.Component {
           <ListPage path="lists/:title" />
           <TopList path="/toplists" />
           <NowPlaying path="/nowplaying" />
+          <Home path="/movies" />
           <Movie path="/:movieId" />
           <TV path="/tvserials" />
           <TVDetailPage path="/tvserials/:TVId" />

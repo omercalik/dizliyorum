@@ -27,6 +27,9 @@ const SignedInLinks = (props) => {
           <Link to="/lists">İzleme Listesi</Link>
         </MenuLink>
         <MenuLink>
+          <Link to="/movies">Filmler</Link>
+        </MenuLink>
+        <MenuLink>
           <Link to="/tvserials">Diziler</Link>
         </MenuLink>
         <MenuLink>
