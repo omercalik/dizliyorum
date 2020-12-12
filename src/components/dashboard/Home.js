@@ -48,6 +48,7 @@ const Home = () => {
     const endpoint = searchTerm ? searchEndpoint : popularEndpoint;
 
     await fetchMovies(endpoint);
+    const x = -1;
   };
 
   if (error) return <div>Something went wrong..</div>;
