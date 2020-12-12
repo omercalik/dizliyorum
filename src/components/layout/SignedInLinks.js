@@ -33,6 +33,9 @@ const SignedInLinks = (props) => {
           <Link to="/tvserials">Diziler</Link>
         </MenuLink>
         <MenuLink>
+          <Link to="/oyun">Oyunlar</Link>
+        </MenuLink>
+        <MenuLink>
           <a onClick={props.signOut}>Çıkış Yap </a>
         </MenuLink>
         <MenuLink>
