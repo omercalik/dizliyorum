@@ -45,8 +45,8 @@ export const HomePage = () => {
   };
 
   const settings = {
-    arrows: true,
-
+    dots: true,
+    fade: true,
     infinite: true,
     speed: 2000,
     slidesToShow: 1,
@@ -59,8 +59,9 @@ export const HomePage = () => {
 
   if (!isFetched) return <h1>Loading</h1>;
   return (
-    <div>
+    <div style={{ minHeight: '80vh' }}>
       {console.log(state)}
+
       <Slider {...settings}>
         <HeroImage
           image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.movie.backdrop_path}`}

@@ -8,7 +8,7 @@ import { ActorCarousel } from './ActorCarousel';
 
 import { useMovieFetch } from '../hooks/useMovieFetch';
 
-const Movie = ({ movieId, content }) => {
+const Movie = ({ movieId }) => {
   const [movie, loading, error] = useMovieFetch(movieId);
 
   if (error) {

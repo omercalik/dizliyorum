@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { ResultCard } from './ResultCard';
+import Spinner from '../../dashboard/Spinner';
 
 export const TopList = () => {
   const [results, setResults] = useState([]);
+  const [isFetched, setisFetched] = useState(false);
 
   let dataUrlNoPage = `https://api.themoviedb.org/3/discover/movie?sort_by=vote_average.desc&vote_count.gte=2500&api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=`;
 
@@ -24,9 +26,12 @@ export const TopList = () => {
     Promise.all(Array.from({ length: 5 }, (_, i) => getData(i + 1)))
       .then((allResults) => {
         setResults(allResults.flat());
+        setisFetched(true);
       })
       .catch(handleErrors);
   }, []);
+
+  if (!isFetched) return <Spinner />;
 
   return (
     <div>
