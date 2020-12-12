@@ -96,6 +96,7 @@ export const useHomeFetch = () => {
         }));
         setLoading(false);
       }
+      console.log(state);
     } catch (error) {
       setError(true);
       setLoading(false);

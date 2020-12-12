@@ -1,13 +1,13 @@
-import React, {useState, useEffect} from "react";
-import { GAME_API_URL} from '../../config/apiConfig';
+import React, { useState, useEffect } from 'react';
+import { GAME_API_URL } from '../../config/apiConfig';
 import SearchBar from '../dashboard/SearchBar';
 import Grid from '../dashboard/Grid';
-import {StyledMovieThumb} from '../styles/StyledMovieThumb';
+import { StyledMovieThumb } from '../styles/StyledMovieThumb';
 import { Link } from '@reach/router';
-import {useGameFetch} from '../hooks/useGameFetch';
+import { useGameFetch } from '../hooks/useGameFetch';
 import Spinner from '../dashboard/Spinner';
 import LoadMoreBtn from '../dashboard/LoadMoreBtn';
-import {useMoreGameFetch} from '../hooks/useMoreGameFetch';
+import { useMoreGameFetch } from '../hooks/useMoreGameFetch';
 
 const GameThumb = ({ image, game, gameSlug, clickable }) => (
   <StyledMovieThumb>
@@ -33,55 +33,43 @@ const GameThumb = ({ image, game, gameSlug, clickable }) => (
 );
 
 const GameHome = () => {
+  const [{ data, loading }, fetchData] = useGameFetch();
+  const loadMoreGames = async () => {
+    const endpoint = data.next;
+    await fetchData(endpoint);
+  };
 
- 
- let [pageNumber, setpageNumber] = useState(1);
- 
- const [{data, loading}, fetchData] = useGameFetch(pageNumber);
- const loadMoreGames = async () => {
-
-   setpageNumber(pageNumber + 1);
-
-  await fetchData(pageNumber);
-  
-  
-
-  
-  
- };
+  if (!data.games[0]) return <Spinner />;
 
   return (
     <>
-    <>
-    <SearchBar/>
-    <Grid>
-          {loading ? <h1>loading</h1> : data.games.map( game => 
-            
-              <GameThumb
-                key={game.id}
-                clickable
-                image={
-                
-                  game.background_image
-                   
-                }
-                game={game}
-                gameName={game.name}
-                content={game}
-                oyunId = {game.id}
-                gameSlug = {game.slug}
-              />
-            )
-           }
+      {console.log(data)}
+      <>
+        <SearchBar />
+        <Grid>
+          {data.games.map((game) => (
+            <GameThumb
+              key={game.id}
+              clickable
+              image={game.background_image}
+              game={game}
+              gameName={game.name}
+              content={game}
+              oyunId={game.id}
+              gameSlug={game.slug}
+            />
+          ))}
         </Grid>
 
         {loading && <Spinner />}
-        {!loading ?
-        <LoadMoreBtn text="Load More" callback={loadMoreGames} /> : <h3>bekle</h3>
-        }
+        {!loading ? (
+          <LoadMoreBtn text="Load More" callback={loadMoreGames} />
+        ) : (
+          ''
+        )}
+      </>
     </>
-    </>
-  ); 
+  );
 };
 
 export default GameHome;
