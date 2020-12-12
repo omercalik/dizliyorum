@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { getStoredState } from 'redux-persist';
+import {GAME_API_URL} from '../../config/apiConfig';
 
 export const useGameFetch = () => {
   const [data, setData] = useState({ games: [] });
@@ -18,6 +19,8 @@ export const useGameFetch = () => {
         setData((prev) => ({
           ...prev,
           games: [{}],
+          
+          
         }));
         setLoading(false);
       } else {
@@ -37,7 +40,7 @@ export const useGameFetch = () => {
   };
 
   useEffect(() => {
-    fetchData(`https://rawg.io/api/games`);
+    fetchData(GAME_API_URL);
   }, []);
 
   return [{ data, loading }, fetchData];
