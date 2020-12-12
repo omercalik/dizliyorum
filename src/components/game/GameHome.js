@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { GAME_API_URL } from '../../config/apiConfig';
+import { GAME_API_URL, GAME_SEARCH_API_URL } from '../../config/apiConfig';
 import SearchBar from '../dashboard/SearchBar';
 import Grid from '../dashboard/Grid';
 import { StyledMovieThumb } from '../styles/StyledMovieThumb';
@@ -33,11 +33,21 @@ const GameThumb = ({ image, game, gameSlug, clickable }) => (
 );
 
 const GameHome = () => {
-  const [{ data, loading }, fetchData] = useGameFetch();
+  const [searchTerm, setSearchTerm] = useState('');
+  const [{ data, loading }, fetchData] = useGameFetch(searchTerm);
+ 
   const loadMoreGames = async () => {
     const endpoint = data.next;
     await fetchData(endpoint);
   };
+  const searchGames = async (search) => {
+    let slug = searchTerm.split(' ').join('-').toLowerCase();
+
+    const endpoint = search ? GAME_SEARCH_API_URL + slug : GAME_API_URL;
+    console.log(endpoint);
+    await fetchData(endpoint);
+    setSearchTerm(search);
+  }
 
   if (!data.games[0]) return <Spinner />;
 
@@ -45,7 +55,7 @@ const GameHome = () => {
     <>
       {console.log(data)}
       <>
-        <SearchBar />
+        <SearchBar callback = {searchGames} />
         <Grid>
           {data.games.map((game) => (
             <GameThumb
