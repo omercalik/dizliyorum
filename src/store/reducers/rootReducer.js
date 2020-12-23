@@ -2,6 +2,7 @@ import authReducer from './authReducer';
 import { firebaseReducer } from 'react-redux-firebase';
 import { firestoreReducer } from 'redux-firestore';
 import listReducer from './listReducer';
+import commentReducer from './commentReducer';
 import { combineReducers } from 'redux';
 import watchlistReducer from './watchlistReducer';
 import { persistReducer } from 'redux-persist';
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   firebase: firebaseReducer,
   firestore: firestoreReducer,
   watchlist: watchlistReducer,
+  comment: commentReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

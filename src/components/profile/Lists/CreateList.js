@@ -13,7 +13,7 @@ class CreateList extends React.Component {
   };
   handleSubmit = (e) => {
     e.preventDefault();
-    //console.log(this.state);
+    console.log(this.props.state);
 
     this.props.createList(this.state);
     navigate('/');
