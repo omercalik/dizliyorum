@@ -1,4 +1,4 @@
-export const addComment = (comment, contentId, type) => {
+export const addComment = (comment, contentId, type, analyze) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firestore = getFirestore();
     const profile = getState().firebase.profile;
@@ -15,6 +15,7 @@ export const addComment = (comment, contentId, type) => {
         createdAt: new Date(),
         contentId: contentId,
         type: type,
+        analyze: analyze,
       })
       .then(() => {
         dispatch({ type: 'ADD_COMMENT', comment: comment });
