@@ -23,6 +23,9 @@ import { HomePage } from './components/home/HomePage';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class App extends React.Component {
+
+  
+ 
   render() {
     return (
       <div className="App">
@@ -49,5 +52,6 @@ class App extends React.Component {
     );
   }
 }
+
 
 export default App;

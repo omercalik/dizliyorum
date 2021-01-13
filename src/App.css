@@ -289,3 +289,7 @@ header .nav-links li:last-child {
   font-size: 3rem;
   text-align: center;
 }
+
+.comment{
+  color: #1aa762;
+}
