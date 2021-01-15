@@ -1,0 +1,15 @@
+.content-of-the-week {
+  border: 2px solid black;
+  margin: 100px;
+  width: 600px;
+  height: 600px;
+  float: left;
+}
+
+.content-image {
+  width: 400px;
+}
+
+p {
+  text-align: justify;
+}
