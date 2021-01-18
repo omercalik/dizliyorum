@@ -24,8 +24,6 @@ import { ActorCarousel } from '../movie/ActorCarousel';
 import MovieThumb from '../dashboard/MovieThumb';
 import './home.css';
 import TVThumb from '../tv_serial/TVThumb';
-import ReactPlayer from 'react-player';
-import { Link } from '@reach/router';
 
 export const HomePage = () => {
   const [isFetched, setisFetched] = useState(false);
@@ -53,9 +51,10 @@ export const HomePage = () => {
       let idArray = [];
       let trailerArray = [];
 
-      for (let i = 0; i < resultUpcoming.results.length; i++) {
+      for (let i = 0; i < 3; i++) {
         idArray.push(resultUpcoming.results[i].id);
       }
+      console.log(idArray);
 
       let urls = [];
 
@@ -65,7 +64,6 @@ export const HomePage = () => {
       }
 
       let requests = urls.map((url) => fetch(url));
-      let limit = 0;
 
       Promise.all(requests)
         .then((responses) => {
@@ -74,10 +72,7 @@ export const HomePage = () => {
         .then((responses) =>
           Promise.all(responses.map((r) => r.json())).then((contents) =>
             contents.forEach((content) => {
-              if (content.results.length > 0 && limit <= 1) {
-                trailerArray.push(content.results);
-                limit++;
-              }
+              trailerArray.push(content.results);
             })
           )
         );
@@ -150,7 +145,7 @@ export const HomePage = () => {
   if (!isFetched) return <h1>Loading</h1>;
   return (
     <div style={{ minHeight: '80vh' }}>
-      {console.log(trailers)}
+      {console.log(upcoming)}
 
       <Slider {...settings}>
         <HeroImage
@@ -169,8 +164,8 @@ export const HomePage = () => {
       <ActorCarousel>
         {state.movie.map((movie) => (
           <MovieThumb
-            clickable
             key={movie.id}
+            clickable
             image={
               movie.poster_path
                 ? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
@@ -188,8 +183,8 @@ export const HomePage = () => {
       <ActorCarousel>
         {nowPlaying.movie.map((movie) => (
           <MovieThumb
-            clickable
             key={movie.id}
+            clickable
             image={
               movie.poster_path
                 ? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
@@ -204,44 +199,25 @@ export const HomePage = () => {
 
       <div className="content-of-the-week">
         <div className="content-container container1">
-          <Link to={`/${trending.movie.id}`}>
-            <img
-              className="content-image"
-              src={IMAGE_BASE_URL + POSTER_SIZE + trending.movie.poster_path}
-              alt=""
-            />
-          </Link>
-
+          <img
+            className="content-image"
+            src={IMAGE_BASE_URL + POSTER_SIZE + trending.movie.poster_path}
+            alt=""
+            clickable
+          />
           <h5>Haftanın Filmi: {trending.movie.original_title}</h5>
           <p>{review.review[3].content}</p>
         </div>
         <div className="content-container container2">
-          <Link to={`/tvserials/${trending.tv.id}`}>
-            <img
-              className="content-image"
-              src={IMAGE_BASE_URL + POSTER_SIZE + trending.tv.poster_path}
-              alt=""
-            />
-          </Link>
-
+          <img
+            className="content-image"
+            src={IMAGE_BASE_URL + POSTER_SIZE + trending.tv.poster_path}
+            alt=""
+            clickable
+          />
           <h5>Haftanın Dizisi: {trending.tv.name}</h5>
           <p>{review.review[3].content}</p>
         </div>
-      </div>
-
-      <h4>Yakında Vizyona Girecek Filmler</h4>
-
-      <div className="trailer-container">
-        {trailers.map((trailer) => (
-          <div className="player">
-            <ReactPlayer
-              controls
-              height="360px"
-              className="react-player "
-              url={`https://www.youtube.com/watch?v=${trailer[0].key}`}
-            />{' '}
-          </div>
-        ))}
       </div>
     </div>
   );

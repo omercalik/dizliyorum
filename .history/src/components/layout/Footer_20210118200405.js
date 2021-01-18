@@ -14,7 +14,7 @@ export const Footer = () => {
               </p>
             </div>
             <div className="col l4 offset-l2 s12">
-              <h5 className="grey-text text-lighten-4">Links</h5>
+              <h5 className="white-text">Links</h5>
               <ul>
                 <li>
                   <a className="grey-text text-lighten-3" href="#!">

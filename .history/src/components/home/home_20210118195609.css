@@ -1,7 +1,7 @@
 .content-of-the-week {
   border: 2px solid black;
   margin: 100px;
-  width: 100vw;
+  width: 600px;
   height: 100%;
   display: flex;
 }
@@ -19,20 +19,4 @@ p {
 
 .content-container {
   width: 40%;
-}
-
-.container1 {
-  margin-right: 30px;
-}
-
-.container2 {
-  margin-left: 130px;
-}
-
-.trailer-container {
-  display: flex;
-  width: 90vw;
-  justify-content: space-evenly;
-  margin-bottom: 30px;
-  margin-top: 20px;
 }
