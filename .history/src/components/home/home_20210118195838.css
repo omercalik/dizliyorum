@@ -26,13 +26,5 @@ p {
 }
 
 .container2 {
-  margin-left: 130px;
-}
-
-.trailer-container {
-  display: flex;
-  width: 90vw;
-  justify-content: space-evenly;
-  margin-bottom: 30px;
-  margin-top: 20px;
+  margin-left: 40px;
 }

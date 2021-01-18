@@ -25,7 +25,6 @@ import MovieThumb from '../dashboard/MovieThumb';
 import './home.css';
 import TVThumb from '../tv_serial/TVThumb';
 import ReactPlayer from 'react-player';
-import { Link } from '@reach/router';
 
 export const HomePage = () => {
   const [isFetched, setisFetched] = useState(false);
@@ -169,7 +168,6 @@ export const HomePage = () => {
       <ActorCarousel>
         {state.movie.map((movie) => (
           <MovieThumb
-            clickable
             key={movie.id}
             image={
               movie.poster_path
@@ -188,7 +186,6 @@ export const HomePage = () => {
       <ActorCarousel>
         {nowPlaying.movie.map((movie) => (
           <MovieThumb
-            clickable
             key={movie.id}
             image={
               movie.poster_path
@@ -204,32 +201,26 @@ export const HomePage = () => {
 
       <div className="content-of-the-week">
         <div className="content-container container1">
-          <Link to={`/${trending.movie.id}`}>
-            <img
-              className="content-image"
-              src={IMAGE_BASE_URL + POSTER_SIZE + trending.movie.poster_path}
-              alt=""
-            />
-          </Link>
-
+          <img
+            className="content-image"
+            src={IMAGE_BASE_URL + POSTER_SIZE + trending.movie.poster_path}
+            alt=""
+          />
           <h5>Haftanın Filmi: {trending.movie.original_title}</h5>
           <p>{review.review[3].content}</p>
         </div>
         <div className="content-container container2">
-          <Link to={`/tvserials/${trending.tv.id}`}>
-            <img
-              className="content-image"
-              src={IMAGE_BASE_URL + POSTER_SIZE + trending.tv.poster_path}
-              alt=""
-            />
-          </Link>
-
+          <img
+            className="content-image"
+            src={IMAGE_BASE_URL + POSTER_SIZE + trending.tv.poster_path}
+            alt=""
+          />
           <h5>Haftanın Dizisi: {trending.tv.name}</h5>
           <p>{review.review[3].content}</p>
         </div>
       </div>
 
-      <h4>Yakında Vizyona Girecek Filmler</h4>
+      <h5>Yakında Vizyona Girecek Filmler</h5>
 
       <div className="trailer-container">
         {trailers.map((trailer) => (

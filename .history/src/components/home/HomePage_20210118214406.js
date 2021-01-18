@@ -216,14 +216,11 @@ export const HomePage = () => {
           <p>{review.review[3].content}</p>
         </div>
         <div className="content-container container2">
-          <Link to={`/tvserials/${trending.tv.id}`}>
-            <img
-              className="content-image"
-              src={IMAGE_BASE_URL + POSTER_SIZE + trending.tv.poster_path}
-              alt=""
-            />
-          </Link>
-
+          <img
+            className="content-image"
+            src={IMAGE_BASE_URL + POSTER_SIZE + trending.tv.poster_path}
+            alt=""
+          />
           <h5>Haftanın Dizisi: {trending.tv.name}</h5>
           <p>{review.review[3].content}</p>
         </div>
