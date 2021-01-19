@@ -13,7 +13,6 @@ const MovieThumb = ({ image, movie, clickable }) => (
             alt="moviethumb"
             style={{ height: '250px' }}
             title={movie.title}
-            loading="lazy"
           />
           <div className="overlay">
             <div className="img_text">{movie.title}</div>

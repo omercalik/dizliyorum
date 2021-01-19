@@ -8,6 +8,7 @@ import ReactPlayer from 'react-player';
 
 const GameInfo = ({ game }) => {
   const gamePhoto = useGamePhotoFetch();
+  console.log(game.background_image_additional);
   const base = `https://www.youtube.com/watch?v=${game.clip.video}`;
   return (
     <StyledGameInfo backdrop={game.background_image_additional}>
@@ -77,6 +78,7 @@ const Game = (gameName) => {
     return <div>Something went wrong ...</div>;
   }
   if (loading) return <Spinner />;
+  console.log(game);
 
   return (
     <>

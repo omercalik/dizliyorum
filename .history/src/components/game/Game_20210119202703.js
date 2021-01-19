@@ -8,6 +8,7 @@ import ReactPlayer from 'react-player';
 
 const GameInfo = ({ game }) => {
   const gamePhoto = useGamePhotoFetch();
+  console.log(game.background_image);
   const base = `https://www.youtube.com/watch?v=${game.clip.video}`;
   return (
     <StyledGameInfo backdrop={game.background_image_additional}>

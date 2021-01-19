@@ -25,7 +25,6 @@ const GameThumb = ({ image, game, gameSlug, clickable }) => (
             alt="gamethumb"
             style={style}
             name={game.name}
-            loading="lazy"
           />
           <div className="overlay">
             <div className="img_text">{game.name}</div>

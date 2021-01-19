@@ -20,7 +20,9 @@ const SignedInLinks = (props) => {
         <MenuLink>
           <Link to="/toplists">Top 100</Link>
         </MenuLink>
-
+        <MenuLink>
+          <Link to="/nowplaying">Vizyondakiler</Link>
+        </MenuLink>
         <MenuLink>
           <Link to="/lists">İzleme Listesi</Link>
         </MenuLink>

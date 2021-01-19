@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { GAME_API_URL, GAME_SEARCH_API_URL } from '../../config/apiConfig';
-import SearchBar from '../dashboard/SearchBar';
-import Grid from '../dashboard/Grid';
-import { StyledMovieThumb } from '../styles/StyledMovieThumb';
+import Grid from '../../dashboard/Grid';
+import MovieThumb from '../../dashboard/MovieThumb';
+import NoImage from '../../images/no_image.jpg';
+import Spinner from '../../dashboard/Spinner';
+import { useGameHomeFetch } from '../../hooks/useGameHomeFetch';
+import { StyledMovieThumb } from '../../styles/StyledMovieThumb';
 import { Link } from '@reach/router';
-import { useGameFetch } from '../hooks/useGameFetch';
-import Spinner from '../dashboard/Spinner';
-import LoadMoreBtn from '../dashboard/LoadMoreBtn';
-import { useMoreGameFetch } from '../hooks/useMoreGameFetch';
 
-const style = {
-  height: '250px',
-  width: '172px',
-};
+import {
+  POPULAR_BASE_URL,
+  SEARCH_BASE_URL,
+  POSTER_SIZE,
+  BACKDROP_SIZE,
+  IMAGE_BASE_URL,
+  GAME_API_URL,
+} from '../../../config/apiConfig';
+import { useGameFetch } from '../../hooks/useGameFetch';
+import SearchBar from '../../dashboard/SearchBar';
 
 const GameThumb = ({ image, game, gameSlug, clickable }) => (
   <StyledMovieThumb>
@@ -23,9 +27,8 @@ const GameThumb = ({ image, game, gameSlug, clickable }) => (
             className="clickable img_self"
             src={image}
             alt="gamethumb"
-            style={style}
+            style={{ height: '250px' }}
             name={game.name}
-            loading="lazy"
           />
           <div className="overlay">
             <div className="img_text">{game.name}</div>
@@ -38,18 +41,20 @@ const GameThumb = ({ image, game, gameSlug, clickable }) => (
   </StyledMovieThumb>
 );
 
-const GameHome = () => {
-  const [searchTerm, setSearchTerm] = useState('');
+export const NowPlaying = () => {
+  const [searchTerm, setSearchTerm] = useState();
+
   const [{ data, loading }, fetchData] = useGameFetch(searchTerm);
 
   const loadMoreGames = async () => {
     const endpoint = data.next;
     await fetchData(endpoint);
   };
+
   const searchGames = async (search) => {
     let slug = searchTerm.split(' ').join('-').toLowerCase();
 
-    const endpoint = search ? GAME_SEARCH_API_URL + slug : GAME_API_URL;
+    const endpoint = search ? GAME_API_URL + slug : GAME_API_URL;
     console.log(endpoint);
     await fetchData(endpoint);
     setSearchTerm(search);
@@ -76,16 +81,7 @@ const GameHome = () => {
             />
           ))}
         </Grid>
-
-        {loading && <Spinner />}
-        {!loading ? (
-          <LoadMoreBtn text="Load More" callback={loadMoreGames} />
-        ) : (
-          ''
-        )}
       </>
     </>
   );
 };
-
-export default GameHome;
