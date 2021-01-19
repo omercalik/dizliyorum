@@ -148,7 +148,7 @@ export const HomePage = () => {
     fetchMovies();
   }, []);
 
-  if (!isFetched) return <Spinner />;
+  if (!isFetched) return <h1>Loading</h1>;
   return (
     <div style={{ minHeight: '80vh' }}>
       {console.log(trailers)}

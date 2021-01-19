@@ -5,7 +5,6 @@ import Carousel, {
   slidesToScrollPlugin,
 } from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
-import './carousel.css';
 
 export const ActorCarousel = ({ children }) => {
   return (
@@ -20,13 +19,13 @@ export const ActorCarousel = ({ children }) => {
           options: {
             arrowLeft: (
               <button className="carousel-arrow">
-                <i class="medium material-icons">chevron_left</i>
+                <i class="material-icons">chevron_left</i>
               </button>
             ),
             arrowLeftDisabled: null,
             arrowRight: (
               <button className="carousel-arrow">
-                <i class="medium material-icons">chevron_right</i>
+                <i class="material-icons">chevron_right</i>
               </button>
             ),
             arrowRightDisabled: null,
