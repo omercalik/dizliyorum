@@ -9,11 +9,6 @@ import Spinner from '../dashboard/Spinner';
 import LoadMoreBtn from '../dashboard/LoadMoreBtn';
 import { useMoreGameFetch } from '../hooks/useMoreGameFetch';
 
-const style = {
-  height: '250px',
-  width: '172px',
-};
-
 const GameThumb = ({ image, game, gameSlug, clickable }) => (
   <StyledMovieThumb>
     {clickable ? (
@@ -23,9 +18,8 @@ const GameThumb = ({ image, game, gameSlug, clickable }) => (
             className="clickable img_self"
             src={image}
             alt="gamethumb"
-            style={style}
+            style={{ height: '250px' }}
             name={game.name}
-            loading="lazy"
           />
           <div className="overlay">
             <div className="img_text">{game.name}</div>
@@ -41,7 +35,7 @@ const GameThumb = ({ image, game, gameSlug, clickable }) => (
 const GameHome = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [{ data, loading }, fetchData] = useGameFetch(searchTerm);
-
+ 
   const loadMoreGames = async () => {
     const endpoint = data.next;
     await fetchData(endpoint);
@@ -53,7 +47,7 @@ const GameHome = () => {
     console.log(endpoint);
     await fetchData(endpoint);
     setSearchTerm(search);
-  };
+  }
 
   if (!data.games[0]) return <Spinner />;
 
@@ -61,7 +55,7 @@ const GameHome = () => {
     <>
       {console.log(data)}
       <>
-        <SearchBar callback={searchGames} />
+        <SearchBar callback = {searchGames} />
         <Grid>
           {data.games.map((game) => (
             <GameThumb

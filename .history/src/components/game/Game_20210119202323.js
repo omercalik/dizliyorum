@@ -6,8 +6,18 @@ import { Link } from '@reach/router';
 import { useGamePhotoFetch } from '../hooks/useGamePhotosFetch';
 import ReactPlayer from 'react-player';
 
+import { KRAKEN_API_KEY, KRAKEN_API_KEY_SECRET } from '../../config/apiConfig';
+
+let Kraken = require('kraken');
+
+let kraken = new Kraken({
+  api_key: KRAKEN_API_KEY,
+  api_secret: KRAKEN_API_KEY_SECRET,
+});
+
 const GameInfo = ({ game }) => {
   const gamePhoto = useGamePhotoFetch();
+  console.log(game.background_image_additional);
   const base = `https://www.youtube.com/watch?v=${game.clip.video}`;
   return (
     <StyledGameInfo backdrop={game.background_image_additional}>
@@ -77,6 +87,7 @@ const Game = (gameName) => {
     return <div>Something went wrong ...</div>;
   }
   if (loading) return <Spinner />;
+  console.log(game);
 
   return (
     <>

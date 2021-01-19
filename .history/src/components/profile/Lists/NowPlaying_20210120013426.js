@@ -1,18 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import { GAME_API_URL, GAME_SEARCH_API_URL } from '../../config/apiConfig';
-import SearchBar from '../dashboard/SearchBar';
-import Grid from '../dashboard/Grid';
-import { StyledMovieThumb } from '../styles/StyledMovieThumb';
+import Grid from '../../dashboard/Grid';
+import MovieThumb from '../../dashboard/MovieThumb';
+import NoImage from '../../images/no_image.jpg';
+import Spinner from '../../dashboard/Spinner';
+import { useGameHomeFetch } from '../../hooks/useGameHomeFetch';
+import { StyledMovieThumb } from '../../styles/StyledMovieThumb';
 import { Link } from '@reach/router';
-import { useGameFetch } from '../hooks/useGameFetch';
-import Spinner from '../dashboard/Spinner';
-import LoadMoreBtn from '../dashboard/LoadMoreBtn';
-import { useMoreGameFetch } from '../hooks/useMoreGameFetch';
 
-const style = {
-  height: '250px',
-  width: '172px',
-};
+import {
+  POPULAR_BASE_URL,
+  SEARCH_BASE_URL,
+  POSTER_SIZE,
+  BACKDROP_SIZE,
+  IMAGE_BASE_URL,
+  GAME_API_URL,
+  KRAKEN_API_KEY,
+  KRAKEN_API_KEY_SECRET,
+} from '../../../config/apiConfig';
+import { useGameFetch } from '../../hooks/useGameFetch';
+import SearchBar from '../../dashboard/SearchBar';
+import LoadMoreBtn from '../../dashboard/LoadMoreBtn';
+
+let Kraken = require('kraken');
+
+let kraken = new Kraken({
+  api_key: KRAKEN_API_KEY,
+  api_secret: KRAKEN_API_KEY_SECRET,
+});
 
 const GameThumb = ({ image, game, gameSlug, clickable }) => (
   <StyledMovieThumb>
@@ -23,9 +37,8 @@ const GameThumb = ({ image, game, gameSlug, clickable }) => (
             className="clickable img_self"
             src={image}
             alt="gamethumb"
-            style={style}
+            style={{ height: '250px' }}
             name={game.name}
-            loading="lazy"
           />
           <div className="overlay">
             <div className="img_text">{game.name}</div>
@@ -38,18 +51,41 @@ const GameThumb = ({ image, game, gameSlug, clickable }) => (
   </StyledMovieThumb>
 );
 
-const GameHome = () => {
-  const [searchTerm, setSearchTerm] = useState('');
+export const NowPlaying = () => {
+  const [searchTerm, setSearchTerm] = useState();
+
   const [{ data, loading }, fetchData] = useGameFetch(searchTerm);
+
+  data.games.forEach((game) => {
+    let params = {
+      url: game.background_image,
+      wait: true,
+      resize: {
+        width: 100,
+        height: 75,
+        strategy: 'fit',
+      },
+    };
+
+    kraken.url(params, function (status) {
+      if (status) {
+        console.log('success', status);
+        game.background_image = status.kraked_url;
+      } else {
+        console.log('Fail', status.message);
+      }
+    });
+  });
 
   const loadMoreGames = async () => {
     const endpoint = data.next;
     await fetchData(endpoint);
   };
+
   const searchGames = async (search) => {
     let slug = searchTerm.split(' ').join('-').toLowerCase();
 
-    const endpoint = search ? GAME_SEARCH_API_URL + slug : GAME_API_URL;
+    const endpoint = search ? GAME_API_URL + slug : GAME_API_URL;
     console.log(endpoint);
     await fetchData(endpoint);
     setSearchTerm(search);
@@ -87,5 +123,3 @@ const GameHome = () => {
     </>
   );
 };
-
-export default GameHome;

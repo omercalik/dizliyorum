@@ -77,6 +77,7 @@ const Game = (gameName) => {
     return <div>Something went wrong ...</div>;
   }
   if (loading) return <Spinner />;
+  console.log(game);
 
   return (
     <>

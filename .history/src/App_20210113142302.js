@@ -11,7 +11,7 @@ import Game from './components/game/Game';
 import GameHome from './components/game/GameHome';
 import MyLists from './components/profile/Lists/MyLists';
 import { TopList } from './components/profile/Lists/TopList';
-
+import { NowPlaying } from './components/profile/Lists/NowPlaying';
 import ListPage from './components/profile/Lists/ListPage';
 import Movie from './components/movie/Movie';
 import TV from './components/tv_serial/TV';
@@ -23,6 +23,9 @@ import { HomePage } from './components/home/HomePage';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class App extends React.Component {
+
+  
+ 
   render() {
     return (
       <div className="App">
@@ -36,6 +39,7 @@ class App extends React.Component {
           <MyLists path="/lists" />
           <ListPage path="lists/:title" />
           <TopList path="/toplists" />
+          <NowPlaying path="/nowplaying" />
           <Home path="/movies" />
           <Movie path="/:movieId" />
           <TV path="/tvserials" />
@@ -48,5 +52,6 @@ class App extends React.Component {
     );
   }
 }
+
 
 export default App;

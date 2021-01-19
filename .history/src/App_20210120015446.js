@@ -11,7 +11,7 @@ import Game from './components/game/Game';
 import GameHome from './components/game/GameHome';
 import MyLists from './components/profile/Lists/MyLists';
 import { TopList } from './components/profile/Lists/TopList';
-
+import { NowPlaying } from './components/profile/Lists/NowPlaying';
 import ListPage from './components/profile/Lists/ListPage';
 import Movie from './components/movie/Movie';
 import TV from './components/tv_serial/TV';
