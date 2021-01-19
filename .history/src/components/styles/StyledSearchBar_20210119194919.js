@@ -13,7 +13,7 @@ export const StyledSearchBarContent = styled.div`
   max-width: 1280px;
   width: 100%;
   height: 55px;
-  background: #0b090a;
+  background: #53354a;
   margin: 0 auto;
   border-radius: 40px;
   position: relative;

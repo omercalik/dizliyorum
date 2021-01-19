@@ -1,0 +1,12 @@
+.carousel-arrow {
+  background-color: transparent;
+  border: none;
+}
+
+.carousel-arrow:focus {
+  background-color: transparent;
+}
+
+.carousel-arrow:hover {
+  cursor: pointer;
+}

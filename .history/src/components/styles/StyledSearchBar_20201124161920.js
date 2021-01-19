@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const StyledSearchBar = styled.div`
   width: 100%;
   height: 105px;
-  background: #660708;
+  background: #2b2e4a;
   padding: 25px 20px 0px 20px;
   box-sizing: border-box;
   color: #fff;
@@ -13,7 +13,7 @@ export const StyledSearchBarContent = styled.div`
   max-width: 1280px;
   width: 100%;
   height: 55px;
-  background: #0b090a;
+  background: #53354a;
   margin: 0 auto;
   border-radius: 40px;
   position: relative;
