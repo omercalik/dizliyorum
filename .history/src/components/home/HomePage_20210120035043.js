@@ -11,7 +11,7 @@ import {
   IMAGE_BASE_URL,
   POPULAR_BASE_URL_TV,
   NOW_PLAYING_URL,
-  TRENDING_MOVIE_URL,
+  TRENDING_tv_URL,
   TRENDING_TV_URL,
   API_URL,
 } from '../../config/apiConfig';
@@ -20,8 +20,8 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Carousel, { slidesToShowPlugin } from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
-import { ActorCarousel } from '../movie/ActorCarousel';
-import MovieThumb from '../dashboard/MovieThumb';
+import { ActorCarousel } from '../tv/ActorCarousel';
+import tvThumb from '../dashboard/tvThumb';
 import './home.css';
 import TVThumb from '../tv_serial/TVThumb';
 import ReactPlayer from 'react-player';
@@ -38,7 +38,7 @@ export const HomePage = () => {
   const [review, setReview] = useState();
   const [upcoming, setUpcoming] = useState();
   const [trailers, setTrailers] = useState();
-  const fetchMovies = async () => {
+  const fetchtvs = async () => {
     setisFetched(false);
 
     try {
@@ -47,7 +47,7 @@ export const HomePage = () => {
       const resultNowPlaying = await (await fetch(NOW_PLAYING_URL)).json();
       const resultUpcoming = await (
         await fetch(
-          'https://api.themoviedb.org/3/movie/upcoming?api_key=592dc9c56e6fc3de77c6c7e76a1c729d&language=en-US&page=1&region=US'
+          'https://api.thetvdb.org/3/tv/upcoming?api_key=592dc9c56e6fc3de77c6c7e76a1c729d&language=en-US&page=1&region=US'
         )
       ).json();
 
@@ -61,7 +61,7 @@ export const HomePage = () => {
       let urls = [];
 
       for (let i = 0; i < idArray.length; i++) {
-        let _str = `http://api.themoviedb.org/3/movie/${idArray[i]}/videos?api_key=592dc9c56e6fc3de77c6c7e76a1c729d`;
+        let _str = `http://api.thetvdb.org/3/tv/${idArray[i]}/videos?api_key=592dc9c56e6fc3de77c6c7e76a1c729d`;
         urls.push(_str);
       }
 
@@ -83,14 +83,12 @@ export const HomePage = () => {
           )
         );
 
-      const resultTrendingMovie = await (
-        await fetch(TRENDING_MOVIE_URL)
-      ).json();
+      const resultTrendingtv = await (await fetch(TRENDING_tv_URL)).json();
       const resultTrendingTV = await (await fetch(TRENDING_TV_URL)).json();
-      const contentId = resultTrendingMovie.results[0].id;
+      const contentId = resultTrendingtv.results[0].id;
 
       const resultReview = await (
-        await fetch(`${API_URL}movie/${contentId}/reviews?api_key=${API_KEY}`)
+        await fetch(`${API_URL}tv/${contentId}/reviews?api_key=${API_KEY}`)
       ).json();
 
       if (result.results.length === 0) {
@@ -101,18 +99,18 @@ export const HomePage = () => {
       } else {
         setState((prev) => ({
           ...prev,
-          movie: result.results,
+          tv: result.results,
           tv: resultTv.results,
         }));
 
         setNowPlaying((prev) => ({
           ...prev,
-          movie: resultNowPlaying.results,
+          tv: resultNowPlaying.results,
         }));
 
         setTrending((prev) => ({
           ...prev,
-          movie: resultTrendingMovie.results[0],
+          tv: resultTrendingtv.results[0],
           tv: resultTrendingTV.results[0],
         }));
 
@@ -145,7 +143,7 @@ export const HomePage = () => {
   };
 
   useEffect(() => {
-    fetchMovies();
+    fetchtvs();
   }, []);
 
   if (!isFetched) return <Spinner />;
@@ -155,9 +153,9 @@ export const HomePage = () => {
 
       <Slider {...settings}>
         <HeroImage
-          image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.movie[0].backdrop_path}`}
-          title={state.movie[0].title}
-          text={state.movie[0].overview}
+          image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.tv[0].backdrop_path}`}
+          title={state.tv[0].title}
+          text={state.tv[0].overview}
         />
         <HeroImage
           image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.tv[0].backdrop_path}`}
@@ -169,36 +167,36 @@ export const HomePage = () => {
       <h4>Vizyondaki Filmler</h4>
 
       <ActorCarousel>
-        {nowPlaying.movie.map((movie) => (
-          <MovieThumb
+        {nowPlaying.tv.map((tv) => (
+          <tvThumb
             clickable
-            key={movie.id}
+            key={tv.id}
             image={
-              movie.poster_path
-                ? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
+              tv.poster_path
+                ? IMAGE_BASE_URL + POSTER_SIZE + tv.poster_path
                 : NoImage
             }
-            movie={movie}
-            movieName={movie.original_title}
-            content={movie}
+            tv={tv}
+            tvName={tv.original_title}
+            content={tv}
           />
         ))}
       </ActorCarousel>
 
       <h4>Popüler Filmler</h4>
       <ActorCarousel>
-        {state.movie.map((movie) => (
-          <MovieThumb
+        {state.tv.map((tv) => (
+          <tvThumb
             clickable
-            key={movie.id}
+            key={tv.id}
             image={
-              movie.poster_path
-                ? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
+              tv.poster_path
+                ? IMAGE_BASE_URL + POSTER_SIZE + tv.poster_path
                 : NoImage
             }
-            movie={movie}
-            movieName={movie.original_title}
-            content={movie}
+            tv={tv}
+            tvName={tv.original_title}
+            content={tv}
           />
         ))}
       </ActorCarousel>
@@ -214,8 +212,8 @@ export const HomePage = () => {
                 ? IMAGE_BASE_URL + POSTER_SIZE + tv.poster_path
                 : NoImage
             }
-            TVId={tv.id}
-            TVName={tv.name}
+            tv={tv}
+            tvName={tv.name}
             content={tv}
           />
         ))}
@@ -223,15 +221,15 @@ export const HomePage = () => {
 
       <div className="content-of-the-week">
         <div className="content-container container1">
-          <Link to={`/${trending.movie.id}`}>
+          <Link to={`/${trending.tv.id}`}>
             <img
               className="content-image"
-              src={IMAGE_BASE_URL + POSTER_SIZE + trending.movie.poster_path}
+              src={IMAGE_BASE_URL + POSTER_SIZE + trending.tv.poster_path}
               alt=""
             />
           </Link>
 
-          <h5>Haftanın Filmi: {trending.movie.original_title}</h5>
+          <h5>Haftanın Filmi: {trending.tv.original_title}</h5>
           <p>{review.review[3].content}</p>
         </div>
         <div className="content-container container2">
