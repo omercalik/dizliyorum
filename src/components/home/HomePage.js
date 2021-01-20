@@ -252,7 +252,7 @@ export const HomePage = () => {
 
       <h4>Yakında Vizyona Girecek Filmler</h4>
 
-      {/* <div className="trailer-container">
+      <div className="trailer-container">
         {trailers.map((trailer) => (
           <div className="player">
             <ReactPlayer
@@ -263,7 +263,7 @@ export const HomePage = () => {
             />{' '}
           </div>
         ))}
-      </div> */}
+      </div>
     </div>
   );
 };
