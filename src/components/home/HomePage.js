@@ -170,7 +170,7 @@ export const HomePage = () => {
 
       <h4>Vizyondaki Filmler</h4>
 
-      <ActorCarousel>
+      {/* <ActorCarousel>
         {nowPlaying.movie.map((movie) => (
           <MovieThumb
             clickable
@@ -221,7 +221,7 @@ export const HomePage = () => {
             content={tv}
           />
         ))}
-      </ActorCarousel>
+      </ActorCarousel> */}
 
       <div className="content-of-the-week">
         <div className="content-container container1">
