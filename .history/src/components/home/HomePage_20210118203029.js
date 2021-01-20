@@ -57,7 +57,7 @@ export const HomePage = () => {
       Promise.allSettled(
         idArray.map((e) => {
           return fetch(
-            `http://api.themoviedb.org/3/movie/${e}/videos?api_key=592dc9c56e6fc3de77c6c7e76a1c729d`
+            `https://api.themoviedb.org/3/movie/${e}/videos?api_key=592dc9c56e6fc3de77c6c7e76a1c729d`
           );
         })
       ).then((responseArr) => {
