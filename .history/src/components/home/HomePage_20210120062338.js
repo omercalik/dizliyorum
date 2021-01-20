@@ -38,6 +38,102 @@ export const HomePage = () => {
   const [review, setReview] = useState();
   const [upcoming, setUpcoming] = useState();
   const [trailers, setTrailers] = useState();
+  const fetchMovies = async () => {
+    setisFetched(false);
+
+    try {
+      const result = await (await fetch(POPULAR_BASE_URL)).json();
+      const resultTv = await (await fetch(POPULAR_BASE_URL_TV)).json();
+      const resultNowPlaying = await (await fetch(NOW_PLAYING_URL)).json();
+      const resultUpcoming = await (
+        await fetch(
+          'https://api.themoviedb.org/3/movie/upcoming?api_key=592dc9c56e6fc3de77c6c7e76a1c729d&language=en-US&page=1&region=US'
+        )
+      ).json();
+
+      let idArray = [];
+      let trailerArray = [];
+
+      for (let i = 0; i < resultUpcoming.results.length; i++) {
+        idArray.push(resultUpcoming.results[i].id);
+      }
+
+      let urls = [];
+
+      for (let i = 0; i < idArray.length; i++) {
+        let _str = `https://api.themoviedb.org/3/movie/${idArray[i]}/videos?api_key=592dc9c56e6fc3de77c6c7e76a1c729d`;
+        urls.push(_str);
+      }
+
+      let requests = urls.map((url) => fetch(url));
+      let limit = 0;
+
+      Promise.all(requests)
+        .then((responses) => {
+          return responses;
+        })
+        .then((responses) =>
+          Promise.all(responses.map((r) => r.json())).then((contents) =>
+            contents.forEach((content) => {
+              if (content.results.length > 0 && limit <= 1) {
+                trailerArray.push(content.results);
+                limit++;
+              }
+            })
+          )
+        );
+
+      const resultTrendingMovie = await (
+        await fetch(TRENDING_MOVIE_URL)
+      ).json();
+      const resultTrendingTV = await (await fetch(TRENDING_TV_URL)).json();
+      const contentId = resultTrendingMovie.results[0].id;
+
+      const resultReview = await (
+        await fetch(`${API_URL}movie/${contentId}/reviews?api_key=${API_KEY}`)
+      ).json();
+
+      if (result.results.length === 0) {
+        setState(() => ({
+          ...result.results,
+        }));
+        setisFetched(true);
+      } else {
+        setState((prev) => ({
+          ...prev,
+          movie: result.results,
+          tv: resultTv.results,
+        }));
+
+        setNowPlaying((prev) => ({
+          ...prev,
+          movie: resultNowPlaying.results,
+        }));
+
+        setTrending((prev) => ({
+          ...prev,
+          movie: resultTrendingMovie.results[0],
+          tv: resultTrendingTV.results[0],
+        }));
+
+        setReview(() => ({
+          review: resultReview.results,
+        }));
+
+        setUpcoming(() => ({
+          upcoming: resultUpcoming.results,
+        }));
+
+        setTrailers(trailerArray);
+
+        setisFetched(true);
+      }
+    } catch (error) {
+      setError(true);
+      setisFetched(true);
+      console.log(error);
+    }
+  };
 
   const settings = {
     dots: true,
@@ -49,104 +145,6 @@ export const HomePage = () => {
   };
 
   useEffect(() => {
-    const fetchMovies = async () => {
-      setisFetched(false);
-
-      try {
-        const result = await (await fetch(POPULAR_BASE_URL)).json();
-        const resultTv = await (await fetch(POPULAR_BASE_URL_TV)).json();
-        const resultNowPlaying = await (await fetch(NOW_PLAYING_URL)).json();
-        const resultUpcoming = await (
-          await fetch(
-            'https://api.themoviedb.org/3/movie/upcoming?api_key=592dc9c56e6fc3de77c6c7e76a1c729d&language=en-US&page=1&region=US'
-          )
-        ).json();
-
-        let idArray = [];
-        let trailerArray = [];
-
-        for (let i = 0; i < resultUpcoming.results.length; i++) {
-          idArray.push(resultUpcoming.results[i].id);
-        }
-
-        let urls = [];
-
-        for (let i = 0; i < idArray.length; i++) {
-          let _str = `https://api.themoviedb.org/3/movie/${idArray[i]}/videos?api_key=592dc9c56e6fc3de77c6c7e76a1c729d`;
-          urls.push(_str);
-        }
-
-        let requests = urls.map((url) => fetch(url));
-        let limit = 0;
-
-        Promise.all(requests)
-          .then((responses) => {
-            return responses;
-          })
-          .then((responses) =>
-            Promise.all(responses.map((r) => r.json())).then((contents) =>
-              contents.forEach((content) => {
-                if (content.results.length > 0 && limit <= 1) {
-                  trailerArray.push(content.results);
-                  limit++;
-                }
-              })
-            )
-          );
-
-        const resultTrendingMovie = await (
-          await fetch(TRENDING_MOVIE_URL)
-        ).json();
-        const resultTrendingTV = await (await fetch(TRENDING_TV_URL)).json();
-        const contentId = resultTrendingMovie.results[0].id;
-
-        const resultReview = await (
-          await fetch(`${API_URL}movie/${contentId}/reviews?api_key=${API_KEY}`)
-        ).json();
-
-        if (result.results.length === 0) {
-          setState(() => ({
-            ...result.results,
-          }));
-          setisFetched(true);
-        } else {
-          setState((prev) => ({
-            ...prev,
-            movie: result.results,
-            tv: resultTv.results,
-          }));
-
-          setNowPlaying((prev) => ({
-            ...prev,
-            movie: resultNowPlaying.results,
-          }));
-
-          setTrending((prev) => ({
-            ...prev,
-            movie: resultTrendingMovie.results[0],
-            tv: resultTrendingTV.results[0],
-          }));
-
-          setReview((prev) => ({
-            ...prev,
-            review: resultReview.results,
-          }));
-
-          setUpcoming((prev) => ({
-            ...prev,
-            upcoming: resultUpcoming.results,
-          }));
-
-          setTrailers(trailerArray);
-
-          setisFetched(true);
-        }
-      } catch (error) {
-        setError(true);
-        setisFetched(true);
-        console.log(error);
-      }
-    };
     fetchMovies();
   }, []);
 
