@@ -2,7 +2,6 @@
   "name": "dizliyorum",
   "version": "0.1.0",
   "private": true,
-  "homepage": "./",
   "dependencies": {
     "@brainhubeu/react-carousel": "^2.0.2",
     "@material-ui/core": "^4.11.0",
