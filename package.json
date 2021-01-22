@@ -12,6 +12,7 @@
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "dayjs": "^1.10.3",
     "firebase": "^7.24.0",
     "firebase-tools": "^8.14.1",
     "kraken": "^0.4.0",

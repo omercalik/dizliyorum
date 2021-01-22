@@ -1,3 +1,41 @@
 .comment-container {
-  border: 1px solid red;
+  height: 100%;
+  margin-bottom: 15px;
+}
+
+.username-container {
+  display: flex;
+}
+
+.username-container p {
+  margin: 10px;
+}
+
+.username {
+  font-weight: 600;
+  font-size: 15px;
+  color: #e0e0e0;
+  font-family: 'Proza Libre', sans-serif;
+}
+
+.date {
+  font-size: 12px;
+  color: #606060;
+}
+
+.comment-body {
+  margin-left: 10px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
+  color: #808080;
+}
+
+.satisfied {
+  color: green;
+  margin-left: 10px;
+}
+
+.dissatisfied {
+  color: red;
+  margin-left: 10px;
 }

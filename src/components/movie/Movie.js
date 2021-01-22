@@ -12,16 +12,13 @@ import { useMovieFetch } from '../hooks/useMovieFetch';
 import * as tf from '@tensorflow/tfjs';
 import padSequences from './paddedSeq';
 import { blue } from '@material-ui/core/colors';
+import CommentSection from '../layout/CommentSection';
 
 let db = firebase.firestore();
 
+let dayjs = require('dayjs');
+
 const Movie = ({ state, movieId, addComment }) => {
-  useEffect(() => {
-    tf.ready().then(() => {
-      loadModel(url);
-      loadMetadata(url);
-    });
-  }, []);
   const [movie, loading, error] = useMovieFetch(movieId);
   const [comment, setComment] = React.useState('');
   const [analyze, setAnalyze] = React.useState('');
@@ -34,25 +31,15 @@ const Movie = ({ state, movieId, addComment }) => {
   const [seqText, setSeq] = React.useState('');
   const [padText, setPad] = React.useState('');
   const [inputText, setInput] = React.useState('');
+  const [submitted, setSubmitted] = React.useState();
+  const [reload, setReload] = React.useState(false);
+  const [commentCount, setCommentCount] = React.useState();
   const ref = db.collection('comments');
-  const getComments = async () => {
-    const newState = [];
 
-    const snapshot = await ref.where('contentId', '==', movieId).get();
-    if (snapshot.empty) {
-      console.log('No matching documents.');
-      return;
-    }
-
-    snapshot.forEach((doc) => {
-      console.log(doc.id, '=>', doc.data());
-      let com = doc.data();
-      newState.push(com);
-    });
-
-    setMovieComments(newState);
+  const test = () => {
+    setReload(!reload);
+    console.log(movieComments);
   };
-  getComments();
 
   const handleChange = (e) => {
     setComment({ [e.target.id]: e.target.value });
@@ -62,12 +49,10 @@ const Movie = ({ state, movieId, addComment }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     addComment(comment, movieId, 'movie', analyze);
-  };
+    setText('');
 
-  if (error) {
-    console.log(error);
-    return <div>Something went wrong ...</div>;
-  }
+    setReload(!reload);
+  };
 
   const url = {
     model:
@@ -79,7 +64,6 @@ const Movie = ({ state, movieId, addComment }) => {
   async function loadModel(url) {
     const model = await tf.loadLayersModel(url.model);
     setModel(model);
-    console.log(model);
   }
   async function loadMetadata(url) {
     try {
@@ -92,14 +76,13 @@ const Movie = ({ state, movieId, addComment }) => {
   }
   const OOV_INDEX = 2;
   const getSentimentScore = (text) => {
-    console.log(text);
     const inputText = text
       .trim()
       .toLowerCase()
       .replace(/(\.|,|!)/g, '')
       .split(' ');
     setTrim(inputText);
-    console.log(inputText);
+
     const sequence = inputText.map((word) => {
       let wordIndex = metadata.word_index[word] + metadata.index_from;
       if (wordIndex > metadata.vocabulary_size) {
@@ -108,14 +91,14 @@ const Movie = ({ state, movieId, addComment }) => {
       return wordIndex;
     });
     setSeq(sequence);
-    console.log(sequence);
+
     // Perform truncation and padding.
     const paddedSequence = padSequences([sequence], metadata.max_len);
-    console.log(metadata.max_len);
+
     setPad(paddedSequence);
 
     const input = tf.tensor2d(paddedSequence, [1, metadata.max_len]);
-    console.log(input);
+
     setInput(input);
     const predictOut = model.predict(input);
     const score = predictOut.dataSync()[0];
@@ -128,7 +111,52 @@ const Movie = ({ state, movieId, addComment }) => {
     }
     return score;
   };
+
+  useEffect(() => {
+    tf.ready().then(() => {
+      loadModel(url);
+      loadMetadata(url);
+    });
+
+    const getComments = async () => {
+      const newState = [];
+
+      const snapshot = await ref
+        .where('contentId', '==', movieId)
+        .orderBy('timestamp', 'desc')
+        .get();
+      if (snapshot.empty) {
+        console.log('No matching documents.');
+        setMovieComments([]);
+        return;
+      }
+
+      snapshot.forEach((doc) => {
+        let com = doc.data();
+
+        const formatDate = dayjs
+          .unix(com.createdAt.seconds)
+          .format('DD-MM-YYYY');
+        com.createdAt = formatDate;
+        com.commentId = doc.id;
+
+        newState.push(com);
+      });
+
+      setMovieComments(newState);
+      setCommentCount(newState.length);
+    };
+
+    getComments();
+  }, [reload]);
+
+  if (error) {
+    console.log(error);
+    return <div>Something went wrong ...</div>;
+  }
+
   if (loading) return <Spinner />;
+
   return (
     <>
       <MovieInfo movie={movie} />
@@ -140,7 +168,7 @@ const Movie = ({ state, movieId, addComment }) => {
       />
       {movie.actors.length > 0 ? (
         <>
-          <h1>Actors</h1>
+          <h3>Actors</h3>
           <ActorCarousel header="Actors">
             {movie.actors.map((actor) => (
               <Actor key={actor.credit_id} actor={actor} />
@@ -148,7 +176,6 @@ const Movie = ({ state, movieId, addComment }) => {
           </ActorCarousel>
         </>
       ) : null}
-      <h3>Yorumlar</h3>
 
       <div className="comment-section">
         <div className="row">
@@ -161,14 +188,15 @@ const Movie = ({ state, movieId, addComment }) => {
                   onChange={handleChange}
                   value={testText}
                 ></textarea>
-                <label for="comment">Yorumunuzu yazın</label>
+                <label htmlFor="comment">Yorumunuzu yazın</label>
                 <button
                   className="btn waves-effect waves-light"
                   type="submit"
                   name="action"
                   onClick={() => getSentimentScore(testText)}
+                  style={{ backgroundColor: '#dc2f02' }}
                 >
-                  Submit
+                  Gönder
                   <i className="material-icons right">send</i>
                 </button>
               </div>
@@ -176,21 +204,18 @@ const Movie = ({ state, movieId, addComment }) => {
           </form>
         </div>
 
-        {movieComments.map((comment) => (
-          <div style={{ color: 'blue' }} variant="h3">
-            {comment.comment}
-            <div
-              style={
-                comment.analyze === 'pozitif'
-                  ? { color: 'green' }
-                  : { color: 'red' }
-              }
-              variant="h5"
-            >
-              {comment.analyze}
-            </div>
-          </div>
-        ))}
+        {movieComments.length > 0 &&
+          movieComments.map((comment, index) => (
+            <CommentSection
+              userName={comment.userFirstName + ' ' + comment.userLastName}
+              date={comment.createdAt}
+              comment={comment.comment}
+              analyze={comment.analyze}
+              commentRef={comment}
+              key={comment.commentId}
+              callBack={test}
+            />
+          ))}
       </div>
     </>
   );
