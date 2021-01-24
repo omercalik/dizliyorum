@@ -30,7 +30,7 @@ const TVDetail = ({ TVId }) => {
       />
       {TV.actors.length > 0 ? (
         <>
-          <h1>Actors</h1>
+          <h1>Aktörler</h1>
           <ActorCarousel header="Actors">
             {TV.actors.map((actor) => (
               <Actor key={actor.credit_id} actor={actor} />

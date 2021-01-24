@@ -50,7 +50,7 @@ export const TVInfoBar = (props) => {
           className="movieinfobar-content-col add-to-watchlist"
         >
           <FontAwesome className="fa-budget" name="plus" size="2x" />
-          <span className="movieinfobar-info">Watchliste ekle</span>
+          <span className="movieinfobar-info">İzleme Listesine ekle</span>
         </div>
       </div>
     </StyledMovieInfoBar>

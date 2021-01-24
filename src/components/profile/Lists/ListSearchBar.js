@@ -28,7 +28,7 @@ const ListSearchBar = ({ callback }) => {
         <FontAwesome className="fa-search" name="search" size="2x" />
         <input
           type="text"
-          placeholder="Eklemek istediğiniz filmi arayın"
+          placeholder="Eklemek istediğiniz filmi veya diziyi arayın"
           onChange={doSearch}
           value={state}
         />

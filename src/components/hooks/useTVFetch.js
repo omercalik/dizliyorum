@@ -11,7 +11,7 @@ export const useTVFetch = (TVId) => {
     setLoading(true);
 
     try {
-      const endpoint = `${API_URL}tv/${TVId}?api_key=${API_KEY}&language=en-US`;
+      const endpoint = `${API_URL}tv/${TVId}?api_key=${API_KEY}&language=tr`;
       const result = await (await fetch(endpoint)).json();
 
       const creditsEndPoint = `${API_URL}tv/${TVId}/credits?api_key=${API_KEY}&language=en-US`;

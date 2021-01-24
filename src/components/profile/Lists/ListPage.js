@@ -137,10 +137,7 @@ const ListPage = ({ state, location, addToList }) => {
             list={listTemp}
           />
         </Grid>
-        <Grid item xs={3}>
-          <h3>Listelerim</h3>
-          <Lists />
-        </Grid>
+       
       </Grid>
     </div>
   );
