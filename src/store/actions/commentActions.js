@@ -17,6 +17,8 @@ export const addComment = (comment, contentId, type, analyze) => {
         createdAt: new Date(),
         contentId: contentId,
         type: type,
+        upvote: 0,
+        downvote: 0,
         analyze: analyze,
       })
       .then(() => {

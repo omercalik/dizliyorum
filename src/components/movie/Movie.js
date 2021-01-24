@@ -214,6 +214,8 @@ const Movie = ({ state, movieId, addComment }) => {
               commentRef={comment}
               key={comment.commentId}
               callBack={test}
+              upvote={comment.upvote}
+              downvote={comment.downvote}
             />
           ))}
       </div>

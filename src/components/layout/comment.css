@@ -31,11 +31,46 @@
 }
 
 .satisfied {
+  position: relative;
   color: green;
+  top: -10px;
   margin-left: 10px;
 }
 
 .dissatisfied {
+  position: relative;
+  top: -10px;
   color: red;
   margin-left: 10px;
+}
+
+.downvote {
+  margin-left: 20px;
+}
+
+.vote-count {
+  position: relative;
+  top: -20px;
+}
+
+.vote {
+  position: relative;
+  top: -20px;
+  background-color: transparent;
+}
+
+.vote:hover {
+  background-color: transparent !important;
+}
+
+.vote:focus {
+  background-color: transparent;
+}
+
+.delete-button {
+  background-color: transparent;
+}
+
+.delete-button:hover {
+  background-color: transparent;
 }

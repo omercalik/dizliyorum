@@ -12,7 +12,19 @@ const commentReducer = (state = initState, action) => {
       console.log('comment deleted', action.comment);
       return state;
     case 'DELETE_COMMENT_ERROR':
-      console.log('comment delete error', action.err);
+      console.log('comment delete error', action.error);
+      return state;
+    case 'UPVOTE_COMMENT':
+      console.log('comment upvoted', action.comment);
+      return { ...state.comment };
+    case 'UPVOTE_ERROR':
+      console.log(action.error);
+      return state;
+    case 'DOWNVOTE_COMMENT':
+      console.log('comment downvoted', action.comment);
+      return { ...state.comment };
+    case 'DOWNVOTE_ERROR':
+      console.log(action.error);
       return state;
     default:
       return state;

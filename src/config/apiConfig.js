@@ -12,7 +12,7 @@ const POPULAR_BASE_URL = `${API_URL}movie/popular?api_key=${API_KEY}`;
 const POPULAR_BASE_URL_TV = `${API_URL}tv/popular?api_key=${API_KEY}`;
 const SEARCH_BASE_URL_MIX = `${API_URL}search/multi?api_key=${API_KEY}&query=`;
 const NOW_PLAYING_URL =
-  'https://api.themoviedb.org/3/movie/now_playing?api_key=592dc9c56e6fc3de77c6c7e76a1c729d&language=TR&page=1&region=TR';
+  'https://api.themoviedb.org/3/movie/now_playing?api_key=592dc9c56e6fc3de77c6c7e76a1c729d&page=1&region=US';
 const GAME_API_URL = 'https://rawg.io/api/games';
 const GAME_SEARCH_API_URL = 'https://rawg.io/api/games?search=';
 const TRENDING_MOVIE_URL =
