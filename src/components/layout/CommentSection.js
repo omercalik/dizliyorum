@@ -25,7 +25,7 @@ const CommentSection = ({
 
   const votedComment = db
     .collection('users')
-    .doc(commentRef.userId)
+    .doc(auth.uid)
     .collection('votedComments')
     .doc(commentRef.commentId)
     .get()
@@ -60,13 +60,13 @@ const CommentSection = ({
       .get()
       .then((doc) => {
         if (!doc.exists) {
-          console.log('No such document!');
           if (type === 'upvote') {
             db.collection('comments')
               .doc(comment.commentId)
               .update({ upvote: increment })
               .then((res) => {
                 setupvoteCount(upvoteCount + 1);
+                setvoteType('upvote');
                 db.collection('users')
                   .doc(comment.userId)
                   .collection('votedComments')
@@ -90,6 +90,7 @@ const CommentSection = ({
               .update({ downvote: increment })
               .then((res) => {
                 setdownvoteCount(downvoteCount + 1);
+                setvoteType('downvote');
                 db.collection('users')
                   .doc(comment.userId)
                   .collection('votedComments')
@@ -118,8 +119,9 @@ const CommentSection = ({
                 })
                 .then(() => {
                   setupvoteCount(upvoteCount - 1);
+                  setvoteType('');
                   db.collection('users')
-                    .doc(comment.userId)
+                    .doc(auth.uid)
                     .collection('votedComments')
                     .doc(comment.commentId)
                     .delete()
@@ -141,8 +143,9 @@ const CommentSection = ({
                 .then(() => {
                   setupvoteCount(upvoteCount + 1);
                   setdownvoteCount(downvoteCount - 1);
+                  setvoteType('upvote');
                   db.collection('users')
-                    .doc(comment.userId)
+                    .doc(auth.uid)
                     .collection('votedComments')
                     .doc(comment.commentId)
                     .update({
@@ -163,8 +166,9 @@ const CommentSection = ({
                 })
                 .then(() => {
                   setdownvoteCount(downvoteCount - 1);
+                  setvoteType('');
                   db.collection('users')
-                    .doc(comment.userId)
+                    .doc(auth.uid)
                     .collection('votedComments')
                     .doc(comment.commentId)
                     .delete()
@@ -189,8 +193,9 @@ const CommentSection = ({
                 .then(() => {
                   setupvoteCount(upvoteCount - 1);
                   setdownvoteCount(downvoteCount + 1);
+                  setvoteType('downvote');
                   db.collection('users')
-                    .doc(comment.userId)
+                    .doc(auth.uid)
                     .collection('votedComments')
                     .doc(comment.commentId)
                     .update({

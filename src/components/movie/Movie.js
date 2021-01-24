@@ -123,6 +123,7 @@ const Movie = ({ state, movieId, addComment }) => {
 
       const snapshot = await ref
         .where('contentId', '==', movieId)
+
         .orderBy('timestamp', 'desc')
         .get();
       if (snapshot.empty) {
