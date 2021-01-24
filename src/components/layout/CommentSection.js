@@ -52,7 +52,7 @@ const CommentSection = ({
 
     const commentRef = db
       .collection('users')
-      .doc(comment.userId)
+      .doc(auth.uid)
       .collection('votedComments')
       .doc(comment.commentId);
 
@@ -68,7 +68,7 @@ const CommentSection = ({
                 setupvoteCount(upvoteCount + 1);
                 setvoteType('upvote');
                 db.collection('users')
-                  .doc(comment.userId)
+                  .doc(auth.uid)
                   .collection('votedComments')
                   .doc(comment.commentId)
                   .set({
@@ -92,7 +92,7 @@ const CommentSection = ({
                 setdownvoteCount(downvoteCount + 1);
                 setvoteType('downvote');
                 db.collection('users')
-                  .doc(comment.userId)
+                  .doc(auth.uid)
                   .collection('votedComments')
                   .doc(comment.commentId)
                   .set({
