@@ -58,7 +58,7 @@ export const HomePage = () => {
         const resultNowPlaying = await (await fetch(NOW_PLAYING_URL)).json();
         const resultUpcoming = await (
           await fetch(
-            'https://api.themoviedb.org/3/movie/upcoming?api_key=592dc9c56e6fc3de77c6c7e76a1c729d&language=en-US&page=1&region=US'
+            'https://api.themoviedb.org/3/movie/upcoming?api_key=592dc9c56e6fc3de77c6c7e76a1c729d&language=tr&page=1&region=US'
           )
         ).json();
 
@@ -168,7 +168,7 @@ export const HomePage = () => {
         />
       </Slider>
 
-      <h4>Vizyondaki Filmler</h4>
+      <h4 className = "baslik">Vizyondaki Filmler</h4>
 
       <ActorCarousel>
         {nowPlaying.movie.map((movie) => (
@@ -187,7 +187,7 @@ export const HomePage = () => {
         ))}
       </ActorCarousel>
 
-      <h4>Popüler Filmler</h4>
+      <h4 className = "baslik">Popüler Filmler</h4>
       <ActorCarousel>
         {state.movie.map((movie) => (
           <MovieThumb
@@ -205,7 +205,7 @@ export const HomePage = () => {
         ))}
       </ActorCarousel>
 
-      <h4>Popüler Diziler</h4>
+      <h4 className = "baslik">Popüler Diziler</h4>
       <ActorCarousel>
         {state.tv.map((tv) => (
           <TVThumb
@@ -233,7 +233,7 @@ export const HomePage = () => {
             />
           </Link>
 
-          <h5>Haftanın Filmi: {trending.movie.original_title}</h5>
+          <h5 >Haftanın Filmi: {trending.movie.original_title}</h5>
           <p>{review.review[3].content}</p>
         </div>
         <div className="content-container container2">
@@ -250,7 +250,7 @@ export const HomePage = () => {
         </div>
       </div>
 
-      <h4>Yakında Vizyona Girecek Filmler</h4>
+      <h4 className = "baslik">Yakında Vizyona Girecek Filmler</h4>
 
       <div className="trailer-container">
         {trailers.map((trailer) => (

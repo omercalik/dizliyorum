@@ -169,7 +169,7 @@ const Movie = ({ state, movieId, addComment }) => {
       />
       {movie.actors.length > 0 ? (
         <>
-          <h3>Actors</h3>
+          <h3>Aktörler</h3>
           <ActorCarousel header="Actors">
             {movie.actors.map((actor) => (
               <Actor key={actor.credit_id} actor={actor} />
@@ -197,7 +197,7 @@ const Movie = ({ state, movieId, addComment }) => {
                   onClick={() => getSentimentScore(testText)}
                   style={{ backgroundColor: '#dc2f02' }}
                 >
-                  Gönder
+                  Yorum Ekle
                   <i className="material-icons right">send</i>
                 </button>
               </div>

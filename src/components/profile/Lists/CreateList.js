@@ -24,14 +24,14 @@ class CreateList extends React.Component {
     return (
       <div style={{ minHeight: '80vh' }} className="container">
         <form onSubmit={this.handleSubmit} className="white">
-          <h5 className="grey-text text-darken-3">Create List</h5>
+          <h5 className="grey-text text-darken-3">Liste Oluştur</h5>
           <div className="input-field">
-            <label htmlFor="title">Title</label>
+            <label htmlFor="title">Liste İsmi</label>
             <input type="text" id="title" onChange={this.handleChange} />
           </div>
 
           <div className="input-field">
-            <button className="btn pink lighten-1 z-depth-0">Create</button>
+            <button className="btn pink lighten-1 z-depth-0">Oluştur</button>
           </div>
         </form>
       </div>

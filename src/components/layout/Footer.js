@@ -10,7 +10,7 @@ export const Footer = () => {
             <div className="col l6 s12">
               <h5 className="grey-text text-lighten-4">Dizliyorum</h5>
               <p className="grey-text text-lighten-4">
-                Türkiyenin eğlence platformu
+                Türkiye'nin eğlence platformu
               </p>
             </div>
           </div>
