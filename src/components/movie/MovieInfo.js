@@ -22,12 +22,12 @@ export const MovieInfo = ({ movie }) => {
         </div>
         <div className="movieinfo-text">
           <h1>{movie.title}</h1>
-          <h3>PLOT</h3>
+          <h3>ÖZET</h3>
           <p>{movie.overview}</p>
 
           <div className="rating-director">
             <div>
-              <h3>IMDB RATING</h3>
+              <h3>IMDb PUANI</h3>
               <div className="score">{movie.vote_average}</div>
             </div>
 

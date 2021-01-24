@@ -22,7 +22,7 @@ export const TVInfo = ({ TV }) => {
         </div>
         <div className="movieinfo-text">
           <h1>{TV.title}</h1>
-          <h3>PLOT</h3>
+          <h3>ÖZET</h3>
           <p>{TV.overview}</p>
 
           <div className="rating-director">

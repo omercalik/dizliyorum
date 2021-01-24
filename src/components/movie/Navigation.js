@@ -8,7 +8,7 @@ export const Navigation = ({ content }) => {
     <StyledMovieNavigation>
       <div className="navigation-content">
         <Link to="/">
-          <p>Home</p>
+          <p>Anasayfa</p>
         </Link>
         <p>|</p>
         <p>{content}</p>

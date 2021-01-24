@@ -11,7 +11,7 @@ export const useMovieFetch = (movieId) => {
     setLoading(true);
 
     try {
-      const endpoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`;
+      const endpoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}&language=tr`;
       const result = await (await fetch(endpoint)).json();
 
       const creditsEndPoint = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`;

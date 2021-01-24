@@ -19,10 +19,7 @@ const MyLists = ({ state, watchlist }) => {
         <Grid item xs={8}>
           <ListContent list={watchlist} />
         </Grid>
-        <Grid item xs={3}>
-          <h3>Listelerim</h3>
-          <Lists />
-        </Grid>
+        
       </Grid>
     </div>
   );
