@@ -56,21 +56,4 @@
 .vote {
   position: relative;
   top: -20px;
-  background-color: transparent;
-}
-
-.vote:hover {
-  background-color: transparent !important;
-}
-
-.vote:focus {
-  background-color: transparent;
-}
-
-.delete-button {
-  background-color: transparent;
-}
-
-.delete-button:hover {
-  background-color: transparent;
 }

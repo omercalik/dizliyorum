@@ -20,6 +20,7 @@ const CommentSection = ({
   const [upvoteCount, setupvoteCount] = useState(upvote);
   const [downvoteCount, setdownvoteCount] = useState(downvote);
   const [voteType, setvoteType] = useState();
+  const [clicked, setClicked] = useState(false);
 
   let db = firebase.firestore();
 
@@ -47,6 +48,8 @@ const CommentSection = ({
   };
 
   const handleVote = (comment, type) => {
+    setClicked(true);
+    setTimeout(() => setClicked(false), 500);
     const increment = firebase.firestore.FieldValue.increment(1);
     const decrement = firebase.firestore.FieldValue.increment(-1);
 
@@ -201,9 +204,9 @@ const CommentSection = ({
                     .update({
                       voteType: 'downvote',
                     })
-                    .then((res) =>
-                      console.log('upvote changed to downvote', res)
-                    )
+                    .then((res) => {
+                      console.log('upvote changed to downvote', res);
+                    })
                     .catch((err) => console.log(err));
                 });
             }
@@ -221,10 +224,7 @@ const CommentSection = ({
         <p className="username">{userName}</p>
         <p className="date">{date}</p>
         {auth.uid === commentRef.userId ? (
-          <button
-            onClick={() => handleClick(commentRef)}
-            className="btn delete-button"
-          >
+          <button onClick={() => handleClick(commentRef)} className="btn-flat">
             <i className="material-icons">delete</i>
           </button>
         ) : (
@@ -238,7 +238,8 @@ const CommentSection = ({
         {console.log(voteType)}
         <button
           onClick={() => handleVote(commentRef, 'upvote')}
-          className="btn vote"
+          className={'btn-flat vote ' + (clicked ? 'disabled-button' : '')}
+          disabled={clicked}
         >
           <i
             className="tiny material-icons"
@@ -252,7 +253,8 @@ const CommentSection = ({
         <span className="vote-count">{upvoteCount}</span>
         <button
           onClick={() => handleVote(commentRef, 'downvote')}
-          className="btn vote"
+          className={'btn-flat vote ' + (clicked ? 'disabled-button' : '')}
+          disabled={clicked}
         >
           <i
             className=" tiny material-icons downvote"
