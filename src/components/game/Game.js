@@ -12,9 +12,6 @@ const GameInfo = ({ game }) => {
   return (
     <StyledGameInfo backdrop={game.background_image_additional}>
       <div className="movieinfo-content">
-        <div className="movieinfo-thumb">
-          <GameThumb image={game.background_image} clickable={false} />
-        </div>
         <div className="movieinfo-text">
           <h1>{game.name}</h1>
           <div className="player-wrapper">

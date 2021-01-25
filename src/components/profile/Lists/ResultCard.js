@@ -1,7 +1,9 @@
 import React from 'react';
 import '../../../Results.css';
 import { navigate } from '@reach/router';
-
+import MovieThumb from '../../dashboard/MovieThumb';
+import { IMAGE_BASE_URL, POSTER_SIZE } from '../../../config/apiConfig';
+import NoImage from '../../images/no_image.jpg';
 export const ResultCard = ({ movie, index, id, children }) => {
   const handleClick = (movie) => {
     movie.title
@@ -12,21 +14,21 @@ export const ResultCard = ({ movie, index, id, children }) => {
   return (
     <>
       {movie ? (
-        <div className="result-card">
-          <div
-            onClick={() => {
-              handleClick(movie);
-            }}
-            className="poster-wrapper"
-          >
-            {movie.poster_path ? (
-              <img
-                src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-                alt={`${movie.title} Poster`}
-              />
-            ) : (
-              <div className="filler-poster"></div>
-            )}
+        <div className="movie-thumb-container">
+          <div className="gün">
+            <MovieThumb
+              clickable
+              key={movie.id}
+              image={
+                movie.poster_path
+                  ? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
+                  : NoImage
+              }
+              movie={movie}
+              movieName={movie.original_title}
+              content={movie}
+              className="movie-thumb"
+            />
           </div>
 
           <div className="info">
@@ -37,7 +39,7 @@ export const ResultCard = ({ movie, index, id, children }) => {
               className="header"
             >
               <h3 className="title">
-                {index + 1}.{movie.title ? movie.title : movie.name}
+                {index + 1}. {movie.title ? movie.title : movie.name}
               </h3>
 
               {movie.release_date ? (
