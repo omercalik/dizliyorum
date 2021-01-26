@@ -36,6 +36,7 @@ export const HomePage = () => {
   const [trending, setTrending] = useState();
   const [game, setGame] = useState();
   const [review, setReview] = useState();
+  const [reviewTv, setreviewTv] = useState();
   const [upcoming, setUpcoming] = useState();
   const [trailers, setTrailers] = useState();
 
@@ -99,9 +100,14 @@ export const HomePage = () => {
         ).json();
         const resultTrendingTV = await (await fetch(TRENDING_TV_URL)).json();
         const contentId = resultTrendingMovie.results[0].id;
+        const contentTvId = resultTrendingTV.results[0].id;
 
         const resultReview = await (
           await fetch(`${API_URL}movie/${contentId}/reviews?api_key=${API_KEY}`)
+        ).json();
+
+        const resultReviewTv = await (
+          await fetch(`${API_URL}tv/${contentTvId}/reviews?api_key=${API_KEY}`)
         ).json();
 
         if (result.results.length === 0) {
@@ -130,6 +136,7 @@ export const HomePage = () => {
           setReview((prev) => ({
             ...prev,
             review: resultReview.results,
+            reviewTv: resultReviewTv.results,
           }));
 
           setUpcoming((prev) => ({
@@ -168,7 +175,7 @@ export const HomePage = () => {
         />
       </Slider>
 
-      <h4 className = "baslik">Vizyondaki Filmler</h4>
+      <h4 className="baslik">Vizyondaki Filmler</h4>
 
       <ActorCarousel>
         {nowPlaying.movie.map((movie) => (
@@ -187,7 +194,7 @@ export const HomePage = () => {
         ))}
       </ActorCarousel>
 
-      <h4 className = "baslik">Popüler Filmler</h4>
+      <h4 className="baslik">Popüler Filmler</h4>
       <ActorCarousel>
         {state.movie.map((movie) => (
           <MovieThumb
@@ -205,7 +212,7 @@ export const HomePage = () => {
         ))}
       </ActorCarousel>
 
-      <h4 className = "baslik">Popüler Diziler</h4>
+      <h4 className="baslik">Popüler Diziler</h4>
       <ActorCarousel>
         {state.tv.map((tv) => (
           <TVThumb
@@ -233,8 +240,37 @@ export const HomePage = () => {
             />
           </Link>
 
-          <h5 >Haftanın Filmi: {trending.movie.original_title}</h5>
-          <p>{review.review[3].content}</p>
+          <h5>Haftanın Filmi: {trending.movie.original_title}</h5>
+          {/* <p>{review.review[3].content}</p> */}
+          <p>
+            Wonder Woman 1984, ilk filmin klasmanında değil. Onun kadar ciddi,
+            onun kadar politik bir film kesinlikle değil. İlk film de öyle
+            siyasi manifesto niteliğinde değildi elbette ama bir nebze de olsa
+            suya sabuna dokunuyordu. Birinci Dünya Savaşı ortamında geçiyordu
+            bir defa. 84 ise daha çok toplum özelinde, insanın iç dünyası odaklı
+            bir film. Kişisel kayıplar ve dilekler üzerine eğilmiş bir hikâye.
+            Öyle politik bir sorgulaması ve çıkarımları filan yok. Düşünsel
+            katmandan ziyade vermeye çalıştığı duygunun içinde eriyebileceğiniz,
+            kendinizi akışına bırakabileceğiniz bir film. Bu durumda şunu demek
+            yanlış olmaz; bu film Aquaman ve Shazam klasmanında bir film. Öte
+            yandan Aquaman’den de Shazam’den de hikâye karmaşıklığı bakımından
+            bir gömlek daha üstün.Aynı şekilde, neyin komik olduğunu anlamak
+            için, evrende neler olduğuna dair diziyi izlemeden önce yeterince
+            fikir sahibi olmanız gerekiyor. Hatta ve hatta, ABD’de kült kabul
+            edilen bazı sitcom‘lara dair de fikir sahibi olmanızda fayda var.
+            WandaVision’a bu sezon ilham veren dizilerin arasında The Dick Van
+            Dyke Show, Leave It to Beaver, Bewitched (Tatlı Cadı), The Brady
+            Bunch, Roseanne ve Full House (Bizim Ev) var. İzleyicinin
+            seçeneklerinin oldukça kısıtlı olduğu bir dönemde yayınlanan bu gibi
+            sitcom’ların çoğunun ortak iki noktası var. Hemen hepsi “Amerikan
+            rüyası”nı uzaktan keşfeden ülkelerin sakinlerince izlendiler, tıpkı
+            Marvel’ın kurgusal Doğu Avrupa ülkesi Sokovya’da büyüyen Wanda gibi.
+            İkinci olarak, bu dizilerin çoğunda bir bağlam problemi olur. Dizi
+            karakterlerinin geçmişleri hakkında az ve istikrarsız bilgilerimiz
+            olur ve bazen bölümler birbirleriyle çelişirler. WandaVision, bu
+            fikirle Wanda’nın ruh hâlinin muazzam bir bileşimiyle kurulmuş bir
+            evren.
+          </p>
         </div>
         <div className="content-container container2">
           <Link to={`/tvserials/${trending.tv.id}`}>
@@ -246,11 +282,31 @@ export const HomePage = () => {
           </Link>
 
           <h5>Haftanın Dizisi: {trending.tv.name}</h5>
-          <p>{review.review[3].content}</p>
+          <p>
+            WandaVision’ın ilk iki bölümünün yayınlanmasıyla, Marvel Sinematik
+            Evreni’nin dördüncü fazına adım atmış durumdayız. Marvel Sinematik
+            Evreni için fırtına öncesi sessizlik niteliğinde olması beklenen
+            WandaVision’ın ilk iki bölümü, klasik sitcom göndermeleri ve
+            stüdyoda yer alan canlı izleyicilerin kahkaha çeşnileriyle,
+            alışılmışın oldukça dışında bir formatla karşımıza çıkıyor. Her
+            şeyden evvel vurgulamak lazım: WandaVision sadece bir girizgah
+            niteliğindeki, neredeyse hiçbir aksiyon sunmayan ilk iki bölümüyle
+            herkese göre bir dizi değil. Marvel evrenine dair hakimiyeti çok
+            yüksek olmayan ya da Marvel evrenini zaten çocuksu bulanlar için
+            yayınlanan bölümlerin bir memnuniyet yaratamamasına kesin gözüyle
+            bakıyorum. Sinematik evreni seven, ama çizgiromanlara çok da ilgi
+            duymayanları da hayal kırıklığı yaşayacaklar listesine
+            ekleyebiliriz. Çünkü normalde herkese hitap etmesine alışkın
+            olduğumuz Marvel’ın sinema-televizyon ayağında belki de ilk kez bu
+            kadar gerçek fanlara göre bir yapımla karşı karşıyayız.
+            WandaVision’a bir şans vermek gerektiğini anlamak için, bu diziyle
+            evrenin frenlerinin patlayıp, bundan sonra her şeyin yepyeni bir
+            seyir alacağının farkında olmanız gerekiyor.
+          </p>
         </div>
       </div>
 
-      <h4 className = "baslik">Yakında Vizyona Girecek Filmler</h4>
+      <h4 className="baslik">Yakında Vizyona Girecek Filmler</h4>
 
       <div className="trailer-container">
         {trailers.map((trailer) => (
