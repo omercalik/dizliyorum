@@ -18,6 +18,7 @@ import TV from './components/tv_serial/TV';
 import TVDetailPage from './components/tv_serial/TVDetailPage';
 import { Footer } from './components/layout/Footer';
 import { HomePage } from './components/home/HomePage';
+import YorumProfile from './components/profile/yorumProfile';
 
 //import "./App.css";
 
@@ -33,6 +34,7 @@ class App extends React.Component {
           <SignUp path="/signup" />
           <CreateList path="/create" />
           <Profile path="/profile" />
+          <YorumProfile path="/profileYorum" />
           <MyLists path="/lists" />
           <ListPage path="lists/:title" />
           <TopList path="/toplists" />
@@ -42,6 +44,7 @@ class App extends React.Component {
           <TVDetailPage path="/tvserials/:TVId" />
           <GameHome path="/oyun" />
           <Game path="/oyun/:gameSlug" />
+          
         </Router>
         <Footer />
       </div>

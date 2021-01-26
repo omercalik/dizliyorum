@@ -38,6 +38,11 @@ class Profile extends React.Component {
                   <Link to="/create">
                   <MyButton>Yeni Liste Oluştur</MyButton>
                   </Link>
+                  <br/><br/><br/>
+
+                  <Link to="/profileYorum">
+                  <MyButton>Yorumlar</MyButton>
+                  </Link>
                 </li>
 
                 <li></li>
