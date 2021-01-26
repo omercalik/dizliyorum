@@ -26,9 +26,6 @@ const GameInfo = ({ game }) => {
       <div className="movieinfo-content">
         <div className="movieinfo-text">
           <h1>{game.name}</h1>
-          <div className="player-wrapper">
-            <ReactPlayer controls className="react-player" url={base} />
-          </div>
           <h3>PLOT</h3>
           {game.description_raw}
 
@@ -49,6 +46,10 @@ const GameInfo = ({ game }) => {
               </p>
             </div>
           </div>
+        </div>
+
+        <div className="player-wrapper">
+          <ReactPlayer controls className="react-player" url={base} />
         </div>
       </div>
     </StyledGameInfo>

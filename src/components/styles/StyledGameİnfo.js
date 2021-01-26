@@ -3,9 +3,7 @@ import { IMAGE_BASE_URL, BACKDROP_SIZE } from '../../config/apiConfig';
 
 export const StyledGameInfo = styled.div`
   background: ${(props) =>
-    props.backdrop
-      ? `url('${props.backdrop}')`
-      : '#000'};
+    props.backdrop ? `url('${props.backdrop}')` : '#000'};
   background-size: cover !important;
   background-position: center !important;
   width: 100%;
@@ -20,6 +18,11 @@ export const StyledGameInfo = styled.div`
     background: rgb(0, 0, 0, 0.7);
     border-radius: 20px;
     position: relative;
+    display: flex;
+  }
+
+  .react-player {
+    margin-top: 7%;
   }
 
   .movieinfo-thumb {
