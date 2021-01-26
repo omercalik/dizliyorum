@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import './comment.css';
+import './profile.css';
 import { connect } from 'react-redux';
 import firebase from '../../config/fbConfig';
 import { deleteComment } from '../../store/actions/commentActions';
-const CommentSection = ({
+const CommentSectionProfile = ({
   auth,
   state,
   userName,
@@ -222,7 +222,7 @@ const CommentSection = ({
   return (
     <div className="comment-container">
       <div className="username-container">
-        <p className="username">{userName}</p>
+        <p className="username">{contentName}</p>
         <p className="date">{date}</p>
         {auth.uid === commentRef.userId ? (
           <button onClick={() => handleClick(commentRef)} className="btn-flat">
@@ -297,4 +297,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CommentSection);
+export default connect(mapStateToProps, mapDispatchToProps)(CommentSectionProfile);

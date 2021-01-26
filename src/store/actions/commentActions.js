@@ -1,4 +1,4 @@
-export const addComment = (comment, contentId, type, analyze) => {
+export const addComment = (comment, contentId, type, analyze, contentName) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firestore = getFirestore();
     const firebase = getFirebase();
@@ -20,6 +20,7 @@ export const addComment = (comment, contentId, type, analyze) => {
         upvote: 0,
         downvote: 0,
         analyze: analyze,
+        contentName: contentName,
       })
       .then(() => {
         dispatch({ type: 'ADD_COMMENT', comment: comment });

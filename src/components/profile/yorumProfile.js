@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import CommentSection from '../layout/CommentSection';
+import CommentSectionProfile from './commentSectionProfile';
 import firebase from '../../config/fbConfig';
 import { connect } from 'react-redux';
+import './profile.css';
 
 let dayjs = require('dayjs');
 let db = firebase.firestore();
@@ -54,7 +55,7 @@ const YorumProfile = (state, userId) => {
         
         movieComments.length > 0 &&
             movieComments.map((comment, index) => (
-              <CommentSection
+              <CommentSectionProfile
                 userName={comment.userFirstName + ' ' + comment.userLastName}
                 date={comment.createdAt}
                 comment={comment.comment}
@@ -63,6 +64,7 @@ const YorumProfile = (state, userId) => {
                 key={comment.commentId}
                 upvote={comment.upvote}
                 downvote={comment.downvote}
+                contentName={comment.contentName}
               />
             ))
     );

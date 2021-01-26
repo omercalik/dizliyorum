@@ -80,11 +80,12 @@ const GameThumb = ({ image, game, clickable }) => (
   </StyledMovieThumb>
 );
 
-const Game = ({ gameSlug, addComment }) => {
+const Game = ({ gameSlug, addComment}) => {
   const [game, loading, error] = useGameHomeFetch(gameSlug);
   const [comment, setComment] = React.useState('');
   const [analyze, setAnalyze] = React.useState('');
   const [gameComments, setGameComments] = React.useState([]);
+  const [contentName, setcontentName] = React.useState('');
   const [model, setModel] = React.useState();
   const [metadata, setMetadata] = React.useState();
   const [testText, setText] = React.useState('');
@@ -96,6 +97,7 @@ const Game = ({ gameSlug, addComment }) => {
   const [submitted, setSubmitted] = React.useState();
   const [reload, setReload] = React.useState(false);
   const [commentCount, setCommentCount] = React.useState();
+
   const ref = db.collection('comments');
 
   const test = () => {
@@ -109,7 +111,7 @@ const Game = ({ gameSlug, addComment }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addComment(comment, gameSlug, 'game', analyze);
+    addComment(comment, gameSlug, 'game', analyze,contentName);
     setText('');
 
     setReload(!reload);
@@ -210,6 +212,7 @@ const Game = ({ gameSlug, addComment }) => {
     };
 
     getComments();
+    setcontentName(gameSlug)
   }, [reload]);
 
   if (error) {
@@ -277,8 +280,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addComment: (comment, contentId, type, analyze) =>
-      dispatch(addComment(comment, contentId, type, analyze)),
+    addComment: (comment, contentId, type, analyze,contentName) =>
+      dispatch(addComment(comment, contentId, type, analyze,contentName)),
   };
 };
 

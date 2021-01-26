@@ -24,6 +24,7 @@ let dayjs = require('dayjs');
 const TVDetail = ({ TVId, addComment }) => {
   const [TV, loading, error] = useTVFetch(TVId);
   const [comment, setComment] = React.useState('');
+  const [contentName, setcontentName] = React.useState('');
   const [analyze, setAnalyze] = React.useState('');
   const [tvComments, settvComments] = React.useState([]);
   const [model, setModel] = React.useState();
@@ -51,7 +52,7 @@ const TVDetail = ({ TVId, addComment }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addComment(comment, TVId, 'tv', analyze);
+    addComment(comment, TVId, 'tv', analyze,contentName);
     setText('');
 
     setReload(!reload);
@@ -152,8 +153,9 @@ const TVDetail = ({ TVId, addComment }) => {
       settvComments(newState);
       setCommentCount(newState.length);
     };
-
+    
     getComments();
+    setcontentName(TV.name);
   }, [reload]);
 
   if (error) {
@@ -236,8 +238,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addComment: (comment, contentId, type, analyze) =>
-      dispatch(addComment(comment, contentId, type, analyze)),
+    addComment: (comment, contentId, type, analyze, contentName) =>
+      dispatch(addComment(comment, contentId, type, analyze, contentName)),
   };
 };
 

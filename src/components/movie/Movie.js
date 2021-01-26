@@ -22,6 +22,7 @@ const Movie = ({ state, movieId, addComment }) => {
   const [movie, loading, error] = useMovieFetch(movieId);
   const [comment, setComment] = React.useState('');
   const [analyze, setAnalyze] = React.useState('');
+  const [contentName, setcontentName] = React.useState('');
   const [movieComments, setMovieComments] = React.useState([]);
   const [model, setModel] = React.useState();
   const [metadata, setMetadata] = React.useState();
@@ -48,7 +49,7 @@ const Movie = ({ state, movieId, addComment }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addComment(comment, movieId, 'movie', analyze);
+    addComment(comment, movieId, 'movie', analyze, contentName);
     setText('');
 
     setReload(!reload);
@@ -117,7 +118,7 @@ const Movie = ({ state, movieId, addComment }) => {
       loadModel(url);
       loadMetadata(url);
     });
-
+    setcontentName(movie.name);
     const getComments = async () => {
       const newState = [];
 
@@ -149,6 +150,7 @@ const Movie = ({ state, movieId, addComment }) => {
     };
 
     getComments();
+    setcontentName(movie.title);
   }, [reload]);
 
   if (error) {
@@ -219,6 +221,7 @@ const Movie = ({ state, movieId, addComment }) => {
               downvote={comment.downvote}
             />
           ))}
+          
       </div>
     </>
   );
@@ -233,8 +236,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addComment: (comment, contentId, type, analyze) =>
-      dispatch(addComment(comment, contentId, type, analyze)),
+    addComment: (comment, contentId, type, analyze, contentName) =>
+      dispatch(addComment(comment, contentId, type, analyze, contentName)),
   };
 };
 
