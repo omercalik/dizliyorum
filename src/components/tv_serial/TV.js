@@ -66,7 +66,7 @@ const TV = () => {
             />
           )}
           <SearchBar callback={searchTVs} />
-          <Grid header={searchTerm ? 'Search Result' : 'Popular TV Series'}>
+          <Grid header={searchTerm ? 'Search Result' : ''}>
             {tvs.map((TV) => (
               <TVThumb
                 key={TV.id}

@@ -8,7 +8,7 @@ import { useGameFetch } from '../hooks/useGameFetch';
 import Spinner from '../dashboard/Spinner';
 import LoadMoreBtn from '../dashboard/LoadMoreBtn';
 import { useMoreGameFetch } from '../hooks/useMoreGameFetch';
-
+import HeroImage from '../dashboard/HeroImage';
 const style = {
   height: '250px',
   width: '172px',
@@ -61,6 +61,10 @@ const GameHome = () => {
     <>
       {console.log(data)}
       <>
+        <HeroImage
+          image={data.games[0].background_image}
+          title={data.games[0].name}
+        />
         <SearchBar callback={searchGames} />
         <Grid>
           {data.games.map((game) => (

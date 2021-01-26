@@ -65,7 +65,7 @@ const Home = () => {
 
         <SearchBar callback={searchMovies} />
 
-        <Grid header={searchTerm ? 'Search Result' : 'Popular Movies'}>
+        <Grid header={searchTerm ? 'Search Result' : ''}>
           {!notFound ? (
             movies.map((movie) => (
               <MovieThumb

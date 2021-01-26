@@ -7,8 +7,9 @@ export const StyledMovieInfo = styled.div`
       ? `url('${IMAGE_BASE_URL}${BACKDROP_SIZE}${props.backdrop}')`
       : '#000'};
   background-size: cover !important;
-  background-position: center !important;
+  background-position: 76% 24% !important;
   width: 100%;
+  height: 600px;
   padding: 40px 20px;
   box-sizing: border-box;
   animation: animateMovieinfo 1s;
@@ -20,6 +21,7 @@ export const StyledMovieInfo = styled.div`
     background: rgb(0, 0, 0, 0.7);
     border-radius: 20px;
     position: relative;
+    display: flex;
   }
 
   .movieinfo-thumb {
@@ -29,6 +31,10 @@ export const StyledMovieInfo = styled.div`
     @media screen and (max-width: 768px) {
       width: 100% !important;
     }
+  }
+
+  .react-player {
+    margin-top: 7%;
   }
 
   .movieinfo-text {
@@ -91,7 +97,7 @@ export const StyledMovieInfo = styled.div`
     height: auto;
   }
 
-  @keyframes animateMovieinfo {
+  @keyframes animate {
     from {
       opacity: 0;
     }
