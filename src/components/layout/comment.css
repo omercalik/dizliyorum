@@ -7,6 +7,10 @@
   background-color: #f48c06;
 }
 
+.content-name {
+  font-weight: bold;
+}
+
 .content-name,
 .content-date,
 .profile-comment-delete {

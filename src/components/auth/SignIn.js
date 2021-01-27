@@ -25,7 +25,7 @@ class SignIn extends React.Component {
           <h5 className="sign-in-header">Sign In</h5>
           <div className="input-field">
             <label className="input-text" htmlFor="email">
-              Email
+              E-mail
             </label>
             <input
               className="input-text"
@@ -36,7 +36,7 @@ class SignIn extends React.Component {
           </div>
           <div className="input-field">
             <label className="input-text" htmlFor="password">
-              Password
+              Şifre
             </label>
             <input
               className="input-text"
@@ -46,7 +46,7 @@ class SignIn extends React.Component {
             />
           </div>
           <div className="input-field">
-            <button className="btn signin-button z-depth-0">Login</button>
+            <button className="btn signin-button z-depth-0">Giriş Yap</button>
           </div>
           <div className="red-text center">
             {authError ? <p>{authError}</p> : null}

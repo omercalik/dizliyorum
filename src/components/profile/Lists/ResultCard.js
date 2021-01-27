@@ -16,6 +16,7 @@ export const ResultCard = ({ movie, index, id, children }) => {
       {movie ? (
         <div className="movie-thumb-container">
           <div className="gün">
+            {console.log(movie)}
             <MovieThumb
               clickable
               key={movie.id}
@@ -47,7 +48,9 @@ export const ResultCard = ({ movie, index, id, children }) => {
                   {movie.release_date.substring(0, 4)}
                 </h4>
               ) : (
-                <h4 className="release-date">-</h4>
+                <h4 className="release-date">
+                  {movie.first_air_date.substring(0, 4)}
+                </h4>
               )}
             </div>
             {children}

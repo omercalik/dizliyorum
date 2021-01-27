@@ -25,10 +25,10 @@ class SignUp extends React.Component {
     return (
       <div style={{ minHeight: '80vh' }} className="container">
         <form onSubmit={this.handleSubmit} className="sign-in-form">
-          <h5 className="sign-in-header">Sign Up</h5>
+          <h5 className="sign-in-header">Kayıt Ol</h5>
           <div className="input-field">
             <label className="input-text" htmlFor="email">
-              Email
+              E-mail
             </label>
             <input
               className="input-text"
@@ -39,7 +39,7 @@ class SignUp extends React.Component {
           </div>
           <div className="input-field">
             <label className="input-text" htmlFor="password">
-              Password
+              Şifre
             </label>
             <input
               className="input-text"
@@ -50,7 +50,7 @@ class SignUp extends React.Component {
           </div>
           <div className="input-field">
             <label className="input-text" htmlFor="firstName">
-              First Name
+              Adınız
             </label>
             <input
               className="input-text"
@@ -61,7 +61,7 @@ class SignUp extends React.Component {
           </div>
           <div className="input-field">
             <label className="input-text" htmlFor="lastName">
-              Last Name
+              Soyadınız
             </label>
             <input
               className="input-text"
@@ -71,7 +71,7 @@ class SignUp extends React.Component {
             />
           </div>
           <div className="input-field">
-            <button className="btn signin-button z-depth-0">Sign Up</button>
+            <button className="btn signin-button z-depth-0">Kayıt Ol</button>
             <div className="red-text center">
               {authError ? <p>{authError}</p> : null}
             </div>
