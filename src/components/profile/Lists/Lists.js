@@ -8,6 +8,10 @@ import { Redirect } from '@reach/router';
 import List from '@material-ui/core/List';
 import { makeStyles } from '@material-ui/core';
 import ListItem from '@material-ui/core/ListItem';
+import NoImage from '../../images/no_image.jpg';
+import { IMAGE_BASE_URL, POSTER_SIZE } from '../../../config/apiConfig';
+import Spinner from '../../dashboard/Spinner';
+import './list.css';
 
 let db = firebase.firestore();
 
@@ -22,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
 const MyLists = ({ state }) => {
   const classes = useStyles();
   const [myLists, setMyLists] = React.useState();
+  const [isFetched, setisFetched] = React.useState(false);
 
   React.useEffect(() => {
     const fetchData = () => {
@@ -34,6 +39,7 @@ const MyLists = ({ state }) => {
           }));
 
           setMyLists(movieLists);
+          setisFetched(true);
         });
     };
 
@@ -47,9 +53,11 @@ const MyLists = ({ state }) => {
     });
   };
 
+  if (!isFetched) return <Spinner />;
   if (!state.firebase.auth.uid) return <Redirect from="/lists" to="/signin" />;
   return (
     <List>
+      {console.log(myLists)}
       {myLists &&
         myLists.map((list) => {
           return (
@@ -61,7 +69,9 @@ const MyLists = ({ state }) => {
                 handleClick(list);
               }}
             >
-              {list.title}
+              <div>
+                <p>{list.title}</p>
+              </div>
             </ListItem>
           );
         })}

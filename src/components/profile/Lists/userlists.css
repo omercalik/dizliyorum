@@ -1,0 +1,48 @@
+.main-container {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+  min-height: 69vh;
+}
+
+.list-name-container {
+  border-radius: 2%;
+  margin-bottom: 50px;
+}
+
+.listt {
+  width: 500px;
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.list-titlee {
+  margin: 10px;
+  padding-top: 10px;
+}
+
+.list-titlee:hover {
+  cursor: pointer;
+}
+
+.count {
+  padding-top: 0;
+  margin-left: 10px;
+  margin-top: 5px;
+  padding-bottom: 10px;
+}
+
+.create-list-button {
+  background-color: #dc2f02;
+}
+
+.delete-list-button {
+  height: 10px;
+}
+
+.delete-list-button:hover {
+  cursor: pointer;
+}

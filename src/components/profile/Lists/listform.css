@@ -1,0 +1,18 @@
+.create-list-form {
+  background-color: #dc2f02;
+  color: white;
+}
+
+.create-list-header,
+.create-list-input,
+.create-list-label {
+  color: white !important;
+}
+
+.create-list-button {
+  background-color: #9d0208;
+}
+
+.create-list-button:hover {
+  background-color: #9d0208;
+}

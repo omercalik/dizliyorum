@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { signIn } from '../../store/actions/authActions';
 import { navigate } from '@reach/router';
+import './sign.css';
 
 class SignIn extends React.Component {
   state = {
@@ -20,18 +21,32 @@ class SignIn extends React.Component {
     if (auth.uid) navigate('/');
     return (
       <div style={{ minHeight: '80vh' }} className="container">
-        <form onSubmit={this.handleSubmit} className="white">
-          <h5 className="grey-text text-darken-3">Sign In</h5>
+        <form onSubmit={this.handleSubmit} className="sign-in-form">
+          <h5 className="sign-in-header">Sign In</h5>
           <div className="input-field">
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" onChange={this.handleChange} />
+            <label className="input-text" htmlFor="email">
+              Email
+            </label>
+            <input
+              className="input-text"
+              type="email"
+              id="email"
+              onChange={this.handleChange}
+            />
           </div>
           <div className="input-field">
-            <label htmlFor="password">Password</label>
-            <input type="password" id="password" onChange={this.handleChange} />
+            <label className="input-text" htmlFor="password">
+              Password
+            </label>
+            <input
+              className="input-text"
+              type="password"
+              id="password"
+              onChange={this.handleChange}
+            />
           </div>
           <div className="input-field">
-            <button className="btn pink lighten-1 z-depth-0">Login</button>
+            <button className="btn signin-button z-depth-0">Login</button>
           </div>
           <div className="red-text center">
             {authError ? <p>{authError}</p> : null}

@@ -1,0 +1,18 @@
+.list-thumbnail {
+  width: 150px;
+}
+
+.list-container {
+  display: flex;
+  margin-bottom: 15px;
+  width: 35%;
+}
+
+.list-title {
+  margin-top: -100px;
+}
+
+.list-text {
+  margin-top: 100px;
+  margin-left: 10px;
+}

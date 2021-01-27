@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { createList } from '../../../store/actions/listActions';
 import { Redirect } from 'react-router-dom';
 import { navigate } from '@reach/router';
+import './listform.css';
 
 class CreateList extends React.Component {
   state = {
@@ -16,22 +17,29 @@ class CreateList extends React.Component {
     console.log(this.props.state);
 
     this.props.createList(this.state);
-    navigate('/');
+    navigate('/profile');
   };
   render() {
     const { auth } = this.props;
     if (!auth.uid) navigate('/');
     return (
       <div style={{ minHeight: '80vh' }} className="container">
-        <form onSubmit={this.handleSubmit} className="white">
-          <h5 className="grey-text text-darken-3">Liste Oluştur</h5>
+        <form onSubmit={this.handleSubmit} className="create-list-form">
+          <h5 className="create-list-header">Liste Oluştur</h5>
           <div className="input-field">
-            <label htmlFor="title">Liste İsmi</label>
-            <input type="text" id="title" onChange={this.handleChange} />
+            <label className="create-list-label" htmlFor="title">
+              Liste İsmi
+            </label>
+            <input
+              className="create-list-input"
+              type="text"
+              id="title"
+              onChange={this.handleChange}
+            />
           </div>
 
           <div className="input-field">
-            <button className="btn pink lighten-1 z-depth-0">Oluştur</button>
+            <button className="btn create-list-button">Oluştur</button>
           </div>
         </form>
       </div>
