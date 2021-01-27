@@ -48,7 +48,7 @@ const Movie = ({ state, movieId, addComment }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addComment(comment, movieId, 'movie', analyze);
+    addComment(comment, movieId, 'movie', analyze, movie.title);
     setText('');
 
     setReload(!reload);
@@ -233,8 +233,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addComment: (comment, contentId, type, analyze) =>
-      dispatch(addComment(comment, contentId, type, analyze)),
+    addComment: (comment, contentId, type, analyze, name) =>
+      dispatch(addComment(comment, contentId, type, analyze, name)),
   };
 };
 

@@ -1,0 +1,89 @@
+[33mcommit f48e6a17b28687ba65de569332ae2e723eb609fd[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Merge: 9612a97 055e45d
+Author: vignerd <30555343+vignerd@users.noreply.github.com>
+Date:   Wed Jan 27 16:46:46 2021 +0300
+
+    Merge pull request #22 from vignerd/sonprofil
+    
+    profil bitti
+
+[33mcommit 055e45daa6dc433381dda51e0c02acb4470e383d[m[33m ([m[1;31morigin/sonprofil[m[33m)[m
+Merge: 128728f 9612a97
+Author: vignerd <30555343+vignerd@users.noreply.github.com>
+Date:   Wed Jan 27 16:46:39 2021 +0300
+
+    Merge branch 'main' into sonprofil
+
+[33mcommit 9612a9719f14d1dbaa6197ed9f1d2f13254eb04c[m
+Merge: 9f17c0a 958171e
+Author: vignerd <30555343+vignerd@users.noreply.github.com>
+Date:   Wed Jan 27 16:40:53 2021 +0300
+
+    Merge pull request #21 from vignerd/profilestyling
+    
+    profile page and lists
+
+[33mcommit 958171e643c650fafeeb149297ba2861af9d0208[m[33m ([m[1;31morigin/profilestyling[m[33m, [m[1;32mprofilestyling[m[33m)[m
+Author: vignerd <omerbcalik@gmail.com>
+Date:   Wed Jan 27 16:39:57 2021 +0300
+
+    profile page and lists
+
+[33mcommit 128728f50c9b36fb78f14cbd0e311532a2c49971[m
+Author: Yalçın Golayoğlu <malozyali@gmail.com>
+Date:   Wed Jan 27 00:22:28 2021 +0300
+
+    profil bitti
+
+[33mcommit 9f17c0a055b91574d50a02b873d5800258f088b2[m
+Author: vignerd <omerbcalik@gmail.com>
+Date:   Tue Jan 26 20:39:44 2021 +0300
+
+    trailer styling
+
+[33mcommit 6dd76b2db00a62479c34feec5a2f499f6be6c6f5[m
+Merge: c20a7f2 3010c53
+Author: vignerd <30555343+vignerd@users.noreply.github.com>
+Date:   Tue Jan 26 20:26:37 2021 +0300
+
+    Merge pull request #20 from vignerd/profileyorum
+    
+    profilyorum
+
+[33mcommit 3010c53b7a8791c7bc5da11865c05fa0c21504b3[m[33m ([m[1;31morigin/profileyorum[m[33m)[m
+Author: Yalçın Golayoğlu <malozyali@gmail.com>
+Date:   Tue Jan 26 20:24:57 2021 +0300
+
+    profilyorum
+
+[33mcommit c20a7f2ed04d39dcb9492219783db9454b84daf3[m
+Author: vignerd <omerbcalik@gmail.com>
+Date:   Tue Jan 26 20:20:24 2021 +0300
+
+    update
+
+[33mcommit a439d721b0850d99b46dcf12132943bc36bca8a2[m
+Author: vignerd <omerbcalik@gmail.com>
+Date:   Tue Jan 26 17:59:32 2021 +0300
+
+    added comment section to game and tvs
+
+[33mcommit 17509bbce26fe07fed0992a4faac681e16bf515e[m
+Author: vignerd <omerbcalik@gmail.com>
+Date:   Mon Jan 25 03:42:03 2021 +0300
+
+    fixed toplist
+
+[33mcommit 0cde7d11fb5658f91aee7f265af285cc1c1221d7[m
+Author: vignerd <omerbcalik@gmail.com>
+Date:   Mon Jan 25 03:11:48 2021 +0300
+
+    vote rapid click fixed
+
+[33mcommit 82ff2219930dc55b0d465d66b2b18a5d462cab80[m
+Merge: 6748883 d2c19ec
+Author: vignerd <omerbcalik@gmail.com>
+Date:   Sun Jan 24 22:23:36 2021 +0300
+
+    Merge branch 'main' of github.com:vignerd/dizliyorum into main
+    fix

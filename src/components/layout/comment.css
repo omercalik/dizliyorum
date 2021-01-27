@@ -3,6 +3,16 @@
   margin-bottom: 15px;
 }
 
+.profile-comment-container {
+  background-color: #f48c06;
+}
+
+.content-name,
+.content-date,
+.profile-comment-delete {
+  color: #03071e;
+}
+
 .username-container {
   display: flex;
 }
@@ -26,8 +36,17 @@
 .comment-body {
   margin-left: 10px;
   font-family: 'Open Sans', sans-serif;
-  font-size: 20px;
+  font-size: 18px;
   color: #808080;
+  margin-top: 0;
+}
+
+.profile-comment-body {
+  color: #370617;
+  margin-left: 10px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  margin-top: 0px;
 }
 
 .satisfied {

@@ -1,0 +1,11 @@
+.profile-comments-container {
+  width: 600px;
+  margin: 0 auto;
+  min-height: 74vh;
+}
+
+.profile-comments-container h5 {
+  position: relative;
+  left: 75px;
+  margin-bottom: 50px;
+}
