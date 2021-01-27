@@ -1,0 +1,19 @@
+.sign-in-form {
+  background-color: #faa307;
+  color: #370617;
+}
+
+.sign-in-header,
+.input-text {
+  color: #370617 !important;
+}
+
+.input-text:focus,
+.input-text:active {
+  background-color: #faa307;
+}
+
+.signin-button,
+.signin-button:hover {
+  background-color: #370617;
+}

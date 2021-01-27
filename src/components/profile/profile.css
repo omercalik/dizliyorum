@@ -1,7 +1,39 @@
-.profileButton{
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)';
-    border: 0;
-    color: 'white';
-    height: 100;
-    padding: '0 30px';
+.profileButton {
+  background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)';
+  border: 0;
+  color: 'white';
+  height: 100;
+  padding: '0 30px';
+}
+
+.innerr-content {
+  width: 600px;
+  margin-top: 100px;
+}
+
+.headerrr {
+  display: flex;
+  justify-content: space-between;
+}
+
+.list-headerr {
+  position: relative;
+  margin-top: 10px;
+}
+
+.see-more {
+  position: relative;
+  top: 0;
+}
+
+.profile-movie-thumb-container {
+  display: flex;
+}
+
+.quick-link:hover {
+  color: #e85d04;
+}
+
+.listt-thumb-container:hover {
+  cursor: pointer;
 }

@@ -15,3 +15,15 @@
 .title {
   font-size: 25px;
 }
+
+.day {
+  width: 300px;
+}
+
+.list-headerr:hover {
+  color: #e85d04;
+}
+
+.quick-links {
+  margin-top: 40%;
+}

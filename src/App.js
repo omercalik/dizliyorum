@@ -5,7 +5,7 @@ import Navbar from './components/layout/Navbar';
 import Home from './components/dashboard/Home';
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
-import CreateList from './components/projects/CreateList';
+import CreateList from './components/profile/Lists/CreateList';
 import Profile from './components/profile/Profile';
 import Game from './components/game/Game';
 import GameHome from './components/game/GameHome';
@@ -19,6 +19,7 @@ import TVDetailPage from './components/tv_serial/TVDetailPage';
 import { Footer } from './components/layout/Footer';
 import { HomePage } from './components/home/HomePage';
 import YorumProfile from './components/profile/yorumProfile';
+import UserLists from './components/profile/Lists/UserLists';
 
 //import "./App.css";
 
@@ -44,7 +45,7 @@ class App extends React.Component {
           <TVDetailPage path="/tvserials/:TVId" />
           <GameHome path="/oyun" />
           <Game path="/oyun/:gameSlug" />
-          
+          <UserLists path="/userlists" />
         </Router>
         <Footer />
       </div>

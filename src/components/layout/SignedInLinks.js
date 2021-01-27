@@ -27,12 +27,14 @@ const SignedInLinks = (props) => {
           <Link to="/oyun">Oyunlar</Link>
         </MenuLink>
         <MenuLink>
+          <Link to="/lists">Watchlist</Link>
+        </MenuLink>
+        <MenuLink>
           <Link to="/profile">Profil</Link>
         </MenuLink>
         <MenuLink>
           <a onClick={props.signOut}>Çıkış Yap </a>
         </MenuLink>
-        
       </Menu>
     </>
   );
