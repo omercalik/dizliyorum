@@ -14,6 +14,7 @@ export const createList = (list) => {
         authorLastName: profile.lastName,
         authorId: authorId,
         createdAt: new Date(),
+        list: [],
       })
       .then(() => {
         dispatch({ type: 'CREATE_LIST', list: list });
@@ -64,6 +65,28 @@ export const deleteFromList = (movie, list) => {
       })
       .catch((err) => {
         dispatch({ type: 'DELETE_FROM_LIST_ERROR', err });
+      });
+  };
+};
+
+export const deleteList = (list) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    // make async call to database
+    const firebase = getFirebase();
+    const firestore = getFirestore();
+    const authorId = getState().firebase.auth.uid;
+    let userRef = firestore.collection('users').doc(authorId);
+
+    console.log(list);
+    userRef
+      .collection('lists')
+      .doc(list.id)
+      .delete()
+      .then(() => {
+        dispatch({ type: 'LIST_DELETED', list: list });
+      })
+      .catch((err) => {
+        dispatch({ type: 'DELETE_LIST_ERROR', err });
       });
   };
 };

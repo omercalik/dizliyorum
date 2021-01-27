@@ -1,0 +1,19 @@
+.list-thumbnail {
+  width: 120px;
+  clip-path: inset(0px 0px 50px 0px);
+}
+
+.list-container {
+  display: flex;
+  margin-bottom: 15px;
+  width: 35%;
+}
+
+.list-title {
+  margin-top: 20px;
+}
+
+.list-text {
+  margin-top: -15px;
+  margin-left: 10px;
+}
