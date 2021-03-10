@@ -1,16 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import firebase from '../../config/fbConfig';
 import { deleteComment } from '../../store/actions/commentActions';
 
 const ProfileComments = ({
   auth,
-  state,
+
   comment,
   commentRef,
   deleteComment,
   date,
-  userName,
+
   callback,
 }) => {
   const handleClick = (comment) => {

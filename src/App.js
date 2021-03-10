@@ -1,5 +1,4 @@
 import React from 'react';
-//import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Router } from '@reach/router';
 import Navbar from './components/layout/Navbar';
 import Home from './components/dashboard/Home';
@@ -20,8 +19,6 @@ import { Footer } from './components/layout/Footer';
 import { HomePage } from './components/home/HomePage';
 import YorumProfile from './components/profile/yorumProfile';
 import UserLists from './components/profile/Lists/UserLists';
-
-//import "./App.css";
 
 // eslint-disable-next-line react/prefer-stateless-function
 class App extends React.Component {

@@ -38,7 +38,6 @@ const Movie = ({ state, movieId, addComment }) => {
 
   const test = () => {
     setReload(!reload);
-    console.log(movieComments);
   };
 
   const handleChange = (e) => {
@@ -49,6 +48,7 @@ const Movie = ({ state, movieId, addComment }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     addComment(comment, movieId, 'movie', analyze, movie.title);
+
     setText('');
 
     setReload(!reload);
@@ -120,10 +120,8 @@ const Movie = ({ state, movieId, addComment }) => {
 
     const getComments = async () => {
       const newState = [];
-
       const snapshot = await ref
         .where('contentId', '==', movieId)
-
         .orderBy('timestamp', 'desc')
         .get();
       if (snapshot.empty) {

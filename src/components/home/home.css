@@ -37,6 +37,16 @@ p {
   margin-top: 20px;
 }
 
-.baslik{
+.baslik {
   padding-left: 50px;
+}
+
+.slick-prev {
+  padding-right: 50px;
+}
+
+.carousel-container {
+  width: 90%;
+  padding: 20px;
+  margin: auto;
 }

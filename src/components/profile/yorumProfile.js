@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import CommentSection from '../layout/CommentSection';
+
 import firebase from '../../config/fbConfig';
 import { connect } from 'react-redux';
 import ProfileComments from '../layout/ProfileComments';

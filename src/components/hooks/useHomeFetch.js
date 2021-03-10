@@ -13,51 +13,6 @@ export const useHomeFetch = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  // const dummyFunction = (endpoint1, endpoint2) => {
-  //   const isLoadMore = endpoint1.search('page');
-  //   Promise.all([fetch(endpoint1), fetch(endpoint2)])
-  //     .then(function (responses) {
-  //       return Promise.all(
-  //         responses.map(function (response) {
-  //           return response.json();
-  //         })
-  //       );
-  //     })
-  //     .then(function (data) {
-  //       data[0].results.forEach((movie) => {
-  //         movie.isMovie = 'true';
-  //       });
-  //       data[1].results.forEach((tv) => {
-  //         tv.isTv = 'true';
-  //       });
-
-  //       console.log(endpoint1, endpoint2);
-
-  //       let d = Promise.resolve(data);
-  //       d.then((value) => {
-  //         setTestState((prev) => ({
-  //           ...prev,
-  //           movies:
-  //             isLoadMore !== -1
-  //               ? [...prev.movies, ...data[0].results]
-  //               : [...data[0].results],
-  //           heroImage: prev.heroImage || data[0].results[0],
-  //           currentPage: data[0].page,
-  //           totalPages: data[0].total_pages,
-  //           tvs:
-  //             isLoadMore !== -1
-  //               ? [...prev.tvs, ...data[1].results]
-  //               : [...data[1].results],
-  //           currentPage: data[0].page,
-  //           totalPages: data[0].total_pages,
-  //         }));
-  //       });
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // };
-
   const fetchMovies = async (endpoint) => {
     setError(false);
     setLoading(true);

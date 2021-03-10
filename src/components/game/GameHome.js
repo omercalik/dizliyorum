@@ -7,7 +7,7 @@ import { Link } from '@reach/router';
 import { useGameFetch } from '../hooks/useGameFetch';
 import Spinner from '../dashboard/Spinner';
 import LoadMoreBtn from '../dashboard/LoadMoreBtn';
-import { useMoreGameFetch } from '../hooks/useMoreGameFetch';
+
 import HeroImage from '../dashboard/HeroImage';
 const style = {
   height: '250px',
@@ -40,6 +40,7 @@ const GameThumb = ({ image, game, gameSlug, clickable }) => (
 
 const GameHome = () => {
   const [searchTerm, setSearchTerm] = useState('');
+
   const [{ data, loading }, fetchData] = useGameFetch(searchTerm);
 
   const loadMoreGames = async () => {
@@ -59,7 +60,6 @@ const GameHome = () => {
 
   return (
     <>
-      {console.log(data)}
       <>
         <HeroImage
           image={data.games[0].background_image}

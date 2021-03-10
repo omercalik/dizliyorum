@@ -5,7 +5,7 @@ import firebase from '../../config/fbConfig';
 import { deleteComment } from '../../store/actions/commentActions';
 const CommentSection = ({
   auth,
-  state,
+
   userName,
   date,
   comment,
@@ -15,7 +15,6 @@ const CommentSection = ({
   callBack,
   upvote,
   downvote,
-  com,
 }) => {
   const [upvoteCount, setupvoteCount] = useState(upvote);
   const [downvoteCount, setdownvoteCount] = useState(downvote);
@@ -32,7 +31,6 @@ const CommentSection = ({
     .get()
     .then((doc) => {
       if (!doc.exists) {
-        console.log('this comment is not voted', doc.data());
       } else {
         if (doc.data().voteType === 'upvote') {
           setvoteType('upvote');
@@ -235,7 +233,6 @@ const CommentSection = ({
       <p className="comment-body">{comment}</p>
 
       <div>
-        {console.log(voteType)}
         <button
           onClick={() => handleVote(commentRef, 'upvote')}
           className={'btn-flat vote ' + (clicked ? 'disabled-button' : '')}

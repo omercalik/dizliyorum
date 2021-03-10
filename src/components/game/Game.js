@@ -3,7 +3,7 @@ import { useGameHomeFetch } from '../hooks/useGameHomeFetch';
 import { StyledGameInfo } from '../styles/StyledGameİnfo';
 import { StyledMovieThumb } from '../styles/StyledMovieThumb';
 import { Link } from '@reach/router';
-import { useGamePhotoFetch } from '../hooks/useGamePhotosFetch';
+
 import ReactPlayer from 'react-player';
 import { connect } from 'react-redux';
 import firebase from '../../config/fbConfig';

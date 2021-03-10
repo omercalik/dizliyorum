@@ -4,7 +4,6 @@ import HeroImage from '../dashboard/HeroImage';
 import NoImage from '../images/no_image.jpg';
 import {
   POPULAR_BASE_URL,
-  SEARCH_BASE_URL,
   POSTER_SIZE,
   API_KEY,
   BACKDROP_SIZE,
@@ -16,11 +15,7 @@ import {
   API_URL,
 } from '../../config/apiConfig';
 import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import Carousel, { slidesToShowPlugin } from '@brainhubeu/react-carousel';
-import '@brainhubeu/react-carousel/lib/style.css';
-import { ActorCarousel } from '../movie/ActorCarousel';
+
 import MovieThumb from '../dashboard/MovieThumb';
 import './home.css';
 import TVThumb from '../tv_serial/TVThumb';
@@ -44,9 +39,19 @@ export const HomePage = () => {
     dots: true,
     fade: true,
     infinite: true,
+    autoplay: true,
+    autoplaySpeed: 3000,
     speed: 2000,
     slidesToShow: 1,
     slidesToScroll: 1,
+  };
+
+  const settings2 = {
+    arrows: true,
+
+    speed: 500,
+    slidesToShow: 7,
+    slidesToScroll: 5,
   };
 
   useEffect(() => {
@@ -154,14 +159,13 @@ export const HomePage = () => {
         console.log(error);
       }
     };
+
     fetchMovies();
   }, []);
 
   if (!isFetched) return <Spinner />;
   return (
     <div style={{ minHeight: '80vh' }}>
-      {console.log(state)}
-
       <Slider {...settings}>
         <HeroImage
           image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.movie[0].backdrop_path}`}
@@ -174,61 +178,63 @@ export const HomePage = () => {
           text={state.tv[0].overview}
         />
       </Slider>
-
       <h4 className="baslik">Vizyondaki Filmler</h4>
-
-      <ActorCarousel>
-        {nowPlaying.movie.map((movie) => (
-          <MovieThumb
-            clickable
-            key={movie.id}
-            image={
-              movie.poster_path
-                ? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
-                : NoImage
-            }
-            movie={movie}
-            movieName={movie.original_title}
-            content={movie}
-          />
-        ))}
-      </ActorCarousel>
-
+      <div className="carousel-container">
+        <Slider {...settings2}>
+          {nowPlaying.movie.map((movie) => (
+            <MovieThumb
+              clickable
+              key={movie.id}
+              image={
+                movie.poster_path
+                  ? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
+                  : NoImage
+              }
+              movie={movie}
+              movieName={movie.original_title}
+              content={movie}
+            />
+          ))}
+        </Slider>
+      </div>
       <h4 className="baslik">Popüler Filmler</h4>
-      <ActorCarousel>
-        {state.movie.map((movie) => (
-          <MovieThumb
-            clickable
-            key={movie.id}
-            image={
-              movie.poster_path
-                ? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
-                : NoImage
-            }
-            movie={movie}
-            movieName={movie.original_title}
-            content={movie}
-          />
-        ))}
-      </ActorCarousel>
-
+      <div className="carousel-container">
+        <Slider {...settings2}>
+          {state.movie.map((movie) => (
+            <MovieThumb
+              clickable
+              key={movie.id}
+              image={
+                movie.poster_path
+                  ? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
+                  : NoImage
+              }
+              movie={movie}
+              movieName={movie.original_title}
+              content={movie}
+            />
+          ))}
+        </Slider>
+      </div>
       <h4 className="baslik">Popüler Diziler</h4>
-      <ActorCarousel>
-        {state.tv.map((tv) => (
-          <TVThumb
-            clickable
-            key={tv.id}
-            image={
-              tv.poster_path
-                ? IMAGE_BASE_URL + POSTER_SIZE + tv.poster_path
-                : NoImage
-            }
-            TVId={tv.id}
-            TVName={tv.name}
-            content={tv}
-          />
-        ))}
-      </ActorCarousel>
+      <div className="carousel-container">
+        <Slider {...settings2}>
+          {state.tv.map((tv) => (
+            <TVThumb
+              clickable
+              key={tv.id}
+              image={
+                tv.poster_path
+                  ? IMAGE_BASE_URL + POSTER_SIZE + tv.poster_path
+                  : NoImage
+              }
+              TVId={tv.id}
+              TVName={tv.name}
+              content={tv}
+            />
+          ))}
+        </Slider>
+      </div>
 
       <div className="content-of-the-week">
         <div className="content-container container1">

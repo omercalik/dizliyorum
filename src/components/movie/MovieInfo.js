@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-import NoImage from '../images/no_image.jpg';
-import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config/apiConfig';
 import ReactPlayer from 'react-player';
-import MovieThumb from '../dashboard/MovieThumb';
+
 import { StyledMovieInfo } from '../styles/StyledMovieInfo';
 import Spinner from '../dashboard/Spinner';
 

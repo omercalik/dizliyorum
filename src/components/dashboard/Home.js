@@ -17,13 +17,13 @@ import {
   POSTER_SIZE,
   BACKDROP_SIZE,
   IMAGE_BASE_URL,
-  POPULAR_BASE_URL_TV,
 } from '../../config/apiConfig';
 
 import { useHomeFetch } from '../hooks/useHomeFetch';
 
 const Home = () => {
   const [searchTerm, setSearchTerm] = useState('');
+
   const [
     {
       state: { movies, currentPage, totalPages, heroImage, notFound },

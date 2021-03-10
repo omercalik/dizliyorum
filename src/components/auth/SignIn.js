@@ -22,7 +22,7 @@ class SignIn extends React.Component {
     return (
       <div style={{ minHeight: '80vh' }} className="container">
         <form onSubmit={this.handleSubmit} className="sign-in-form">
-          <h5 className="sign-in-header">Sign In</h5>
+          <h5 className="sign-in-header">Giriş Yap</h5>
           <div className="input-field">
             <label className="input-text" htmlFor="email">
               E-mail

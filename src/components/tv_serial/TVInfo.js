@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-import NoImage from '../images/no_image.jpg';
-import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config/apiConfig';
 import ReactPlayer from 'react-player';
-import TVThumb from '../tv_serial/TVThumb';
+
 import { StyledMovieInfo } from '../styles/StyledMovieInfo';
 import Spinner from '../dashboard/Spinner';
 
@@ -46,7 +44,7 @@ export const TVInfo = ({ TV }) => {
     <StyledMovieInfo backdrop={TV.backdrop_path}>
       <div className="movieinfo-content">
         <div className="movieinfo-text">
-          <h1>{TV.title}</h1>
+          <h1>{TV.name}</h1>
           <h3>ÖZET</h3>
           <p>{TV.overview}</p>
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createList } from '../../../store/actions/listActions';
-import { Redirect } from 'react-router-dom';
+
 import { navigate } from '@reach/router';
 import './listform.css';
 
@@ -13,10 +13,12 @@ class CreateList extends React.Component {
     this.setState({ [e.target.id]: e.target.value });
   };
   handleSubmit = (e) => {
+    console.time('createList');
     e.preventDefault();
     console.log(this.props.state);
 
     this.props.createList(this.state);
+    console.timeEnd('createList');
     navigate('/profile');
   };
   render() {
