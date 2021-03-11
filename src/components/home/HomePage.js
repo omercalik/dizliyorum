@@ -223,7 +223,7 @@ export const HomePage = () => {
       <h4 className="baslik">Popüler Diziler</h4>
 
       <Swiper
-        className="car"
+        className="caro"
         slidesPerView={7}
         slidesPerGroup={7}
         spaceBetween={50}
