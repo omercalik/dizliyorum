@@ -7,7 +7,7 @@ export const StyledMovieThumb = styled.div`
   }
 
   img {
-    width: 80%;
+    width: 70%;
     display: block;
     height: auto;
     /* max-height: 350px; */

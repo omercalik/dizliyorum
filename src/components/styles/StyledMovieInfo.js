@@ -15,7 +15,7 @@ export const StyledMovieInfo = styled.div`
   animation: animateMovieinfo 1s;
 
   .movieinfo-content {
-    max-width: 1280px;
+    width: 90%;
     min-height: 450px;
     margin: 0 auto;
     background: rgb(0, 0, 0, 0.7);
@@ -68,7 +68,6 @@ export const StyledMovieInfo = styled.div`
 
   .rating-director {
     display: flex;
-    justify-content: flex-start;
   }
 
   .score {

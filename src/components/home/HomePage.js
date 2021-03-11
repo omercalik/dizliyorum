@@ -14,14 +14,18 @@ import {
   TRENDING_TV_URL,
   API_URL,
 } from '../../config/apiConfig';
-import Slider from 'react-slick';
-
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import MovieThumb from '../dashboard/MovieThumb';
-import './home.css';
 import TVThumb from '../tv_serial/TVThumb';
 import ReactPlayer from 'react-player';
 import { Link } from '@reach/router';
 import Spinner from '../dashboard/Spinner';
+
+import 'swiper/swiper-bundle.css';
+import './home.css';
+
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
 export const HomePage = () => {
   const [isFetched, setisFetched] = useState(false);
@@ -31,28 +35,8 @@ export const HomePage = () => {
   const [trending, setTrending] = useState();
   const [game, setGame] = useState();
   const [review, setReview] = useState();
-  const [reviewTv, setreviewTv] = useState();
   const [upcoming, setUpcoming] = useState();
   const [trailers, setTrailers] = useState();
-
-  const settings = {
-    dots: true,
-    fade: true,
-    infinite: true,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    speed: 2000,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
-
-  const settings2 = {
-    arrows: true,
-
-    speed: 500,
-    slidesToShow: 7,
-    slidesToScroll: 5,
-  };
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -166,22 +150,33 @@ export const HomePage = () => {
   if (!isFetched) return <Spinner />;
   return (
     <div style={{ minHeight: '80vh' }}>
-      <Slider {...settings}>
-        <HeroImage
-          image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.movie[0].backdrop_path}`}
-          title={state.movie[0].title}
-          text={state.movie[0].overview}
-        />
-        <HeroImage
-          image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.tv[0].backdrop_path}`}
-          title={state.tv[0].name}
-          text={state.tv[0].overview}
-        />
-      </Slider>
+      <Swiper slidesPerView={1} slidesPerGroup={1}>
+        <SwiperSlide>
+          <HeroImage
+            image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.movie[0].backdrop_path}`}
+            title={state.movie[0].title}
+            text={state.movie[0].overview}
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <HeroImage
+            image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.tv[0].backdrop_path}`}
+            title={state.tv[0].name}
+            text={state.tv[0].overview}
+          />
+        </SwiperSlide>
+      </Swiper>
       <h4 className="baslik">Vizyondaki Filmler</h4>
-      <div className="carousel-container">
-        <Slider {...settings2}>
-          {nowPlaying.movie.map((movie) => (
+
+      <Swiper
+        className="car"
+        slidesPerView={7}
+        slidesPerGroup={7}
+        spaceBetween={50}
+        navigation
+      >
+        {nowPlaying.movie.map((movie) => (
+          <SwiperSlide>
             <MovieThumb
               clickable
               key={movie.id}
@@ -194,13 +189,21 @@ export const HomePage = () => {
               movieName={movie.original_title}
               content={movie}
             />
-          ))}
-        </Slider>
-      </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
       <h4 className="baslik">Popüler Filmler</h4>
-      <div className="carousel-container">
-        <Slider {...settings2}>
-          {state.movie.map((movie) => (
+
+      <Swiper
+        className="car"
+        slidesPerView={7}
+        slidesPerGroup={7}
+        spaceBetween={50}
+        navigation
+      >
+        {state.movie.map((movie) => (
+          <SwiperSlide>
             <MovieThumb
               clickable
               key={movie.id}
@@ -213,13 +216,21 @@ export const HomePage = () => {
               movieName={movie.original_title}
               content={movie}
             />
-          ))}
-        </Slider>
-      </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
       <h4 className="baslik">Popüler Diziler</h4>
-      <div className="carousel-container">
-        <Slider {...settings2}>
-          {state.tv.map((tv) => (
+
+      <Swiper
+        className="car"
+        slidesPerView={7}
+        slidesPerGroup={7}
+        spaceBetween={50}
+        navigation
+      >
+        {state.tv.map((tv) => (
+          <SwiperSlide>
             <TVThumb
               clickable
               key={tv.id}
@@ -232,9 +243,9 @@ export const HomePage = () => {
               TVName={tv.name}
               content={tv}
             />
-          ))}
-        </Slider>
-      </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
 
       <div className="content-of-the-week">
         <div className="content-container container1">

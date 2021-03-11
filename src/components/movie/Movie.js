@@ -11,8 +11,15 @@ import './movie.css';
 import { useMovieFetch } from '../hooks/useMovieFetch';
 import * as tf from '@tensorflow/tfjs';
 import padSequences from './paddedSeq';
-import { blue } from '@material-ui/core/colors';
+
 import CommentSection from '../layout/CommentSection';
+
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import 'swiper/swiper-bundle.css';
+
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
 let db = firebase.firestore();
 
@@ -170,7 +177,9 @@ const Movie = ({ state, movieId, addComment }) => {
           <h3>Aktörler</h3>
           <ActorCarousel header="Actors">
             {movie.actors.map((actor) => (
-              <Actor key={actor.credit_id} actor={actor} />
+              <SwiperSlide>
+                <Actor key={actor.credit_id} actor={actor} />
+              </SwiperSlide>
             ))}
           </ActorCarousel>
         </>

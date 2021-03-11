@@ -60,11 +60,18 @@ export const MovieInfo = ({ movie }) => {
                 <p key={element.credit_id}>{element.name}</p>
               ))}
             </div>
-            <div className="director">
-              <h3>TÜR{movie.genres.length > 1 ? '' : ''}</h3>
-              {movie.genres.map((element) => (
-                <p key={element.credit_id}>{element.name}</p>
-              ))}
+            <div
+              style={{ marginLeft: '50px', textAlign: 'center' }}
+              className="genre"
+            >
+              <h3>TÜRLER{movie.genres.length > 1 ? '' : ''}</h3>
+              <div style={{ display: 'flex' }}>
+                {movie.genres.map((element) => (
+                  <p style={{ marginLeft: '10px' }} key={element.credit_id}>
+                    {element.name}
+                  </p>
+                ))}
+              </div>
             </div>
           </div>
         </div>

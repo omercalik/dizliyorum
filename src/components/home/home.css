@@ -1,7 +1,7 @@
 .content-of-the-week {
   border: 2px solid black;
   margin: 100px;
-  width: 100vw;
+
   height: 100%;
   display: flex;
 }
@@ -31,7 +31,7 @@ p {
 
 .trailer-container {
   display: flex;
-  width: 90vw;
+
   justify-content: space-evenly;
   margin-bottom: 30px;
   margin-top: 20px;
@@ -41,12 +41,6 @@ p {
   padding-left: 50px;
 }
 
-.slick-prev {
-  padding-right: 50px;
-}
-
-.carousel-container {
-  width: 90%;
-  padding: 20px;
-  margin: auto;
+.car {
+  margin-left: 30px;
 }
