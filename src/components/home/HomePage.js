@@ -22,7 +22,6 @@ import ReactPlayer from 'react-player';
 import { Link } from '@reach/router';
 import Spinner from '../dashboard/Spinner';
 
-import 'swiper/swiper-bundle.css';
 import './home.css';
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
@@ -223,7 +222,7 @@ export const HomePage = () => {
       <h4 className="baslik">Popüler Diziler</h4>
 
       <Swiper
-        className="caro"
+        className="car"
         slidesPerView={7}
         slidesPerGroup={7}
         spaceBetween={50}
